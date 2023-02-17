@@ -1,0 +1,215 @@
+[
+  {
+    "surveyId": "61ebf7b30c9988bbea15462c",
+    "userId": "9cddf165683c83093cf1",
+    "responses": [
+      {
+        "questionId": "61ec0381929662b29c458d81",
+        "questionText": "What generations of Pokemon have you played?",
+        "questionType": "CHECKBOX",
+        "value": {
+          "response": [
+            {
+              "id": "c48ba5",
+              "value": "Gen 3: Ruby, Sapphire, Emerald"
+            },
+            {
+              "id": "7d004f",
+              "value": "Gen 4: Diamond, Pearl, Platinum"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "surveyId": "61ebf7b30c9988bbea15462c",
+    "userId": "39e872d8b9b8097ce818",
+    "responses": [
+      {
+        "questionId": "61ec0381929662b29c458d81",
+        "questionText": "What generations of Pokemon have you played?",
+        "questionType": "CHECKBOX",
+        "value": {
+          "response": [
+            {
+              "id": "bfee3d",
+              "value": "Gen 1: Red, Green, Blue, Yellow"
+            },
+            {
+              "id": "052bb3",
+              "value": "Gen 2: Gold, Silver, Crystal"
+            },
+            {
+              "id": "c48ba5",
+              "value": "Gen 3: Ruby, Sapphire, Emerald"
+            },
+            {
+              "id": "7d004f",
+              "value": "Gen 4: Diamond, Pearl, Platinum"
+            },
+            {
+              "id": "80fc6e",
+              "value": "Gen 5: White, Black, White 2, Black 2"
+            },
+            {
+              "id": "d1a1b2",
+              "value": "Gen 6: X, Y"
+            },
+            {
+              "id": "27efe5",
+              "value": "Gen 7: Sun, Moon, Ultra Sun, Ultra Moon"
+            },
+            {
+              "id": "6c0115",
+              "value": "Gen 8: Sword, Shield"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "surveyId": "61ebf7b30c9988bbea15462c",
+    "userId": "9cddf165683c83093cf1",
+    "responses": [
+      {
+        "questionId": "61ec0381929662b29c458d81",
+        "questionText": "What generations of Pokemon have you played?",
+        "questionType": "CHECKBOX",
+        "value": {
+          "response": [
+            {
+              "id": "052bb3",
+              "value": "Gen 2: Gold, Silver, Crystal"
+            },
+            {
+              "id": "c48ba5",
+              "value": "Gen 3: Ruby, Sapphire, Emerald"
+            },
+            {
+              "id": "7d004f",
+              "value": "Gen 4: Diamond, Pearl, Platinum"
+            },
+            {
+              "id": "80fc6e",
+              "value": "Gen 5: White, Black, White 2, Black 2"
+            },
+            {
+              "id": "d1a1b2",
+              "value": "Gen 6: X, Y"
+            },
+            {
+              "id": "27efe5",
+              "value": "Gen 7: Sun, Moon, Ultra Sun, Ultra Moon"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "surveyId": "61ebf7b30c9988bbea15462e",
+    "userId": "9cddf165683c83093cf1",
+    "responses": [
+      {
+        "questionId": "61ef09228de613306d6bcc67",
+        "questionText": "What is your name?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Larry Bayou"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc68",
+        "questionText": "What is your college affiliation?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Oakes"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc69",
+        "questionText": "If you have a favorite food, what is it?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Fries"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc69",
+        "questionText": "What city in Santa Cruz County do you live in?",
+        "questionType": "MULT_CHOICE",
+        "value": {
+          "response": {
+            "id": "ad4da4",
+            "value": "Santa Cruz"
+          }
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc6b",
+        "questionText": "Do you like to eat candy?",
+        "questionType": "MULT_CHOICE",
+        "value": {
+          "response": {
+            "id": "7ec6b6",
+            "value": "No"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "surveyId": "61ebf7b30c9988bbea15462e",
+    "userId": "9cddf165683c83093cf1",
+    "responses": [
+      {
+        "questionId": "61ef09228de613306d6bcc67",
+        "questionText": "What is your name?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Brandon Victoriano"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc68",
+        "questionText": "What is your college affiliation?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Kresge"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc69",
+        "questionText": "If you have a favorite food, what is it?",
+        "questionType": "SHORT_ANSWER",
+        "value": {
+          "response": "Poke"
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc69",
+        "questionText": "What city in Santa Cruz County do you live in?",
+        "questionType": "MULT_CHOICE",
+        "value": {
+          "response": {
+            "id": "ad4da4",
+            "value": "Santa Cruz"
+          }
+        }
+      },
+      {
+        "questionId": "61ef09228de613306d6bcc6b",
+        "questionText": "Do you like to eat candy?",
+        "questionType": "MULT_CHOICE",
+        "value": {
+          "response": {
+            "id": "7ec6b6",
+            "value": "Yes"
+          }
+        }
+      }
+    ]
+  }
+]

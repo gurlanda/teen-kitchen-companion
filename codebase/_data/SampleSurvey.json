@@ -1,0 +1,470 @@
+[
+  {
+    "_id": "61ef0447bc8f57c5e3bfca57",
+    "deactivatedAt": null,
+    "title": "Retired Survey",
+    "description": "This is an old survey and should be deleted.",
+    "questions": [
+      {
+        "type": "SHORT_ANSWER",
+        "isRequired": true,
+        "questionText": "What is your name?",
+        "additionalData": null
+      }
+    ]
+  },
+  {
+    "_id": "61ebf7b30c9988bbea15462c",
+    "deactivatedAt": null,
+    "title": "Pokemon Survey",
+    "description": null,
+    "questions": [
+      {
+        "type": "CHECKBOX",
+        "isRequired": true,
+        "questionText": "What generations of Pokemon have you played?",
+        "additionalData": {
+          "options": [
+            {
+              "id": "bfee3d",
+              "value": "Gen 1: Red, Green, Blue, Yellow"
+            },
+            {
+              "id": "052bb3",
+              "value": "Gen 2: Gold, Silver, Crystal"
+            },
+            {
+              "id": "c48ba5",
+              "value": "Gen 3: Ruby, Sapphire, Emerald"
+            },
+            {
+              "id": "7d004f",
+              "value": "Gen 4: Diamond, Pearl, Platinum"
+            },
+            {
+              "id": "80fc6e",
+              "value": "Gen 5: White, Black, White 2, Black 2"
+            },
+            {
+              "id": "d1a1b2",
+              "value": "Gen 6: X, Y"
+            },
+            {
+              "id": "27efe5",
+              "value": "Gen 7: Sun, Moon, Ultra Sun, Ultra Moon"
+            },
+            {
+              "id": "6c0115",
+              "value": "Gen 8: Sword, Shield"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "_id": "61ebf7b30c9988bbea15462e",
+    "title": "Sample Survey",
+    "description": "This is a sample survey.",
+    "deactivatedAt": null,
+    "questions": [
+      {
+        "type": "MULT_CHOICE_GRID",
+        "isRequired": true,
+        "questionText": "Pick your favorite!",
+        "additionalData": {
+          "rowQuestions": [
+            {
+              "id": "052bb3",
+              "questionText": "RED"
+            },
+            {
+              "id": "27efe5",
+              "questionText": "BLUE"
+            },
+            {
+              "id": "6c0115",
+              "questionText": "YELLOW"
+            },
+            {
+              "id": "979934",
+              "questionText": "GREEN"
+            }
+          ],
+          "options": [
+            {
+              "id": "a1f61e",
+              "value": "17"
+            },
+            {
+              "id": "a3191e",
+              "value": "19"
+            },
+            {
+              "id": "ad4da4",
+              "value": "23"
+            },
+            {
+              "id": "bb97c3",
+              "value": "29"
+            },
+            {
+              "id": "c48ba5",
+              "value": "31"
+            }
+          ],
+          "isAllRequired": false
+        }
+      },
+      {
+        "type": "CHECKBOX_GRID",
+        "isRequired": true,
+        "questionText": "Pick your favorite!",
+        "additionalData": {
+          "rowQuestions": [
+            {
+              "id": "052bb3",
+              "questionText": "Wowsers"
+            },
+            {
+              "id": "27efe5",
+              "questionText": "Yippee"
+            },
+            {
+              "id": "6c0115",
+              "questionText": "Yehey"
+            },
+            {
+              "id": "979934",
+              "questionText": "Wahaa"
+            }
+          ],
+          "options": [
+            {
+              "id": "a1f61e",
+              "value": "12"
+            },
+            {
+              "id": "a3191e",
+              "value": "24"
+            },
+            {
+              "id": "ad4da4",
+              "value": "60"
+            },
+            {
+              "id": "bb97c3",
+              "value": "120"
+            },
+            {
+              "id": "c48ba5",
+              "value": "1000"
+            }
+          ],
+          "isAllRequired": false
+        }
+      },
+      {
+        "type": "SHORT_ANSWER",
+        "isRequired": true,
+        "questionText": "What is your name?",
+        "additionalData": null
+      },
+      {
+        "type": "SHORT_ANSWER",
+        "isRequired": true,
+        "questionText": "What is your college affiliation?",
+        "additionalData": null
+      },
+      {
+        "type": "NUMBER",
+        "isRequired": true,
+        "questionText": "What is your favorite number?",
+        "additionalData": {
+          "min": null,
+          "max": null,
+          "step": null
+        }
+      },
+      {
+        "type": "LONG_ANSWER",
+        "isRequired": true,
+        "questionText": "If you have a favorite food, what is it?",
+        "additionalData": {
+          "numLines": 10
+        }
+      },
+      {
+        "type": "MULT_CHOICE",
+        "isRequired": true,
+        "questionText": "What city in Santa Cruz County do you live in?",
+        "additionalData": {
+          "options": [
+            {
+              "id": "ad4da4",
+              "value": "Santa Cruz"
+            },
+            {
+              "id": "a3191e",
+              "value": "Watsonville"
+            },
+            {
+              "id": "bb97c3",
+              "value": "Scotts Valley"
+            },
+            {
+              "id": "979934",
+              "value": "Capitola"
+            },
+            {
+              "id": "5ef001",
+              "value": "I don't live in Santa Cruz County."
+            }
+          ]
+        }
+      },
+      {
+        "type": "MULT_CHOICE",
+        "isRequired": true,
+        "questionText": "Do you like to eat candy?",
+        "additionalData": {
+          "options": [
+            {
+              "id": "c93217",
+              "value": "Yes"
+            },
+            {
+              "id": "7ec6b6",
+              "value": "No"
+            },
+            {
+              "id": "a1f61e",
+              "value": "Sometimes"
+            }
+          ]
+        }
+      },
+      {
+        "type": "CHECKBOX",
+        "isRequired": true,
+        "questionText": "What generations of Pokemon have you played?",
+        "additionalData": {
+          "options": [
+            {
+              "id": "bfee3d",
+              "value": "Gen 1: Red, Green, Blue, Yellow"
+            },
+            {
+              "id": "052bb3",
+              "value": "Gen 2: Gold, Silver, Crystal"
+            },
+            {
+              "id": "c48ba5",
+              "value": "Gen 3: Ruby, Sapphire, Emerald"
+            },
+            {
+              "id": "7d004f",
+              "value": "Gen 4: Diamond, Pearl, Platinum"
+            },
+            {
+              "id": "80fc6e",
+              "value": "Gen 5: White, Black, White 2, Black 2"
+            },
+            {
+              "id": "d1a1b2",
+              "value": "Gen 6: X, Y"
+            },
+            {
+              "id": "27efe5",
+              "value": "Gen 7: Sun, Moon, Ultra Sun, Ultra Moon"
+            },
+            {
+              "id": "6c0115",
+              "value": "Gen 8: Sword, Shield"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "_id": "61ebf7b30ca56ebbea154620",
+    "title": "Client Intake Survey",
+    "description": "This survey helps us know how to improve our program.",
+    "deactivatedAt": null,
+    "questions": [
+      {
+        "type": "MULT_CHOICE_GRID",
+        "isRequired": true,
+        "questionText": "Below is a list of statements that other people with your illness have said are important. Please mark one number per line to indicate your response as it applies to the past 7 days.",
+        "additionalData": {
+          "rowQuestions": [
+            {
+              "id": "052456bb3",
+              "questionText": "I have a lack of energy"
+            },
+            {
+              "id": "27e456fe5",
+              "questionText": "I have nausea"
+            },
+            {
+              "id": "6c4560115",
+              "questionText": "I am bothered by sides effects of treatment"
+            },
+            {
+              "id": "979456934",
+              "questionText": "I feel cared for by others"
+            },
+            {
+              "id": "ad4456da4",
+              "questionText": "I feel alone in my illness"
+            },
+            {
+              "id": "c44568ba5",
+              "questionText": "I have enough social interaction with others"
+            },
+            {
+              "id": "c93245617",
+              "questionText": "I am able to work (include work from home)"
+            },
+            {
+              "id": "d1a1456b2",
+              "questionText": "I am able to enjoy life"
+            },
+            {
+              "id": "7d004564f",
+              "questionText": "I am enjoying the things I usually do for fun"
+            },
+            {
+              "id": "7ec6456b6",
+              "questionText": "I am content with the quality of my life right now"
+            }
+          ],
+          "options": [
+            {
+              "id": "abca1f61e",
+              "value": "1: Not at all"
+            },
+            {
+              "id": "a3abc191e",
+              "value": "2: A little bit"
+            },
+            {
+              "id": "ad4dabca4",
+              "value": "3: Somewhat"
+            },
+            {
+              "id": "bb9abc7c3",
+              "value": "4: Quite a bit"
+            },
+            {
+              "id": "c48babca5",
+              "value": "5: Very much"
+            }
+          ],
+          "isAllRequired": false
+        }
+      },
+      {
+        "type": "MULT_CHOICE_GRID",
+        "isRequired": true,
+        "questionText": "For the following questions, please mark the column that best describes your beliefs.",
+        "additionalData": {
+          "rowQuestions": [
+            {
+              "id": "052abcbb3",
+              "questionText": "I know the benefits of eating healthy"
+            },
+            {
+              "id": "27abcefe5",
+              "questionText": "It is important that I have healthy eating habits"
+            },
+            {
+              "id": "6c011abc5",
+              "questionText": "It is important to me that my family members have healthy eating habits"
+            },
+            {
+              "id": "9abc79934",
+              "questionText": "I enjoy eating healthy meals"
+            }
+          ],
+          "options": [
+            {
+              "id": "a1f61456e",
+              "value": "1: Definitely No"
+            },
+            {
+              "id": "a3194561e",
+              "value": "2: No"
+            },
+            {
+              "id": "ad4456da4",
+              "value": "3: Not Sureer"
+            },
+            {
+              "id": "b456b97c3",
+              "value": "4: Yes"
+            },
+            {
+              "id": "c48ba4565",
+              "value": "5: Definitely Yes"
+            }
+          ],
+          "isAllRequired": false
+        }
+      },
+      {
+        "type": "SHORT_ANSWER",
+        "isRequired": true,
+        "questionText": "What are your initials? This will be used as an anonymous identifier for your survey.",
+        "additionalData": null
+      },
+      {
+        "type": "MULT_CHOICE",
+        "isRequired": true,
+        "questionText": "Which of these best describes where you are in regards to treatment for your illness?",
+        "additionalData": {
+          "options": [
+            {
+              "id": "ad4456da4",
+              "value": "Not yet started conventional treatment"
+            },
+            {
+              "id": "a4563191e",
+              "value": "In conventional treatment"
+            },
+            {
+              "id": "bb97c4563",
+              "value": "Not yet started or using alternative treatment"
+            },
+            {
+              "id": "979934564",
+              "value": "Not using any treatment"
+            }
+          ]
+        }
+      },
+      {
+        "type": "MULT_CHOICE",
+        "isRequired": true,
+        "questionText": "Please let us know how this statement relates to your experience: \"Within the past 12 months, we worried whether our food would run out before we got money to buy more.\"",
+        "additionalData": {
+          "options": [
+            {
+              "id": "c45693217",
+              "value": "Often true"
+            },
+            {
+              "id": "7ec6b6456",
+              "value": "Sometimes true"
+            },
+            {
+              "id": "4561f61e",
+              "value": "Never true"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
