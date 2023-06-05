@@ -58,23 +58,15 @@ const ContactUs: React.FC = () => {
               visitors.
             </p>
             <p>
-              Contact Angela Farley at angela@teenkitchenproject.org or
-              831-316-4540, extension 6 to make an appointment to visit our
-              facility. We would love to share TKP with you!
+              Email us at info@teenkitchenproject.org or call 831-316-4540,
+              extension 0 to make an appointment to visit our facility. We would
+              love to share TKP with you!
             </p>
             <div className="">
               <h4 className="font-bold">Volunteering</h4>
               <p>
                 For more information on volunteering, call 831-316-4540
                 extension 2
-              </p>
-            </div>
-            <div className="">
-              <h4 className="font-bold">Catering and Classes</h4>
-              <p>Our catering program is suspended for 2022.</p>
-              <p>
-                Summer camp 2022 is on! We will be releasing camp dates and
-                registration in late March 2022.
               </p>
             </div>
           </div>

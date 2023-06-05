@@ -92,7 +92,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
-          {!authContext?.state.isAuthenticated && (
+          {/* {!authContext?.state.isAuthenticated && (
             <NavLinkItem
               to="/journal"
               text="Journal"
@@ -111,7 +111,7 @@ const Navbar: FC = () => {
               text="Admin"
               onClick={toggleIsVisible}
             />
-          )}
+          )} */}
         </div>
 
         <div className="pl-3 py-2 pt-3 lg:px-5 text-xl">

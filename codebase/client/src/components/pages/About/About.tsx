@@ -39,11 +39,11 @@ const About: React.FC = () => {
           About the Teen Kitchen Project
         </h1>
         <AboutParagraph>
-          The Teen Kitchen Project is a nonprofit organization that brings young
-          people into the kitchen to learn to cook delicious and nourishing
-          food. The meals they prepare are delivered to individuals and families
-          who are in crisis due to a life-threatening illness like cancer. We
-          serve families in Santa Cruz County, California.
+          The <b>Teen Kitchen Project</b> is a nonprofit organization that
+          brings young people into the kitchen to learn to cook delicious and
+          nourishing food. The meals they prepare are delivered to individuals
+          and families who are in crisis due to a life-threatening illness like
+          cancer. We serve families in <b>Santa Cruz County, California</b>.
         </AboutParagraph>
         <AboutParagraph>
           The teens gain skills in cooking healthy food, learn about the impact
@@ -51,17 +51,12 @@ const About: React.FC = () => {
           connections through community service.
         </AboutParagraph>
         <AboutParagraph>
-          The Teen Kitchen Project operates on Monday, Tuesday, and Wednesday
-          afternoons, out of commercial kitchens in Soquel and Watsonville,
-          California. We are supported through donations from the community.
+          The Teen Kitchen Project operates on Sundays all day, and Monday,
+          Tuesday, and Wednesday afternoons, out of a commercial kitchen in
+          Soquel, California. We are supported through donations from the
+          community, grants, and contracts with local and state agencies.
         </AboutParagraph>
-        <AboutParagraph>
-          Teen Kitchen Project hosts cooking classes and camps for ages 8 and
-          up. We also have a robust catering program. Both the classes and
-          catering program offer us an opportunity to generate revenue to
-          support feeding more families in crisis.
-        </AboutParagraph>
-        <h3 className="my-10 text-2xl text-center tk-acumin-pro-condensed">
+        {/* <h3 className="my-10 text-2xl text-center tk-acumin-pro-condensed">
           Please support the businesses that support the Teen Kitchen Project:
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
@@ -76,7 +71,7 @@ const About: React.FC = () => {
           {majorFunders.map((src) => (
             <ImgGridItem src={src} key={createId()} />
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -28,8 +28,8 @@ const Section1: React.FC = () => {
       {/* Items */}
       <div className="flex flex-col justify-around px-4 lg:flex-row">
         <SectionItem
-          heading="Get started with our meals"
-          details="Sign up and customize your meals to fit your diet."
+          heading="Healthy meals designed by a registered dietitian"
+          details="Meals are formulated to be heart-healthy and diabetes-friendly."
           icon="bg-laptop-icon"
         />
         <SectionItem
