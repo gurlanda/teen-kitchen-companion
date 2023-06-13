@@ -42,7 +42,7 @@ const Item: React.FC<ItemProps> = ({
 
 const Section3: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center mx-8 my-8 tk-acumin-pro-semi-condensed text-gray-800">
+    <div className="flex flex-col justify-center mx-8 my-8 tk-acumin-pro-semi-condensed text-gray-800">
       <Item
         heading="Teens"
         details="Our teen program offers an exciting opportunity for growth &#38; team-building as well as developing valuable hands-on skills."

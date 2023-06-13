@@ -5,7 +5,7 @@ import logo from '../../../assets/img/logo.png';
 const Hero: React.FC = () => {
   return (
     <>
-      <div className="flex h-screen-5/6 w-screen overflow-hidden">
+      <div className="flex h-screen-5/6">
         {/* Hero content */}
         <div className="flex flex-col pt-[20%] items-center basis-0 grow bg-hero-img bg-cover bg-gray-400 bg-blend-multiply px-3 lg:pt-0 lg:justify-center lg:bg-none lg:bg-gray-200">
           <div className="flex flex-col my-3">
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
           </h4>
           <div className="mx-auto my-5">
             <Link to="/about">
-              <button className="border-gray-200 hover:bg-slate-200 bg-white text-cyan-600 tk-acumin-pro-semi-condensed font-medium border rounded-lg shadow-md text-lg px-6 py-4">
+              <button className="border-gray-200 hover:bg-slate-100 bg-white text-cyan-600 tk-acumin-pro-semi-condensed font-medium border rounded-lg shadow-md text-lg px-6 py-4">
                 Learn more about the
                 <br />
                 Teen Kitchen Project

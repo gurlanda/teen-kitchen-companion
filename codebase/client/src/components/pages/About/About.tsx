@@ -39,11 +39,12 @@ const About: React.FC = () => {
           About the Teen Kitchen Project
         </h1>
         <AboutParagraph>
-          The <b>Teen Kitchen Project</b> is a nonprofit organization that
-          brings young people into the kitchen to learn to cook delicious and
-          nourishing food. The meals they prepare are delivered to individuals
-          and families who are in crisis due to a life-threatening illness like
-          cancer. We serve families in <b>Santa Cruz County, California</b>.
+          The <strong>Teen Kitchen Project</strong> is a nonprofit organization
+          that brings young people into the kitchen to learn to cook delicious
+          and nourishing food. The meals they prepare are delivered to
+          individuals and families who are in crisis due to a life-threatening
+          illness like cancer. We serve families in{' '}
+          <strong>Santa Cruz County, California</strong>.
         </AboutParagraph>
         <AboutParagraph>
           The teens gain skills in cooking healthy food, learn about the impact
