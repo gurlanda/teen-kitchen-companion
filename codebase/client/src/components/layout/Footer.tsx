@@ -1,13 +1,5 @@
-import React from 'react'
+const Footer = (): JSX.Element => {
+  return <div className="h-12"></div>;
+};
 
-const Footer = () => {
-  return (
-    <div className='footer'>
-      <div className="content">
-        <p>Teen Kitchen Companion</p>
-      </div>
-    </div>
-  )
-}
-
-export default Footer
+export default Footer;

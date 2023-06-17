@@ -4,27 +4,18 @@ import TkpBanner from '../layout/TkpBanner';
 
 const ContactUs: React.FC = () => {
   return (
-    <div>
-      {/* Hero section */}
-      {/* <div className="bg-[url('/src/assets/img/cooks-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-400 bg-blend-multiply h-64 flex flex-col justify-center items-center">
-        <h1 className="tk-acumin-pro-condensed font-bold text-7xl  text-white text-center">
-          Contact
-          <br className="ml:hidden" /> us!
-        </h1>
-      </div> */}
+    <div className="min-h-full">
       <TkpBanner hideLogo>Contact us!</TkpBanner>
 
       {/* Content */}
-      <div className="my-10 flex flex-col ml:flex-row ml:space-x-4 tk-acumin-pro-semi-condensed text-gray-700 h-screen px-5 sm:px-9 pb-8 sm:mx-auto sm:w-screen-3/4 md:w-screen-2/3 ml:w-screen max-w-5xl">
+      <div className="flex flex-col gap-6 max-w-[min(90vw,65ch)] tk-acumin-pro-semi-condensed text-gray-700 mx-auto ml:max-w-[min(90vw,100ch)] ml:flex-row">
         {/* Contact info */}
-        <div className="space-y-6 mb-5 ml:border-r-[1px] ml:pr-2 ml:border-gray-300">
-          <div className="w-52 ml:w-48 mx-auto">
-            <img
-              className="h-auto w-full "
-              src={tkpLogo}
-              alt="The Teen Kitchen Project logo"
-            />
-          </div>
+        <div className="space-y-6 ml:border-r-[1px] ml:border-gray-300 ml:pr-2">
+          <img
+            className="w-52 ml:w-48 mx-auto"
+            src={tkpLogo}
+            alt="Teen Kitchen Project logo"
+          />
           <div className="">
             <h4 className="font-bold">Mailing address</h4>
             <p>P.O Box 1853</p>
@@ -68,7 +59,7 @@ const ContactUs: React.FC = () => {
               <h4 className="font-bold">Volunteering</h4>
               <p>
                 For more information on volunteering, call 831-316-4540
-                extension 2
+                extension 2.
               </p>
             </div>
           </div>

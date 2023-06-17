@@ -25,10 +25,11 @@ import EntryCreate from './components/pages/FoodJournal/EntryCreate';
 import EntryEdit from './components/pages/FoodJournal/EntryEdit';
 import JournalAdmin from './components/pages/JournalTemplateEdit/JournalAdmin';
 import JTemplateEditLoader from './components/pages/JournalTemplateEdit/JTemplateEditLoader';
+import Footer from './components/layout/Footer';
 
 const App: React.FC = () => {
   return (
-    <>
+    <div>
       <Navbar />
       <AuthContextState>
         <Routes>
@@ -82,7 +83,8 @@ const App: React.FC = () => {
           <Route element={<NotFound />} />
         </Routes>
       </AuthContextState>
-    </>
+      <Footer />
+    </div>
   );
 };
 

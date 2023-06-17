@@ -28,7 +28,7 @@ const TeenStories: React.FC = () => {
     <div className="">
       <TkpBanner>Read some of the stories from our team!</TkpBanner>
       {/* Stories */}
-      <div className="flex flex-col gap-10 md:gap-16 mb-[100px] max-w-[min(90ch,90vw)] mx-auto">
+      <div className="flex flex-col gap-10 md:gap-16 max-w-[min(90ch,90vw)] mx-auto">
         {stories.map((story) => (
           <Story data={story} key={createId()} />
         ))}
