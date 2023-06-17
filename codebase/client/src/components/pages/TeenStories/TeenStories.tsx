@@ -1,8 +1,8 @@
 import React from 'react';
 import StoryData from './StorySections/StoryData';
 import stories from './StorySections/stories';
-import tkpLogo from 'src/assets/img/tkp-logo-horiz.png';
 import createId from '../../../utils/createId';
+import TkpBanner from 'src/components/layout/TkpBanner';
 
 const Story: React.FC<{ data: StoryData }> = ({ data }) => {
   const { header, img, alt, content } = data;
@@ -23,21 +23,8 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
 
 const TeenStories: React.FC = () => {
   return (
-    <div>
-      {/* Hero section */}
-      <div className="bg-[url('/src/assets/img/food-layout-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-500 bg-blend-multiply h-64 mb-8 flex flex-col justify-evenly items-center">
-        <div className="w-72">
-          <img
-            className="h-auto w-full"
-            src={tkpLogo}
-            alt="Teen Kitchen Project logo"
-          />
-        </div>
-        <h1 className="w-fit tk-acumin-pro-condensed font-bold text-5xl text-white text-center">
-          Read some of the stories <br />
-          from our team!
-        </h1>
-      </div>
+    <div className="flex flex-col gap-12">
+      <TkpBanner>Read some of the stories from our team!</TkpBanner>
       {/* Stories */}
       <div className="mx-6 md:space-y-16 max-w-[968px] lg:mx-auto">
         {stories.map((story) => (

@@ -1,8 +1,5 @@
 import React from 'react';
-import createId from '../../../utils/createId';
-import tkpLogo from 'src/assets/img/tkp-logo-horiz.png';
-import businessSupporters from './businessSupporters';
-import majorFunders from './majorFunders';
+import TkpBanner from 'src/components/layout/TkpBanner';
 
 const AboutParagraph: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -22,18 +19,9 @@ const About: React.FC = () => {
   return (
     <>
       {/* Hero */}
-      <div className="bg-[url('/src/assets/img/food-layout-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-500 bg-blend-multiply h-96 relative">
-        <img
-          className="h-[calc(102_*_0.07em)] w-[calc(279_*_0.07em)] absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          src={tkpLogo}
-          alt="Teen Kitchen Project logo"
-        />
-        <h1 className="absolute top-[70%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-fit tk-acumin-pro-condensed text-4xl text-white text-center">
-          Building Healthier Communities
-          <br />
-          through Food
-        </h1>
-      </div>
+      <TkpBanner normalWeight>
+        Building Healthier Communities Through Food
+      </TkpBanner>
       <div className="tk-acumin-pro-semi-condensed flex flex-col items-center px-4 mx-auto mb-32 xs:px-6 sm:px-9 md:max-w-3xl">
         <h1 className="tk-acumin-pro-condensed text-gray-900 text-center text-4xl mb-6 mt-10">
           About the Teen Kitchen Project

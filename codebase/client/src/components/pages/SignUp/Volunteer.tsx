@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import tkpLogo from 'src/assets/img/tkp-logo-horiz.png';
+import TkpBanner from 'src/components/layout/TkpBanner';
 
 const LinkButton: React.FC<{
   to: string;
@@ -19,21 +19,7 @@ const LinkButton: React.FC<{
 const Volunteer: React.FC = () => {
   return (
     <div>
-      {/* Hero */}
-      <div className="bg-[url('/src/assets/img/cooks-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-500 bg-blend-multiply h-64 flex flex-col justify-evenly items-center">
-        <div className="w-60">
-          <img
-            className="w-full h-auto"
-            src={tkpLogo}
-            alt="Teen Kitchen Project logo"
-          />
-        </div>
-        <h1 className="px-4 w-fit tk-acumin-pro-condensed font-bold text-5xl ms:text-5xl text-white text-center">
-          Would you like to
-          <br />
-          volunteer?
-        </h1>
-      </div>
+      <TkpBanner>Would you like to volunteer?</TkpBanner>
       {/* Content */}
       <div className="mx-4 mt-10 mb-32 sm:mx-auto space-y-6 sm:max-w-lg tk-acumin-pro-semi-condensed text-center">
         <h1 className="tk-acumin-pro-condensed text-3xl ">

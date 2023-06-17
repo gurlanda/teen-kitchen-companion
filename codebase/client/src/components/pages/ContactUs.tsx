@@ -1,16 +1,18 @@
 import React from 'react';
 import tkpLogo from 'src/assets/img/tkpFullLogo.png';
+import TkpBanner from '../layout/TkpBanner';
 
 const ContactUs: React.FC = () => {
   return (
     <div>
       {/* Hero section */}
-      <div className="bg-[url('/src/assets/img/cooks-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-400 bg-blend-multiply h-64 flex flex-col justify-center items-center">
+      {/* <div className="bg-[url('/src/assets/img/cooks-hero.png')] bg-center bg-no-repeat bg-cover bg-gray-400 bg-blend-multiply h-64 flex flex-col justify-center items-center">
         <h1 className="tk-acumin-pro-condensed font-bold text-7xl  text-white text-center">
           Contact
           <br className="ml:hidden" /> us!
         </h1>
-      </div>
+      </div> */}
+      <TkpBanner hideLogo>Contact us!</TkpBanner>
 
       {/* Content */}
       <div className="my-10 flex flex-col ml:flex-row ml:space-x-4 tk-acumin-pro-semi-condensed text-gray-700 h-screen px-5 sm:px-9 pb-8 sm:mx-auto sm:w-screen-3/4 md:w-screen-2/3 ml:w-screen max-w-5xl">
