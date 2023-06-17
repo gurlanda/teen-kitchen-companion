@@ -12,7 +12,7 @@ const TkpBanner = ({
   normalWeight?: boolean;
 }): JSX.Element => {
   return (
-    <div className="relative min-h-[256px] py-10 flex flex-col gap-4 justify-evenly items-center">
+    <div className="relative min-h-[256px] py-10 flex flex-col gap-4 justify-evenly items-center mb-12">
       <img
         src={bannerImg}
         className="absolute -z-10 h-full w-full object-cover object-[center_top] brightness-[50%]"

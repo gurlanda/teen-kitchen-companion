@@ -7,14 +7,16 @@ import TkpBanner from 'src/components/layout/TkpBanner';
 const Story: React.FC<{ data: StoryData }> = ({ data }) => {
   const { header, img, alt, content } = data;
   return (
-    <div className="tk-acumin-pro-semi-condensed flex flex-col md:odd:flex-row md:even:flex-row-reverse items-center text-center mb-10">
-      <div className="flex flex-col items-center mb-6 basis-0 grow">
-        <h4 className="font-bold text-3xl text-cyan-500 mb-4">{header}</h4>
-        <div className="w-3/4 border-8 border-cyan-500">
-          <img className="w-full h-auto" src={img} alt={alt} />
-        </div>
+    <div className="tk-acumin-pro-semi-condensed flex flex-col gap-10 md:odd:flex-row md:even:flex-row-reverse text-center">
+      <div className="flex flex-col gap-4 items-center">
+        <h4 className="font-bold text-3xl text-cyan-500">{header}</h4>
+        <img
+          className="border-8 border-cyan-500 max-w-[min(350px,90vw)]"
+          src={img}
+          alt={alt}
+        />
       </div>
-      <p className="text-orange-700 tk-acumin-pro-condensed text-xl basis-0 grow">
+      <p className="text-orange-700 tk-acumin-pro-condensed text-xl basis-0 grow md:self-center">
         {content}
       </p>
     </div>
@@ -23,10 +25,10 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
 
 const TeenStories: React.FC = () => {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="">
       <TkpBanner>Read some of the stories from our team!</TkpBanner>
       {/* Stories */}
-      <div className="mx-6 md:space-y-16 max-w-[968px] lg:mx-auto">
+      <div className="flex flex-col gap-10 md:gap-16 mb-[100px] max-w-[min(90ch,90vw)] mx-auto">
         {stories.map((story) => (
           <Story data={story} key={createId()} />
         ))}
