@@ -30,7 +30,7 @@ const Item: React.FC<ItemProps> = ({
           Click Here to Learn More
         </h2>
       </a>
-      <div className="bg-slate-100 flex-col items-center justify-center basis-0 grow p-6">
+      <div className="bg-slate-100 flex flex-col items-center justify-center basis-0 grow p-6">
         <h2 className={`font-bold text-2xl text-center ${textColor}`}>
           {heading}
         </h2>
@@ -42,7 +42,7 @@ const Item: React.FC<ItemProps> = ({
 
 const Section3: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center mx-8 my-8 tk-acumin-pro-semi-condensed text-gray-800">
+    <div className="flex flex-col justify-center mx-auto my-8 max-w-[min(150ch,90vw)] tk-acumin-pro-semi-condensed text-gray-800">
       <Item
         heading="Teens"
         details="Our teen program offers an exciting opportunity for growth &#38; team-building as well as developing valuable hands-on skills."
