@@ -38,7 +38,7 @@ const Section2: React.FC = () => {
         <div className="bg-family-icon bg-no-repeat bg-center h-28 w-28 md:px-6"></div>
         <SectionItem
           heading="Young People are the Future"
-          details="Young people are intelligent, responsible, capable, creative,caring, and must be central participants in shaping our collective future."
+          details="Young people are intelligent, responsible, capable, creative, caring, and must be central participants in shaping our collective future."
         />
       </ItemGroup>
       <div className="basis-0 grow-[5] min-w-[450px]">

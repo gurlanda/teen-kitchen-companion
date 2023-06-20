@@ -18,7 +18,7 @@ const LinkButton: React.FC<{
 
 const Volunteer: React.FC = () => {
   return (
-    <div>
+    <div className="text-lg">
       <TkpBanner>Would you like to volunteer?</TkpBanner>
 
       {/* Content */}

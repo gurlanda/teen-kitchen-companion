@@ -8,7 +8,7 @@ const ContactUs: React.FC = () => {
       <TkpBanner hideLogo>Contact us!</TkpBanner>
 
       {/* Content */}
-      <div className="flex flex-col gap-6 max-w-[min(90vw,65ch)] tk-acumin-pro-semi-condensed text-gray-700 mx-auto ml:max-w-[min(90vw,100ch)] ml:flex-row">
+      <div className="flex flex-col gap-6 max-w-[min(90vw,65ch)] tk-acumin-pro-semi-condensed text-gray-700 text-lg mx-auto ml:max-w-[min(90vw,100ch)] ml:flex-row">
         {/* Contact info */}
         <div className="space-y-6 ml:border-r-[1px] ml:border-gray-300 ml:pr-2">
           <img

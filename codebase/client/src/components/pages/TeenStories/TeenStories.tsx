@@ -16,7 +16,7 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
           alt={alt}
         />
       </div>
-      <p className="text-orange-700 tk-acumin-pro-condensed text-xl basis-0 grow md:self-center">
+      <p className="text-orange-700 tk-acumin-pro-semi-condensed basis-0 grow md:self-center">
         {content}
       </p>
     </div>
@@ -25,7 +25,7 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
 
 const TeenStories: React.FC = () => {
   return (
-    <div className="">
+    <div className="text-xl">
       <TkpBanner>Read some of the stories from our team!</TkpBanner>
       {/* Stories */}
       <div className="flex flex-col gap-10 md:gap-16 max-w-[min(90ch,90vw)] mx-auto">
