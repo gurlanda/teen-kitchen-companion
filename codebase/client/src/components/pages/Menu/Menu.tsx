@@ -1,117 +1,76 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import salmonImg from 'src/assets/img/weekly-menu/hoisin-glazed-salmon.png';
-import createId from '../../../utils/createId';
+import PdfViewer from 'src/components/layout/PdfViewer';
+import example1Pdf from 'src/assets/pdf/example1.pdf';
+import example2Pdf from 'src/assets/pdf/example2.pdf';
+import example3Pdf from 'src/assets/pdf/example3.pdf';
+import example4Pdf from 'src/assets/pdf/example4.pdf';
 
-const MenuSelectItem: React.FC<{
-  info: {
-    weekStart: string;
-    weekEnd: string;
-    isActive: boolean;
-    onClick: { (): void };
-  };
-}> = ({ info }) => {
-  const { weekStart, weekEnd, isActive, onClick } = info;
-
+const Button = ({
+  className,
+  onClick,
+  children,
+}: {
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
+}) => {
   return (
-    <div
-      className={`flex flex-col min-w-[6rem] p-2.5 text-center shadow-lg border rounded-xl ${
-        isActive ? 'border-4 border-cyan-500' : ''
-      } tk-acumin-pro-condensed text-lg font-bold text-gray-700`}
+    <button
+      className={`border rounded-lg px-4 py-2 ${className}`}
       onClick={onClick}
     >
-      <span className="block">{`${weekStart} to`}</span>
-      <span className="block">{`${weekEnd}`}</span>
-    </div>
-  );
-};
-
-const MenuItem: React.FC<{
-  img?: string;
-  header?: string;
-  subheader?: string;
-  key?: string;
-}> = ({ img, header, subheader, key }) => {
-  return (
-    <Link className="flex flex-col border rounded-xl shadow-lg" to="menu-item">
-      <div className="">
-        <img
-          src={salmonImg}
-          alt=""
-          className="w-full h-auto border rounded-xl"
-        />
-      </div>
-      <div className="my-4 px-3">
-        <h3 className="font-bold">Hoisin-Glazed Salmon</h3>
-        <p>Roasted broccoli, cabbage slaw with cashews, sesame seeds</p>
-      </div>
-    </Link>
+      {children}
+    </button>
   );
 };
 
 const Menu: React.FC = () => {
-  const [w1Active, setW1Active] = useState(false);
-  const [w2Active, setW2Active] = useState(true);
-  const [w3Active, setW3Active] = useState(false);
+  const [fileUrl, setFileUrl] = useState<string>(example1Pdf);
 
-  const onW1Click = () => {
-    setW1Active(true);
-    setW2Active(false);
-    setW3Active(false);
+  const FileChoiceButton = ({
+    file,
+    children,
+  }: {
+    file: string;
+    children?: React.ReactNode;
+  }): JSX.Element => {
+    function onClick(e: React.MouseEvent<HTMLButtonElement>) {
+      setFileUrl(file);
+    }
+
+    return (
+      <Button onClick={onClick} className="font-medium">
+        {children}
+      </Button>
+    );
   };
-
-  const onW2Click = () => {
-    setW1Active(false);
-    setW2Active(true);
-    setW3Active(false);
-  };
-
-  const onW3Click = () => {
-    setW1Active(false);
-    setW2Active(false);
-    setW3Active(true);
-  };
-
-  const menuDates = [
-    {
-      weekStart: 'June 26',
-      weekEnd: 'July 2',
-      isActive: w1Active,
-      onClick: onW1Click,
-    },
-    {
-      weekStart: 'July 3',
-      weekEnd: 'July 9',
-      isActive: w2Active,
-      onClick: onW2Click,
-    },
-    {
-      weekStart: 'July 10',
-      weekEnd: 'July 16',
-      isActive: w3Active,
-      onClick: onW3Click,
-    },
-  ];
-
-  const numMenuItems = [1, 2, 3, 4, 5, 6];
 
   return (
-    <div className="flex flex-col max-w-screen-md mx-auto px-3 ms:px-6 pb-12 space-y-4 items-center tk-acumin-pro-semi-condensed text-gray-700">
-      <h1 className="tk-acumin-pro-condensed text-4xl font-bold">
-        Weekly Menus
-      </h1>
-      {/* Menu select */}
-      <div className="flex space-x-4 pb-8">
-        {menuDates.map((week) => (
-          <MenuSelectItem info={week} key={createId()} />
-        ))}
-      </div>
+    <div className="h-full tk-acumin-pro-semi-condensed text-gray-700">
+      <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,90ch)]">
+        <h1 className="tk-acumin-pro-condensed text-4xl font-bold text-center">
+          Weekly Menus
+        </h1>
+        {/* Menu select */}
+        <div className="flex py-5 px-10 justify-center gap-2">
+          {/* File buttons */}
+          <div className="flex gap-2">
+            <FileChoiceButton file={example1Pdf}>Week 1</FileChoiceButton>
+            <FileChoiceButton file={example2Pdf}>Week 2</FileChoiceButton>
+            <FileChoiceButton file={example3Pdf}>Week 3</FileChoiceButton>
+            <FileChoiceButton file={example4Pdf}>Week 4</FileChoiceButton>
+          </div>
 
-      {/* Menu items */}
-      <div className="grid grid-cols-2 ms:grid-cols-3 gap-6">
-        {numMenuItems.map((n) => (
-          <MenuItem key={createId()} />
-        ))}
+          {/* File upload */}
+          {/* <div className="flex gap-2 ml-auto items-center">
+            <input type="file" accept=".pdf" onChange={onChooseFile} />
+            <Button onClick={uploadFileToDb}>Upload file</Button>
+          </div> */}
+        </div>
+
+        <div className="h-full flex flex-col">
+          <PdfViewer file={fileUrl} />
+        </div>
       </div>
     </div>
   );

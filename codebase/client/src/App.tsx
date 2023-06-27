@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
-import './App.css';
+// import './App.css';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
 import Menu from './components/pages/Menu/Menu';
@@ -29,7 +29,7 @@ import Footer from './components/layout/Footer';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="h-full">
       <Navbar />
       <AuthContextState>
         <Routes>
