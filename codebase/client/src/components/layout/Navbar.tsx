@@ -2,8 +2,6 @@ import { FC, useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
-import UserType from '../../model/User/UserType';
-import User from 'src/model/User/User';
 
 const NavLinkItem: FC<{
   text: string;
@@ -74,20 +72,16 @@ const Navbar: FC = () => {
         } lg:static lg:flex lg:shadow-none`}
       >
         <div className="pl-5 lg:flex lg:grow">
-          <NavLinkItem to="/" text="How it Works" onClick={toggleIsVisible} />
+          {/* <NavLinkItem to="/" text="How it Works" onClick={toggleIsVisible} /> */}
           <NavLinkItem to="/menu" text="Our Menu" onClick={toggleIsVisible} />
           <NavLinkItem
             to="/volunteer"
             text="Volunteer"
             onClick={toggleIsVisible}
           />
+          <NavLinkItem to="/stories" text="Stories" onClick={toggleIsVisible} />
           <NavLinkItem
-            to="/teen-stories"
-            text="Stories"
-            onClick={toggleIsVisible}
-          />
-          <NavLinkItem
-            to="/contact-us"
+            to="/contact"
             text="Contact Us"
             onClick={toggleIsVisible}
           />

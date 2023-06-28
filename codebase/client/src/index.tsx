@@ -1,19 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import Login from './components/pages/auth/Login';
+import Menu from './components/pages/Menu/Menu';
+import Volunteer from './components/pages/SignUp/Volunteer';
+import ContactUs from './components/pages/ContactUs';
+import SignUp from './components/pages/SignUp/SignUp';
+import TeenStories from './components/pages/TeenStories/TeenStories';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const router = createBrowserRouter([
+  {
+    element: <App />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/about', element: <About /> },
+      { path: '/login', element: <Login /> },
+      { path: '/menu', element: <Menu /> },
+      { path: '/volunteer', element: <Volunteer /> },
+      { path: '/contact', element: <ContactUs /> },
+      { path: '/sign-up', element: <SignUp /> },
+      { path: '/stories', element: <TeenStories /> },
+    ],
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
