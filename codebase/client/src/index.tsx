@@ -5,14 +5,15 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import Home from './components/pages/Home';
 import About from './components/pages/About';
+import ContactUs from './components/pages/ContactUs';
+import EmailFormSandbox from './components/pages/EmailForm';
+import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Menu from './components/pages/Menu/Menu';
-import Volunteer from './components/pages/SignUp/Volunteer';
-import ContactUs from './components/pages/ContactUs';
 import SignUp from './components/pages/SignUp/SignUp';
 import TeenStories from './components/pages/TeenStories/TeenStories';
+import Volunteer from './components/pages/SignUp/Volunteer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: '/contact', element: <ContactUs /> },
       { path: '/sign-up', element: <SignUp /> },
       { path: '/stories', element: <TeenStories /> },
+      { path: '/email', element: <EmailFormSandbox /> },
     ],
   },
 ]);

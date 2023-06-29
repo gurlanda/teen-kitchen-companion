@@ -4,6 +4,7 @@ import example1Pdf from 'src/assets/pdf/example1.pdf';
 import example2Pdf from 'src/assets/pdf/example2.pdf';
 import example3Pdf from 'src/assets/pdf/example3.pdf';
 import example4Pdf from 'src/assets/pdf/example4.pdf';
+import EmailForm from 'src/components/layout/EmailForm';
 
 const Button = ({
   className,
@@ -47,10 +48,11 @@ const Menu: React.FC = () => {
 
   return (
     <div className="h-full tk-acumin-pro-semi-condensed text-gray-700">
-      <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,90ch)]">
+      <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,100ch)]">
         <h1 className="tk-acumin-pro-condensed text-4xl font-bold text-center">
           Weekly Menus
         </h1>
+
         {/* Menu select */}
         <div className="flex py-5 px-10 justify-center gap-2">
           {/* File buttons */}
@@ -68,8 +70,12 @@ const Menu: React.FC = () => {
           </div> */}
         </div>
 
-        <div className="h-full flex flex-col">
-          <PdfViewer file={fileUrl} />
+        <div className="min-h-full flex gap-4">
+          <PdfViewer file={fileUrl} className="grow-[2]" />
+          <EmailForm
+            className="grow-[1]"
+            header="Send a message to our registered dietician"
+          />
         </div>
       </div>
     </div>
