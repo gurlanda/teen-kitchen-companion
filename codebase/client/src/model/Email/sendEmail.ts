@@ -5,11 +5,10 @@ const serverUrl = 'https://testmailer-kjvcft4q2a-uc.a.run.app';
 
 function sendEmail(email: Email) {
   Axios.post(serverUrl, email.toStorable())
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
-
-  Axios.post(serverUrl, email.toStorable())
-    .then((res) => window.alert(res.data))
+    .then((res) => {
+      window.alert(res.data);
+      console.log('Sent!');
+    })
     .catch((err) => {
       window.alert('Error!');
       console.error(err);

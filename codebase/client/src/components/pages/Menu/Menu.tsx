@@ -70,7 +70,7 @@ const Menu: React.FC = () => {
           </div> */}
         </div>
 
-        <div className="min-h-full flex gap-4">
+        <div className="min-h-full flex flex-col gap-4">
           <PdfViewer file={fileUrl} className="grow-[2]" />
           <EmailForm
             className="grow-[1]"

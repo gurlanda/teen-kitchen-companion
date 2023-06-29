@@ -4,21 +4,26 @@ import sendEmail from 'src/model/Email/sendEmail';
 
 const inputClasses = 'px-4 py-2 border border-gray-300 rounded-lg min-w-0';
 
+type InputValue = React.InputHTMLAttributes<HTMLInputElement>['value'];
 const Input = ({
   id,
   name,
   type,
+  value,
   className,
   placeholder,
   onClick,
+  onSubmit,
   onChange,
 }: {
   id?: string;
   name?: string;
-  placeholder?: string;
   type: React.HTMLInputTypeAttribute;
+  value?: InputValue;
+  placeholder?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
+  onSubmit?: React.FormEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }): JSX.Element => {
   return (
@@ -28,7 +33,9 @@ const Input = ({
       type={type}
       placeholder={placeholder}
       className={`${inputClasses} ${className}`}
+      value={value}
       onClick={onClick}
+      onSubmit={onSubmit}
       onChange={onChange}
     />
   );
@@ -45,6 +52,11 @@ const EmailForm = ({
   const [subject, setSubject] = useState<string>('');
   const [message, setMessage] = useState<string>('');
 
+  const clearFields = () => {
+    setSubject('');
+    setMessage('');
+  };
+
   const onSubmit: React.MouseEventHandler<HTMLInputElement> = (
     e: React.MouseEvent<HTMLInputElement>
   ) => {
@@ -52,6 +64,7 @@ const EmailForm = ({
 
     const email = new Email(subject, message);
     sendEmail(email);
+    clearFields();
   };
 
   return (
@@ -64,6 +77,7 @@ const EmailForm = ({
       <div className="flex flex-col gap-2">
         <Input
           type="text"
+          value={subject}
           placeholder="Subject line"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSubject(e.target.value)
@@ -71,6 +85,7 @@ const EmailForm = ({
         />
         <textarea
           placeholder="Message"
+          value={message}
           className={`${inputClasses}`}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setMessage(e.target.value)
