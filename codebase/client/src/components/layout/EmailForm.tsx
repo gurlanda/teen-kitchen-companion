@@ -50,7 +50,7 @@ const EmailForm = ({
   ) => {
     e.preventDefault();
 
-    const email = new Email('g.urlanda@gmail.com', subject, message);
+    const email = new Email(subject, message);
     sendEmail(email);
   };
 

@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import Email from './Email';
 
-const serverUrl = 'https://mailer-kjvcft4q2a-uc.a.run.app';
+const serverUrl = 'https://testmailer-kjvcft4q2a-uc.a.run.app';
 
 function sendEmail(email: Email) {
   Axios.post(serverUrl, email.toStorable())
