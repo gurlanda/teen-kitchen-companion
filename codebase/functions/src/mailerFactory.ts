@@ -1,28 +1,25 @@
-import { onRequest } from 'firebase-functions/v2/https';
-import * as logger from 'firebase-functions/logger';
-import mailTransporter from './mailTransporter';
+import { onRequest, onCall } from 'firebase-functions/v2/https';
+import Email from './Email';
+import sendEmail from './sendEmail';
 
 type onRequestParameters = Parameters<typeof onRequest>;
 type RequestHandler = onRequestParameters[0];
-function mailerFactory(recipientEmailAddress: string): RequestHandler {
+export function mailerOnRequestFactory(recipientEmail: string): RequestHandler {
   return (request, response) => {
     const { subject, message } = request.body;
-
-    async function main() {
-      // Send mail with defined transport object
-      const info = await mailTransporter.sendMail({
-        from: '"Gam\'s Sandbox Email" sandbox@gamurlanda.com', // Sender address
-        to: recipientEmailAddress, // List of receivers
-        subject: subject, // Subject line
-        text: message, // Plain text body
-      });
-
-      logger.info('Message sent: %s', info.messageId);
-    }
-    main().catch(logger.error);
-    logger.info(`Email sent to ${recipientEmailAddress}`);
+    sendEmail(subject, message, recipientEmail);
     response.send('Email sent!');
   };
 }
 
-export default mailerFactory;
+type OnCallParameters = Parameters<typeof onCall<Email, string>>;
+type OnCallRequestHandler = OnCallParameters[0];
+export function mailerOnCallFactory(
+  recipientEmail: string
+): OnCallRequestHandler {
+  return (request) => {
+    const { subject, message } = request.data;
+    sendEmail(subject, message, recipientEmail);
+    return 'Email sent!';
+  };
+}

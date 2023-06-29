@@ -1,7 +1,7 @@
-import { onRequest } from 'firebase-functions/v2/https';
-import mailerFactory from './mailerFactory';
+import { onCall } from 'firebase-functions/v2/https';
+import { mailerOnCallFactory } from './mailerFactory';
 
 // const cors = true;
 const cors = [/localhost:+/, 'https://teen-kitchen-companion.web.app'];
-const testMailerHandler = mailerFactory('g.urlanda@gmail.com');
-export const testMailer = onRequest({ cors }, testMailerHandler);
+const testMailerHandler = mailerOnCallFactory('g.urlanda@gmail.com');
+export const testMailer = onCall({ cors }, testMailerHandler);
