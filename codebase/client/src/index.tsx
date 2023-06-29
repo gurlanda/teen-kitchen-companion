@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
-import EmailFormSandbox from './components/pages/EmailForm';
 import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Menu from './components/pages/Menu/Menu';
@@ -31,7 +30,6 @@ const router = createBrowserRouter([
       { path: '/contact', element: <ContactUs /> },
       { path: '/sign-up', element: <SignUp /> },
       { path: '/stories', element: <TeenStories /> },
-      { path: '/email', element: <EmailFormSandbox /> },
     ],
   },
 ]);
