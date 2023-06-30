@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Email from 'src/model/Email/Email';
-import sendEmail from 'src/model/Email/sendEmail';
+import { sendEmailWithCallable } from 'src/model/Email/sendEmail';
 
 const inputClasses = 'px-4 py-2 border border-gray-300 rounded-lg min-w-0';
 
@@ -63,7 +63,7 @@ const EmailForm = ({
     e.preventDefault();
 
     const email = new Email(subject, message);
-    sendEmail(email);
+    sendEmailWithCallable(email);
     clearFields();
   };
 

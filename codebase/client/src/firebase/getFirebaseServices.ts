@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import * as Auth from 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 
@@ -35,11 +36,16 @@ function initializeFirebase() {
     return Auth.onAuthStateChanged(authRef, nextOrObserver, error, completed);
   };
 
+  // Callable Cloud Functions
+  const functions = getFunctions();
+  const testMailer = httpsCallable(functions, 'testMailer');
+
   return {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    testMailer,
   };
 }
 

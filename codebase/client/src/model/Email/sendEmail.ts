@@ -1,18 +1,15 @@
 import Axios from 'axios';
 import Email from './Email';
+import getFirebaseServices from 'src/firebase/getFirebaseServices';
 
-const serverUrl = 'https://testmailer-kjvcft4q2a-uc.a.run.app';
-
-function sendEmail(email: Email) {
-  Axios.post(serverUrl, email.toStorable())
-    .then((res) => {
-      window.alert(res.data);
-      console.log('Sent!');
+const firebaseServices = getFirebaseServices();
+const testMailer = firebaseServices.testMailer;
+export function sendEmailWithCallable(email: Email) {
+  testMailer(email.toStorable())
+    .then((result) => {
+      window.alert(result.data);
     })
-    .catch((err) => {
+    .catch(() => {
       window.alert('Error!');
-      console.error(err);
     });
 }
-
-export default sendEmail;
