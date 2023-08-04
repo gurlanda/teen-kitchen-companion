@@ -17,7 +17,7 @@ import Login from './components/pages/auth/Login';
 import Menu from './components/pages/Menu/Menu';
 // import SignUp from './components/pages/SignUp/SignUp';
 import TeenStories from './components/pages/TeenStories/TeenStories';
-import Volunteer from './components/pages/SignUp/Volunteer';
+import Volunteer from './components/pages/Volunteer/Volunteer';
 import NotFound from './components/pages/NotFound';
 
 const root = ReactDOM.createRoot(
