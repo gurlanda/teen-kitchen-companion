@@ -1,17 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import AuthContextState from './context/Auth/AuthContextState';
+import AuthContextProvider from './context/Auth/AuthContextProvider';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
 const App: React.FC = () => {
   return (
     <div className="h-full">
-      <AuthContextState>
+      <AuthContextProvider>
         <Navbar />
         <Outlet />
         <Footer />
-      </AuthContextState>
+      </AuthContextProvider>
     </div>
   );
 };

@@ -67,6 +67,7 @@ const AuthContextProvider = ({
   return (
     <AuthContext.Provider value={providedValues}>
       {/* <DataContextProvider userId={userId}>{children}</DataContextProvider> */}
+      {children}
     </AuthContext.Provider>
   );
 };

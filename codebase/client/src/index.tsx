@@ -3,36 +3,43 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 import App from './App';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
 import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Menu from './components/pages/Menu/Menu';
-import SignUp from './components/pages/SignUp/SignUp';
+// import SignUp from './components/pages/SignUp/SignUp';
 import TeenStories from './components/pages/TeenStories/TeenStories';
 import Volunteer from './components/pages/SignUp/Volunteer';
+import NotFound from './components/pages/NotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const router = createBrowserRouter([
-  {
-    element: <App />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: '/about', element: <About /> },
-      { path: '/login', element: <Login /> },
-      { path: '/menu', element: <Menu /> },
-      { path: '/volunteer', element: <Volunteer /> },
-      { path: '/contact', element: <ContactUs /> },
-      { path: '/sign-up', element: <SignUp /> },
-      { path: '/stories', element: <TeenStories /> },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route errorElement={<NotFound />}>
+        <Route index element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/volunteer" element={<Volunteer />} />
+        <Route path="/contact" element={<ContactUs />} />
+        {/* <Route path="/sign-up" element={<SignUp />} /> */}
+        <Route path="/stories" element={<TeenStories />} />
+      </Route>
+    </Route>
+  )
+);
 
 root.render(
   <React.StrictMode>
