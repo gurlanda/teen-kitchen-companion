@@ -1,6 +1,6 @@
 import Clonable from '../Interfaces/Clonable';
 import Identifiable from '../Interfaces/Identifiable';
-import StorableUser from '../Storables/StorableUser';
+import StorableUser from './StorableUser';
 import UserType from './UserType';
 
 export default class User implements Clonable<User>, Identifiable {

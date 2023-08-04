@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
 
 /**
  * Converts a date to a string that can be inputted into the value parameter of an HTML date input. This format is YYYY-MM-DD, where MM is a 1-indexed month

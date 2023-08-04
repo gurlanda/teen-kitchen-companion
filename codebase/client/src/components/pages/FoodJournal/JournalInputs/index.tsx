@@ -10,8 +10,8 @@ import LongAnswerJournalInput from './LongAnswerJournalInput';
 import MultChoiceJournalInput from './MultChoiceJournalInput';
 import NumberJournalInput from './NumberJournalInput';
 import ShortAnswerJournalInput from './ShortAnswerJournalInput';
-import QuestionType from 'src/model/Question/QuestionType';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
+import QuestionType from 'src/model/archive/Question/QuestionType';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
 
 export { default as CheckboxGridJournalInput } from './CheckboxGridJournalInput';
 export { default as CheckboxJournalInput } from './CheckboxJournalInput';

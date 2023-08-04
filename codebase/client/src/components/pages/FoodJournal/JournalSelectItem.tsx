@@ -1,5 +1,5 @@
 import React from 'react';
-import Journal from 'src/model/Journal/Journal';
+import Journal from 'src/model/archive/Journal/Journal';
 
 /**
  * Formats a Date into MM DD format.

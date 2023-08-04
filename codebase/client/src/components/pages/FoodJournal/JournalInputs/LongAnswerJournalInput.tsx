@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import TextAreaInput, {
   StateChangeHandler,
 } from 'src/components/layout/Form/TextAreaInput';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
 
 const LongAnswerJournalInput: React.FC<{ question: QuestionInputState }> = ({
   question,

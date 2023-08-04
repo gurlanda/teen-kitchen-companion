@@ -1,12 +1,12 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import dateString from './dateString';
-import Journal from 'src/model/Journal/Journal';
-import LocalDb from 'src/model/LocalDatabase/LocalDatabase';
+import Journal from 'src/model/archive/Journal/Journal';
+import LocalDb from 'src/model/archive/LocalDatabase/LocalDatabase';
 import createId from 'src/utils/createId';
 import JournalSelectItem from './JournalSelectItem';
 import { Link } from 'react-router-dom';
 import { isInBounds } from 'src/utils/ArrayUtil';
-import Entry from 'src/model/Journal/Entry';
+import Entry from 'src/model/archive/Journal/Entry';
 import EntrySelectItem from './EntrySelectItem';
 
 const ColumnItem: React.FC<{ children: ReactNode }> = ({ children }) => {

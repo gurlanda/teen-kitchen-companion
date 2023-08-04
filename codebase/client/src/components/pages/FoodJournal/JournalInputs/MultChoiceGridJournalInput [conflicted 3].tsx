@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
 
 const MultChoiceGridJournalInput: React.FC<{
   question: QuestionInputState;

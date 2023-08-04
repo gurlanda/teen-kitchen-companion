@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import Number, {
   StateChangeHandler,
 } from 'src/components/layout/Form/NumberInput';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
 
 const NumberJournalInput: React.FC<{ question: QuestionInputState }> = ({
   question,

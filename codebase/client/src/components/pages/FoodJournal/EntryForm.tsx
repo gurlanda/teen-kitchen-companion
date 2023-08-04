@@ -2,7 +2,7 @@ import React, { FormEvent, Fragment, useContext } from 'react';
 import Form from 'src/components/layout/Form/Form';
 import RouterLinkButton from 'src/components/layout/Form/RouterLinkButton';
 import Button from 'src/components/layout/Form/Button';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
 import { stateToJournalInput } from './JournalInputs';
 import dateString from './dateString';
 

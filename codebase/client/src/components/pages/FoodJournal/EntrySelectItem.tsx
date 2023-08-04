@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Entry from 'src/model/Journal/Entry';
+import Entry from 'src/model/archive/Journal/Entry';
 
 const EntrySelectItem: React.FC<{ entry: Entry }> = ({ entry }) => {
   const { submittedAt, id } = entry;

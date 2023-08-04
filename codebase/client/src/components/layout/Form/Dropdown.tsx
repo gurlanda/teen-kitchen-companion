@@ -1,6 +1,6 @@
 import { useState, useRef, FC } from 'react';
 import { useEffect } from 'react';
-import QuestionType from 'src/model/Question/QuestionType';
+import QuestionType from 'src/model/archive/Question/QuestionType';
 import createId from '../../../utils/createId';
 
 export class DropdownItem<T> {

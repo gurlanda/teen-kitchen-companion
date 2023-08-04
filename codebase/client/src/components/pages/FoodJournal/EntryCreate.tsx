@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from 'src/components/layout/Loading';
-import JournalInputContextState from 'src/context/JournalInput/JournalInputContextState';
-import Journal from 'src/model/Journal/Journal';
-import LocalDb from 'src/model/LocalDatabase/LocalDatabase';
+import JournalInputContextState from 'src/context/archive/JournalInput/JournalInputContextState';
+import Journal from 'src/model/archive/Journal/Journal';
+import LocalDb from 'src/model/archive/LocalDatabase/LocalDatabase';
 import EntryForm from './EntryForm';
 
 const EntryCreate: React.FC = () => {

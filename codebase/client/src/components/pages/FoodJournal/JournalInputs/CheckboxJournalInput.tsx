@@ -4,8 +4,8 @@ import OptionGroup from 'src/components/layout/Form/OptionGroup';
 import Checkbox, {
   StateChangeHandler,
 } from 'src/components/layout/Form/Checkbox';
-import QuestionInputState from 'src/model/InputState/QuestionInputState';
-import JournalInputContext from 'src/context/JournalInput/JournalInputContext';
+import QuestionInputState from 'src/model/archive/InputState/QuestionInputState';
+import JournalInputContext from 'src/context/archive/JournalInput/JournalInputContext';
 
 const CheckboxJournalInput: React.FC<{ question: QuestionInputState }> = ({
   question,
