@@ -1,10 +1,23 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getFunctions, httpsCallable } from 'firebase/functions';
+import { getFirestore } from 'firebase/firestore';
 import * as Auth from 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 
 function initializeFirebase() {
   const app = initializeApp(firebaseConfig);
+
+  /* Callable Cloud Functions */
+  const functions = getFunctions();
+  const testMailer = httpsCallable(functions, 'testMailer');
+
+  return {
+    testMailer,
+  };
+}
+
+function initializeAuthServices() {
+  /* Authentication */
   const authRef = Auth.getAuth();
 
   // Define the return type here for a better autocomplete experience and to keep the return type of createUserWithEmailAndPassword intentionally coupled to Auth.createUserWithEmailAndPassword
@@ -27,26 +40,23 @@ function initializeFirebase() {
   };
 
   type v = ReturnType<typeof Auth.onAuthStateChanged>;
-  type vParams = Parameters<typeof Auth.onAuthStateChanged>;
-  const onAuthStateChanged = (
-    nextOrObserver: vParams[1],
-    error?: vParams[2],
-    completed?: vParams[3]
-  ): v => {
-    return Auth.onAuthStateChanged(authRef, nextOrObserver, error, completed);
-  };
+  type AuthStateObserver = Parameters<typeof Auth.onAuthStateChanged>[1];
 
-  // Callable Cloud Functions
-  const functions = getFunctions();
-  const testMailer = httpsCallable(functions, 'testMailer');
+  // We don't accept the last two parameters of Auth.onAuthStateChanged because they're deprecated
+  const onAuthStateChanged = (nextOrObserver: AuthStateObserver): v => {
+    return Auth.onAuthStateChanged(authRef, nextOrObserver);
+  };
 
   return {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
-    testMailer,
   };
+}
+
+function initializeFirestoreServices(app: FirebaseApp) {
+  const db = getFirestore(app);
 }
 
 export type FirebaseServices = ReturnType<typeof initializeFirebase>;

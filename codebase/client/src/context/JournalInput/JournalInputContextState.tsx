@@ -21,11 +21,11 @@ const JournalInputContextState: React.FC<{
       ? JournalInputState.fromEntry(journal, entry)
       : new JournalInputState(journal)
   );
-  if (!authContext || !authContext.state.isAuthenticated) {
-    return <></>;
-  }
+  // if (!authContext || !authContext.state.isAuthenticated) {
+  //   return <></>;
+  // }
 
-  const { user } = authContext.state;
+  // const { user } = authContext.state;
 
   const executeQuestionReducer = (
     questionId: string,
@@ -54,24 +54,22 @@ const JournalInputContextState: React.FC<{
   };
 
   const submit = async () => {
-    // user! because JournalInput should not be available if a user isn't logged in
-    const entry: Entry = state.toEntry(user!);
-
-    try {
-      if (await isOnline()) {
-        await ServerAdapter.postEntry(entry);
-        await ServerAdapter.postStoredEntries();
-      } else {
-        console.log('Offline!');
-        await LocalDb.storeEntry(entry);
-      }
-    } catch (err: any) {
-      console.error(err);
-      console.error(err.message);
-    }
-
-    // Clear the submission data and show the SurveySubmitted page
-    setState(state.clearedClone());
+    // // user! because JournalInput should not be available if a user isn't logged in
+    // const entry: Entry = state.toEntry(user!);
+    // try {
+    //   if (await isOnline()) {
+    //     await ServerAdapter.postEntry(entry);
+    //     await ServerAdapter.postStoredEntries();
+    //   } else {
+    //     console.log('Offline!');
+    //     await LocalDb.storeEntry(entry);
+    //   }
+    // } catch (err: any) {
+    //   console.error(err);
+    //   console.error(err.message);
+    // }
+    // // Clear the submission data and show the SurveySubmitted page
+    // setState(state.clearedClone());
   };
 
   const isDirty = () => {

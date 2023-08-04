@@ -18,21 +18,21 @@ const Login: React.FC = () => {
     return <>Not loaded</>;
   }
 
-  const { login } = authContext;
-  const { isAuthenticated } = authContext?.state;
-  if (isAuthenticated) {
-    navigate('/');
-  }
+  // const { login } = authContext;
+  // const { isAuthenticated } = authContext?.state;
+  // if (isAuthenticated) {
+  //   navigate('/');
+  // }
 
   const onSubmit = async () => {
-    await login(email, password);
-    if (isAuthenticated) {
-      navigate('/');
-      // console.log('Login success');
-    } else {
-      // console.log('Login error');
-      // console.log(`isAuthenticated: ${isAuthenticated}`);
-    }
+    // await login(email, password);
+    // if (isAuthenticated) {
+    //   navigate('/');
+    //   // console.log('Login success');
+    // } else {
+    //   // console.log('Login error');
+    //   // console.log(`isAuthenticated: ${isAuthenticated}`);
+    // }
   };
 
   const onCancel = () => {

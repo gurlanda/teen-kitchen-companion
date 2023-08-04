@@ -7,9 +7,9 @@ const testMailer = firebaseServices.testMailer;
 export function sendEmailWithCallable(email: Email) {
   testMailer(email.toStorable())
     .then((result) => {
-      window.alert(result.data);
+      console.log(result.data);
     })
-    .catch(() => {
-      window.alert('Error!');
+    .catch((error) => {
+      console.error(error);
     });
 }

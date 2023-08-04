@@ -7,15 +7,15 @@ const AdminRoute: React.FC<{ component: ReactNode }> = ({ component }) => {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
-  useEffect(() => {
-    if (
-      !authContext ||
-      !authContext.state.isAuthenticated ||
-      authContext.state.user?.type !== UserType.ADMIN
-    ) {
-      navigate('/login');
-    }
-  }, [authContext?.state.isAuthenticated, authContext?.state.user?.type]);
+  // useEffect(() => {
+  //   if (
+  //     !authContext ||
+  //     !authContext.state.isAuthenticated ||
+  //     authContext.state.user?.type !== UserType.ADMIN
+  //   ) {
+  //     navigate('/login');
+  //   }
+  // }, [authContext?.state.isAuthenticated, authContext?.state.user?.type]);
 
   return <div>{component}</div>;
 };

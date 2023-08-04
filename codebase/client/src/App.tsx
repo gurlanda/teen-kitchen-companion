@@ -7,11 +7,11 @@ import Footer from './components/layout/Footer';
 const App: React.FC = () => {
   return (
     <div className="h-full">
-      <Navbar />
       <AuthContextState>
+        <Navbar />
         <Outlet />
+        <Footer />
       </AuthContextState>
-      <Footer />
     </div>
   );
 };

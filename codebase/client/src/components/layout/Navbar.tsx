@@ -108,7 +108,7 @@ const Navbar: FC = () => {
           )} */}
         </div>
 
-        <div className="pl-3 py-2 pt-3 lg:px-5 text-xl">
+        {/* <div className="pl-3 py-2 pt-3 lg:px-5 text-xl">
           {!authContext?.state.isAuthenticated && (
             <Link to="/login">
               <button className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 ">
@@ -131,7 +131,7 @@ const Navbar: FC = () => {
               Log Out
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </nav>
   );

@@ -19,11 +19,11 @@ const SurveyInputContextState: FC<{ survey: Survey; children: ReactNode }> = ({
     new SurveyInputState(survey)
   );
 
-  if (!authContext || !authContext.state.isAuthenticated) {
-    return <></>;
-  }
+  // if (!authContext || !authContext.state.isAuthenticated) {
+  //   return <></>;
+  // }
 
-  const { user, isAuthenticated } = authContext.state;
+  // const { user, isAuthenticated } = authContext.state;
 
   const providedMethods = {
     useQuestionReducer: (
@@ -52,23 +52,21 @@ const SurveyInputContextState: FC<{ survey: Survey; children: ReactNode }> = ({
     // Submit
     submit: async () => {
       // user! because this component should not be available if a user isn't logged in
-      const submission: Submission = state.toSubmission(user!);
-
-      try {
-        if (await isOnline()) {
-          await ServerAdapter.postSubmission(submission);
-          await ServerAdapter.postStoredSubmissions();
-        } else {
-          console.log('Offline!');
-          await LocalDb.storeSubmission(submission);
-        }
-      } catch (err: any) {
-        console.error(err);
-        console.error(err.message);
-      }
-
-      // Clear the submission data and show the SurveySubmitted page
-      setState(state.getClearedClone());
+      // const submission: Submission = state.toSubmission(user!);
+      // try {
+      //   if (await isOnline()) {
+      //     await ServerAdapter.postSubmission(submission);
+      //     await ServerAdapter.postStoredSubmissions();
+      //   } else {
+      //     console.log('Offline!');
+      //     await LocalDb.storeSubmission(submission);
+      //   }
+      // } catch (err: any) {
+      //   console.error(err);
+      //   console.error(err.message);
+      // }
+      // // Clear the submission data and show the SurveySubmitted page
+      // setState(state.getClearedClone());
     },
 
     // Clear the state

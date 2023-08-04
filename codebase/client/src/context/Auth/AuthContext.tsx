@@ -1,35 +1,74 @@
 import { createContext } from 'react';
-import Clonable from 'src/model/Interfaces/Clonable';
-import User from 'src/model/User/User';
-import UserType from 'src/model/User/UserType';
 
-export class AuthState implements Clonable<AuthState> {
-  isAuthenticated: boolean;
-  user?: User;
+export type SupportedLanguage = 'english' | 'spanish';
+type StorableUser = {
+  firstName: string;
+  lastName: string;
+  preferredLanguage: SupportedLanguage;
+};
 
-  constructor(isAuthenticated: boolean, user?: User) {
-    this.isAuthenticated = isAuthenticated;
-    this.user = user;
+export class User {
+  private _firstName: string;
+  private _lastName: string;
+  private _preferredLanguage: SupportedLanguage;
+
+  constructor(
+    firstName: string,
+    lastName: string,
+    preferredLanguage: SupportedLanguage
+  ) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._preferredLanguage = preferredLanguage;
   }
 
-  clone(): AuthState {
-    return new AuthState(this.isAuthenticated, this.user?.clone());
+  get firstName(): string {
+    return this._firstName;
+  }
+  get lastName(): string {
+    return this._lastName;
+  }
+  get preferredLanguage(): SupportedLanguage {
+    return this._preferredLanguage;
+  }
+
+  clone(): User {
+    return new User(this._firstName, this._lastName, this._preferredLanguage);
+  }
+
+  static isValidStorable(maybeStorable: any): maybeStorable is StorableUser {
+    return (
+      (maybeStorable as StorableUser).preferredLanguage !== undefined &&
+      (maybeStorable as StorableUser).firstName !== undefined &&
+      (maybeStorable as StorableUser).lastName !== undefined
+    );
+  }
+
+  toStorable(): StorableUser {
+    return {
+      firstName: this._firstName,
+      lastName: this._lastName,
+      preferredLanguage: this._preferredLanguage,
+    };
+  }
+
+  static fromStorable(storableUser: StorableUser): User | null {
+    if (!User.isValidStorable(storableUser)) {
+      return null;
+    }
+
+    return new User(
+      storableUser.firstName,
+      storableUser.lastName,
+      storableUser.preferredLanguage
+    );
   }
 }
 
 export interface AuthContextInterface {
-  state: AuthState;
-
-  registerUser(
-    name: string,
-    email: string,
-    userType: UserType.asUnion,
-    password: string
-  ): Promise<boolean>;
-  login(email: string, password: string): Promise<boolean>;
-  logout(): void;
+  isSignedIn: boolean;
+  user: User | undefined;
 }
 
 const AuthContext = createContext<AuthContextInterface | null>(null);
-
 export default AuthContext;

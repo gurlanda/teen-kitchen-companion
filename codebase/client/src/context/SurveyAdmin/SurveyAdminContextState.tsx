@@ -20,14 +20,14 @@ const SurveyAdminContextState: React.FC<{
   );
   const navigate = useNavigate();
 
-  if (!authContext || !authContext.state.isAuthenticated) {
-    return <></>;
-  }
+  // if (!authContext || !authContext.state.isAuthenticated) {
+  //   return <></>;
+  // }
 
-  const { user } = authContext.state;
-  if (user!.type !== UserType.ADMIN) {
-    return <></>;
-  }
+  // const { user } = authContext.state;
+  // if (user!.type !== UserType.ADMIN) {
+  //   return <></>;
+  // }
 
   const providedMethods = {
     executeQuestionReducer: (
