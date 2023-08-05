@@ -16,9 +16,9 @@ export default class User implements Clonable<User>, Identifiable {
     firstName: string,
     lastName: string,
     email: string,
-    id: string,
     userType: UserType.Type,
-    preferredLanguage: PreferredLanguage.Type
+    preferredLanguage: PreferredLanguage.Type,
+    id: string
   ) {
     this.email = email;
     this.firstName = firstName;
@@ -33,26 +33,30 @@ export default class User implements Clonable<User>, Identifiable {
       this.firstName,
       this.lastName,
       this.email,
-      this.id,
       this.type,
-      this.preferredLanguage
+      this.preferredLanguage,
+      this.id
     );
   }
 
   toStorable(): StorableUser {
     return {
-      ...this,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      type: this.type,
+      preferredLanguage: this.preferredLanguage,
     };
   }
 
-  static fromStorable(data: StorableUser): User {
+  static fromStorable(data: StorableUser, userId: string): User {
     return new User(
       data.firstName,
       data.lastName,
       data.email,
-      data.id,
       data.type,
-      data.preferredLanguage
+      data.preferredLanguage,
+      userId
     );
   }
 }

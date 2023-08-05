@@ -1,13 +1,7 @@
-import PreferredLanguage from './PreferredLanguage';
-import UserType from './UserType';
+import User from './User';
 
-type StorableUser = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  id: string;
-  type: UserType.Type;
-  preferredLanguage: PreferredLanguage.Type;
-};
-
+// StorableUser represents the user's data as stored in the server
+// We exclude User.id because the user's ID is already used as the name of the user's document; including User.id in StorableUser would be redundant.
+type UserMethods = 'clone' | 'toStorable';
+type StorableUser = Omit<User, UserMethods | 'id'>;
 export default StorableUser;
