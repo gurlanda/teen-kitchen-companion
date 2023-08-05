@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { FirebaseError } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -5,8 +7,7 @@ import {
 } from 'firebase/auth';
 import getFirebaseServices from 'src/firebase/getFirebaseServices';
 import AuthContext from './AuthContext';
-import { useState } from 'react';
-import { FirebaseError } from 'firebase/app';
+import UserContextProvider from '../User/UserContextProvider';
 
 const AuthContextProvider = ({
   children,
@@ -68,8 +69,7 @@ const AuthContextProvider = ({
 
   return (
     <AuthContext.Provider value={providedValues}>
-      {/* <DataContextProvider userId={userId}>{children}</DataContextProvider> */}
-      {children}
+      <UserContextProvider user={undefined}>{children}</UserContextProvider>
     </AuthContext.Provider>
   );
 };
