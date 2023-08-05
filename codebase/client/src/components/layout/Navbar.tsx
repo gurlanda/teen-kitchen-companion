@@ -108,30 +108,35 @@ const Navbar: FC = () => {
           )} */}
         </div>
 
-        {/* <div className="pl-3 py-2 pt-3 lg:px-5 text-xl">
-          {!authContext?.state.isAuthenticated && (
+        <div className="flex  pl-3 py-2 pt-3 lg:px-5 text-xl">
+          {/* {!authContext?.isSignedIn() && (
             <Link to="/login">
               <button className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 ">
                 Log In
               </button>
             </Link>
-          )}
-          {!authContext?.state.isAuthenticated && (
+          )} */}
+          {!authContext?.isSignedIn() && (
             <Link to="/sign-up">
               <button className="border-cyan-500 text-white bg-cyan-600 hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1">
                 Sign Up
               </button>
             </Link>
           )}
-          {authContext?.state.isAuthenticated && (
+          {authContext?.isSignedIn() && (
+            <div className="py-2 lg:px-2">
+              <h1 className="text-2xl">User ID: {authContext?.userId}</h1>
+            </div>
+          )}
+          {/* {authContext?.state.isAuthenticated && (
             <button
               className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
               onClick={() => authContext?.logout()}
             >
               Log Out
             </button>
-          )}
-        </div> */}
+          )} */}
+        </div>
       </div>
     </nav>
   );

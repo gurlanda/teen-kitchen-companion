@@ -25,6 +25,8 @@ const AuthContextProvider = ({
 
   async function signUp(email: string, password: string): Promise<void> {
     const { authRef } = getFirebaseServices();
+
+    // Create the new user
     const userCredential = await createUserWithEmailAndPassword(
       authRef,
       email,
@@ -62,7 +64,7 @@ const AuthContextProvider = ({
     setUserId(undefined);
   }
 
-  const providedValues = { signUp, signIn, signOut, isSignedIn };
+  const providedValues = { userId, signUp, signIn, signOut, isSignedIn };
 
   return (
     <AuthContext.Provider value={providedValues}>

@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form } from 'react-router-dom';
-import getFirebaseServices, {
-  FirebaseServices,
-} from 'src/firebase/getFirebaseServices';
+import AuthContext from 'src/context/Auth/AuthContext';
 
 const Input = ({
   type,
@@ -46,6 +44,8 @@ export function action() {
 }
 
 const SignUp = ({}: {}): JSX.Element => {
+  const authContext = useContext(AuthContext);
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
@@ -55,18 +55,31 @@ const SignUp = ({}: {}): JSX.Element => {
   // useState<SupportedLanguage>();
 
   const onSubmit: React.MouseEventHandler<HTMLInputElement> = (e) => {
-    // firebaseServices.createUserWithEmailAndPassword()
+    if (!authContext) {
+      return;
+    }
+
+    try {
+      authContext.signUp(email, password);
+      window.alert('Signed up successfully!');
+    } catch (error) {
+      window.alert('Error.');
+      console.log(error);
+    }
   };
 
   return (
     <div>
-      <Form className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 px-8 py-5 mt-10 w-[min(90vw,75ch)] mx-auto">
+      <Form
+        className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 px-8 py-5 mt-10 w-[min(90vw,75ch)] mx-auto"
+        method="post"
+      >
         <h1 className="font-bold text-xl">Sign Up</h1>
         <Input
           type="text"
           name="firstName"
           placeholder="First name"
-          required
+          // required
           onChange={(e) => setFirstName(e.target.value)}
           value={firstName}
         />
@@ -74,7 +87,7 @@ const SignUp = ({}: {}): JSX.Element => {
           type="text"
           name="lastName"
           placeholder="Last name"
-          required
+          // required
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
         />
@@ -111,7 +124,7 @@ const SignUp = ({}: {}): JSX.Element => {
           type="password"
           name="confirmedPassword"
           placeholder="Confirm password"
-          required
+          // required
           onChange={(e) => setConfirmedPassword(e.target.value)}
           value={confirmedPassword}
         />
