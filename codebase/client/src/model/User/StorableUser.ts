@@ -1,8 +1,13 @@
+import PreferredLanguage from './PreferredLanguage';
 import UserType from './UserType';
 
 type StorableUser = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  type: UserType.asUnion;
+  id: string;
+  type: UserType;
+  preferredLanguage: PreferredLanguage;
 };
+
 export default StorableUser;

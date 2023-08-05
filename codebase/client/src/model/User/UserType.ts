@@ -1,11 +1,8 @@
-namespace UserType {
-  export const ADMIN = 'ADMIN';
-  export const DELIVERY_ANGEL = 'DELIVERY_ANGEL';
-  export const TEEN_COOK = 'TEEN_COOK';
-  export const CLIENT = 'CLIENT';
+const USER = 'USER';
+const ADMIN = 'ADMIN';
+const OWNER = 'OWNER';
 
-  export const asArray = [ADMIN, DELIVERY_ANGEL, TEEN_COOK, CLIENT] as const;
-  export type asUnion = typeof asArray[number];
-}
+const userTypesArray = [ADMIN, OWNER, USER];
 
+export type UserType = (typeof userTypesArray)[number];
 export default UserType;
