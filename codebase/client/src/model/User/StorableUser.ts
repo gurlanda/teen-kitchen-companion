@@ -6,8 +6,8 @@ type StorableUser = {
   lastName: string;
   email: string;
   id: string;
-  type: UserType;
-  preferredLanguage: PreferredLanguage;
+  type: UserType.Type;
+  preferredLanguage: PreferredLanguage.Type;
 };
 
 export default StorableUser;

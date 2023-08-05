@@ -1,8 +1,9 @@
-const USER = 'USER';
-const ADMIN = 'ADMIN';
-const OWNER = 'OWNER';
+namespace UserType {
+  export const USER = 'USER';
+  export const ADMIN = 'ADMIN';
+  export const OWNER = 'OWNER';
 
-const userTypesArray = [ADMIN, OWNER, USER];
-
-export type UserType = (typeof userTypesArray)[number];
+  export const asArray = [ADMIN, OWNER, USER];
+  export type Type = (typeof asArray)[number];
+}
 export default UserType;

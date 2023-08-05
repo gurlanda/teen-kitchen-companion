@@ -9,16 +9,16 @@ export default class User implements Clonable<User>, Identifiable {
   lastName: string;
   email: string;
   id: string;
-  type: UserType;
-  preferredLanguage: PreferredLanguage;
+  type: UserType.Type;
+  preferredLanguage: PreferredLanguage.Type;
 
   constructor(
     firstName: string,
     lastName: string,
     email: string,
     id: string,
-    userType: UserType,
-    preferredLanguage: PreferredLanguage
+    userType: UserType.Type,
+    preferredLanguage: PreferredLanguage.Type
   ) {
     this.email = email;
     this.firstName = firstName;
