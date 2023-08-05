@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
-import Form from '../../layout/Form/Form';
-import TextInput from '../../layout/Form/TextInput';
-import Button from '../../layout/Form/Button';
-import createId from 'src/utils/createId';
+
+export function action() {
+  return null;
+}
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,69 +13,90 @@ const SignIn: React.FC = () => {
   // Used to navigate to the admin page upon login
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  if (!authContext) {
-    console.log(authContext);
-    return <>Not loaded</>;
-  }
-
-  // const { login } = authContext;
-  // const { isAuthenticated } = authContext?.state;
-  // if (isAuthenticated) {
-  //   navigate('/');
-  // }
 
   const onSubmit = async () => {
-    // await login(email, password);
-    // if (isAuthenticated) {
-    //   navigate('/');
-    //   // console.log('Login success');
-    // } else {
-    //   // console.log('Login error');
-    //   // console.log(`isAuthenticated: ${isAuthenticated}`);
-    // }
-  };
+    if (!authContext) {
+      return;
+    }
 
-  const onCancel = () => {
-    navigate('/');
+    try {
+      await authContext.signIn(email, password);
+      window.alert('Signed in successfully!');
+      navigate('/');
+    } catch (error) {
+      window.alert('Error.');
+      console.log(error);
+    }
   };
-
-  // const onLogout = async () => {
-  //   await logout();
-  //   if (!isAuthenticated) {
-  //     console.log('Logout success');
-  //   } else {
-  //     console.log('Logout error');
-  //   }
-  // };
 
   return (
-    <div className="h-full max-w-screen-xs mx-auto pb-9 ">
-      <Form title="Log In" description="" classNames="h-full w-full">
-        <TextInput
-          id={createId()}
-          title="Email"
-          type="email"
-          placeholder="Enter your preferred email address"
-          onStateChange={setEmail}
+    <div className="h-full">
+      <Form
+        method="post"
+        className="flex flex-col px-8 py-5 mt-10 gap-4 w-[min(90vw,75ch)] mx-auto border rounded-xl shadow shadow-gray-300"
+      >
+        <h1 className="font-bold text-xl">Sign In</h1>
+        <Input
+          type="text"
+          name="email"
+          placeholder="Email address"
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
-        <TextInput
-          id={createId()}
-          title="Password"
-          placeholder="Enter your password"
+        <Input
           type="password"
-          onStateChange={setPassword}
+          name="password"
+          placeholder="Password"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
-        <div className="flex justify-end mb-3">
-          <Button
-            children="Submit"
-            onClick={onSubmit}
-            preventDefault
-            classNames="bg-cyan-600 hover:bg-cyan-700 text-white"
-          />
-          <Button children="Cancel" onClick={onCancel} />
-        </div>
+        <Input
+          type="submit"
+          name="submit"
+          onClick={onSubmit}
+          className="self-end"
+        />
       </Form>
     </div>
+  );
+};
+
+const Input = ({
+  type,
+  name,
+  value,
+  placeholder,
+  required,
+  onChange,
+  onClick,
+  className,
+  children,
+}: {
+  type: React.HTMLInputTypeAttribute;
+  name: React.InputHTMLAttributes<HTMLInputElement>['name'];
+  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  placeholder?: string;
+  required?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onClick?: React.MouseEventHandler<HTMLInputElement>;
+  className?: string;
+  children?: React.ReactNode;
+}): JSX.Element => {
+  return (
+    <input
+      type={type}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      required={required}
+      onChange={onChange}
+      onClick={onClick}
+      className={`border rounded-xl px-4 py-2 ${className}`}
+    >
+      {children}
+    </input>
   );
 };
 

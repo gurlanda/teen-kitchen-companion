@@ -109,13 +109,13 @@ const Navbar: FC = () => {
         </div>
 
         <div className="flex  pl-3 py-2 pt-3 lg:px-5 text-xl">
-          {/* {!authContext?.isSignedIn() && (
-            <Link to="/login">
+          {!authContext?.isSignedIn() && (
+            <Link to="/sign-in">
               <button className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 ">
-                Log In
+                Sign In
               </button>
             </Link>
-          )} */}
+          )}
           {!authContext?.isSignedIn() && (
             <Link to="/sign-up">
               <button className="border-cyan-500 text-white bg-cyan-600 hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1">
