@@ -7,36 +7,50 @@ import {
 } from 'firebase/auth';
 import getFirebaseServices from 'src/firebase/getFirebaseServices';
 import AuthContext from './AuthContext';
-import UserContextProvider from '../User/UserContextProvider';
+import User from 'src/model/User/User';
+import StorableUser from 'src/model/User/StorableUser';
+import retrieveUserData from 'src/firebase/User/retrieveUserData';
+import initializeUser from 'src/firebase/User/initializeUser';
 
 const AuthContextProvider = ({
   children,
 }: {
   children?: React.ReactNode;
 }): JSX.Element => {
-  const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [user, setUser] = useState<User | undefined>(undefined);
 
   function isSignedIn(): boolean {
-    if (userId === undefined) {
+    if (user === undefined) {
       return false;
     } else {
       return true;
     }
   }
 
-  async function signUp(email: string, password: string): Promise<void> {
+  async function signUp(
+    newUser: StorableUser,
+    password: string
+  ): Promise<void> {
     const { authRef } = getFirebaseServices();
 
     // Create the new user
     const userCredential = await createUserWithEmailAndPassword(
       authRef,
-      email,
+      newUser.email,
       password
     );
 
-    const newUserId = userCredential.user.uid;
-    // const initializationSuccessful = await initializeNewUser(newUserId);
-    setUserId(newUserId);
+    // Initialize the user
+    const userId = userCredential.user.uid;
+    const storableUser: StorableUser = {
+      ...newUser,
+    };
+    const user = User.fromStorable(storableUser, userId);
+
+    // Update the database
+    await initializeUser(user);
+
+    setUser(user);
   }
 
   async function signIn(email: string, password: string): Promise<void> {
@@ -48,8 +62,11 @@ const AuthContextProvider = ({
         email,
         password
       );
-      const loggedInUserId = userCredential.user.uid;
-      setUserId(loggedInUserId);
+
+      const userId = userCredential.user.uid;
+      const user = await retrieveUserData(userId);
+      setUser(user);
+
       return;
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -62,14 +79,14 @@ const AuthContextProvider = ({
   async function signOut(): Promise<void> {
     const { authRef } = getFirebaseServices();
     firebaseSignOut(authRef);
-    setUserId(undefined);
+    setUser(undefined);
   }
 
-  const providedValues = { userId, signUp, signIn, signOut, isSignedIn };
+  const providedValues = { user, signUp, signIn, signOut, isSignedIn };
 
   return (
     <AuthContext.Provider value={providedValues}>
-      <UserContextProvider user={undefined}>{children}</UserContextProvider>
+      {children}
     </AuthContext.Provider>
   );
 };

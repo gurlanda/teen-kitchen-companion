@@ -3,22 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
 
-const NavLinkItem: FC<{
-  text: string;
-  to: string;
-  onClick: { (e?: any): void };
-}> = ({ text, to, onClick }) => {
-  return (
-    <div onClick={onClick}>
-      <Link to={to}>
-        <div className="py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-cyan-200">
-          <h1 className="text-2xl">{text}</h1>
-        </div>
-      </Link>
-    </div>
-  );
-};
-
 const Navbar: FC = () => {
   const authContext = useContext(AuthContext);
 
@@ -86,59 +70,68 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
-          {/* {!authContext?.state.isAuthenticated && (
+          {authContext?.isSignedIn() && (
             <NavLinkItem
-              to="/journal"
-              text="Journal"
+              to="/user-info"
+              text="User"
               onClick={toggleIsVisible}
             />
           )}
-          {!authContext?.state.isAuthenticated && (
-            <NavLinkItem to="/survey" text="Survey" onClick={toggleIsVisible} />
-          )}
-          {!(
-            authContext?.state.isAuthenticated &&
-            authContext?.state.user?.type === UserType.ADMIN
-          ) && (
-            <NavLinkItem
-              to="/survey/admin"
-              text="Admin"
-              onClick={toggleIsVisible}
-            />
-          )} */}
         </div>
 
         <div className="flex  pl-3 py-2 pt-3 lg:px-5 text-xl">
           {!authContext?.isSignedIn() && (
             <Link to="/sign-in">
-              <button className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 ">
+              <button
+                className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
+                onClick={toggleIsVisible}
+              >
                 Sign In
               </button>
             </Link>
           )}
           {!authContext?.isSignedIn() && (
             <Link to="/sign-up">
-              <button className="border-cyan-500 text-white bg-cyan-600 hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1">
+              <button
+                className="border-cyan-500 text-white bg-cyan-600 hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1"
+                onClick={toggleIsVisible}
+              >
                 Sign Up
               </button>
             </Link>
           )}
           {authContext?.isSignedIn() && (
-            <div className="py-2 lg:px-2">
-              <h1 className="text-2xl">User ID: {authContext?.userId}</h1>
-            </div>
-          )}
-          {/* {authContext?.state.isAuthenticated && (
             <button
               className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
-              onClick={() => authContext?.logout()}
+              onClick={() => authContext?.signOut()}
             >
               Log Out
             </button>
+          )}
+          {/* {authContext?.isSignedIn() && (
+            <div className="py-2 lg:px-2">
+              <h1 className="text-2xl">User ID: {userContext?.user?.id}</h1>
+            </div>
           )} */}
         </div>
       </div>
     </nav>
+  );
+};
+
+const NavLinkItem: FC<{
+  text: string;
+  to: string;
+  onClick: { (e?: any): void };
+}> = ({ text, to, onClick }) => {
+  return (
+    <div onClick={onClick}>
+      <Link to={to}>
+        <div className="py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-cyan-200">
+          <h1 className="text-2xl">{text}</h1>
+        </div>
+      </Link>
+    </div>
   );
 };
 
