@@ -15,10 +15,10 @@ import ContactUs from './components/pages/ContactUs';
 import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Menu from './components/pages/Menu/Menu';
-// import SignUp from './components/pages/SignUp/SignUp';
 import TeenStories from './components/pages/TeenStories/TeenStories';
 import Volunteer from './components/pages/Volunteer/Volunteer';
 import NotFound from './components/pages/NotFound';
+import SignUp, { action as signUpAction } from './components/pages/auth/SignUp';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,16 +27,15 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route errorElement={<NotFound />}>
-        <Route index element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/volunteer" element={<Volunteer />} />
-        <Route path="/contact" element={<ContactUs />} />
-        {/* <Route path="/sign-up" element={<SignUp />} /> */}
-        <Route path="/stories" element={<TeenStories />} />
-      </Route>
+      <Route index element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/menu" element={<Menu />} />
+      <Route path="/volunteer" element={<Volunteer />} />
+      <Route path="/contact" element={<ContactUs />} />
+      <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
+      <Route path="/stories" element={<TeenStories />} />
+      <Route errorElement={<NotFound />}></Route>
     </Route>
   )
 );

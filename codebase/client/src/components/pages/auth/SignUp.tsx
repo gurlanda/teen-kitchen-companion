@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form } from 'react-router-dom';
 import getFirebaseServices, {
   FirebaseServices,
 } from 'src/firebase/getFirebaseServices';
@@ -40,10 +41,11 @@ const Input = ({
   );
 };
 
+export function action() {
+  return null;
+}
+
 const SignUp = ({}: {}): JSX.Element => {
-  const [firebaseServices, setFirebaseServices] = useState<FirebaseServices>(
-    getFirebaseServices()
-  );
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
@@ -53,14 +55,13 @@ const SignUp = ({}: {}): JSX.Element => {
   // useState<SupportedLanguage>();
 
   const onSubmit: React.MouseEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
     // firebaseServices.createUserWithEmailAndPassword()
   };
 
   return (
     <div>
-      <form className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 p-4">
-        <h1>Sign Up</h1>
+      <Form className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 px-8 py-5 mt-10 w-[min(90vw,75ch)] mx-auto">
+        <h1 className="font-bold text-xl">Sign Up</h1>
         <Input
           type="text"
           name="firstName"
@@ -79,24 +80,16 @@ const SignUp = ({}: {}): JSX.Element => {
         />
         <fieldset className="flex flex-col gap-2">
           <span>What is your preferred language?</span>
-          <Input
-            type="radio"
-            name="preferredLanguage"
-            required
-            // onChange={() => setPreferredLanguage('english')}
-            value={'english'}
-          >
-            English
-          </Input>
-          <Input
-            type="radio"
-            name="preferredLanguage"
-            required
-            // onChange={() => setPreferredLanguage('spanish')}
-            value={'spanish'}
-          >
-            Español
-          </Input>
+          <div className="flex gap-2">
+            <label htmlFor="english">
+              <input type="radio" name="preferredLanguage" id="english" />{' '}
+              English
+            </label>
+            <label htmlFor="spanish">
+              <input type="radio" name="preferredLanguage" id="spanish" />{' '}
+              Español
+            </label>
+          </div>
         </fieldset>
         <Input
           type="text"
@@ -126,10 +119,9 @@ const SignUp = ({}: {}): JSX.Element => {
           type="submit"
           name="submit"
           onClick={onSubmit}
-          value={confirmedPassword}
           className="self-end"
         />
-      </form>
+      </Form>
     </div>
   );
 };
