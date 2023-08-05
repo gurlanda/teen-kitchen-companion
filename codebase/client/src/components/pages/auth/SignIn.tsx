@@ -6,7 +6,7 @@ import TextInput from '../../layout/Form/TextInput';
 import Button from '../../layout/Form/Button';
 import createId from 'src/utils/createId';
 
-const Login: React.FC = () => {
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -79,4 +79,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default SignIn;

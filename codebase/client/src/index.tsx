@@ -13,7 +13,7 @@ import App from './App';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
 import Home from './components/pages/Home';
-import Login from './components/pages/auth/Login';
+import SignIn from './components/pages/auth/SignIn';
 import Menu from './components/pages/Menu/Menu';
 import TeenStories from './components/pages/TeenStories/TeenStories';
 import Volunteer from './components/pages/Volunteer/Volunteer';
@@ -29,7 +29,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/sign-in" element={<SignIn />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/volunteer" element={<Volunteer />} />
       <Route path="/contact" element={<ContactUs />} />
