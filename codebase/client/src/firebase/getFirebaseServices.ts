@@ -30,7 +30,10 @@ function initializeAuthServices() {
 }
 
 function initializeFirestoreServices(app: FirebaseApp) {
-  const db = getFirestore(app);
+  const firestoreRef = getFirestore(app);
+  return {
+    firestoreRef,
+  };
 }
 
 export type FirebaseServices = ReturnType<typeof getFirebaseServices>;
@@ -38,7 +41,8 @@ function getFirebaseServices() {
   const app = initializeFirebase();
   const cloudFunctions = initializeCloudFunctions();
   const authServices = initializeAuthServices();
-  return { ...cloudFunctions, ...authServices };
+  const firestoreServices = initializeFirestoreServices(app);
+  return { ...cloudFunctions, ...authServices, ...firestoreServices };
 }
 
 export default getFirebaseServices;
