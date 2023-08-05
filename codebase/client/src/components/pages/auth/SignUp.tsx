@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
 
 const Input = ({
@@ -45,14 +45,13 @@ export function action() {
 
 const SignUp = ({}: {}): JSX.Element => {
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  // const [preferredLanguage, setPreferredLanguage] =
-  // useState<SupportedLanguage>();
 
   const onSubmit: React.MouseEventHandler<HTMLInputElement> = (e) => {
     if (!authContext) {
@@ -62,6 +61,7 @@ const SignUp = ({}: {}): JSX.Element => {
     try {
       authContext.signUp(email, password);
       window.alert('Signed up successfully!');
+      navigate('/');
     } catch (error) {
       window.alert('Error.');
       console.log(error);
