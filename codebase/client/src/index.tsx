@@ -20,6 +20,8 @@ import Volunteer from './components/pages/Volunteer/Volunteer';
 import NotFound from './components/pages/NotFound';
 import SignUp, { action as signUpAction } from './components/pages/auth/SignUp';
 import UserInfo from './components/pages/UserInfo';
+import MenuEdit from './components/pages/MenuEdit/MenuEdit';
+import { action as menuEditAction } from 'src/components/pages/MenuEdit/MenuEditForm';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,6 +33,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/menu" element={<Menu />} />
+      <Route path="/menu-edit" element={<MenuEdit />} action={menuEditAction} />
       <Route path="/volunteer" element={<Volunteer />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/stories" element={<TeenStories />} />
