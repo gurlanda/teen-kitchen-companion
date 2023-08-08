@@ -5,15 +5,13 @@
 import MenuItem from './MenuItem';
 
 const menuItemConverter = {
-  fromServer(menuItems: MenuItem[]): { dates: Date[]; files: FileContainer[] } {
+  fromServer(menuItems: MenuItem[]): { dates: Date[]; files: string[] } {
     const dates: Date[] = [];
-    const files: FileContainer[] = [];
+    const files: string[] = [];
 
     for (let item of menuItems) {
       dates.push(item.startDate);
-      files.push({
-        fileUrl: item.fileUrl,
-      });
+      files.push(item.fileUrl);
     }
 
     return {
@@ -23,7 +21,7 @@ const menuItemConverter = {
   },
 
   // Returns null if dates.length !== files.length
-  toServer(dates: Date[], files: FileContainer[]): MenuItem[] | null {
+  toServer(dates: Date[], files: string[]): MenuItem[] | null {
     if (dates.length !== files.length) {
       return null;
     }
@@ -35,17 +33,12 @@ const menuItemConverter = {
 
     const menuItems: MenuItem[] = [];
     for (let i = 0; i < numItems; i++) {
-      const { fileUrl } = files[i];
-      const menuItem = new MenuItem(dates[i], fileUrl);
+      const menuItem = new MenuItem(dates[i], files[i]);
       menuItems.push(menuItem);
     }
 
     return menuItems;
   },
-};
-
-export type FileContainer = {
-  fileUrl: string;
 };
 
 export default menuItemConverter;

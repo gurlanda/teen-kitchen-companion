@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form } from 'react-router-dom';
 import StrictModeDroppable from './StrictModeDroppable';
-import { DragDropContext, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 import { Duration, add, format } from 'date-fns';
 
 import menuItemConverter from './model/menuItemConverter';
@@ -10,7 +10,9 @@ import MenuContext from './context/MenuContext';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { setPreviewedFile } = useContext(MenuContext);
-  const { dates, files } = menuItemConverter.fromServer(testMenuItems);
+  const { dates, files: receivedFiles } =
+    menuItemConverter.fromServer(testMenuItems);
+  const [files, setFiles] = useState<string[]>(receivedFiles);
 
   function formatDate(date: Date): string {
     const formatString = 'M/d';
@@ -45,7 +47,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {files.map(({ fileUrl }, index) => (
+                {files.map((fileUrl, index) => (
                   <DraggablePlaceholder
                     draggableId={fileUrl}
                     index={index}
@@ -62,7 +64,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
     </Form>
   );
 
-  function onDragEnd() {}
+  function onDragEnd(result: DropResult) {
+    const { draggableId: fileId, source, destination } = result;
+  }
 
   function onChooseFile() {
     window.alert('onChooseFile()');
