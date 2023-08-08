@@ -20,7 +20,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
   return (
     <Form
-      className={`border border-gray-300 rounded-xl py-4 px-5 ${className}`}
+      className={`border border-gray-300 rounded-xl py-4 px-5 max-w-[60%] ${className}`}
     >
       <h2 className="text-lg font-semibold">Menu edit form</h2>
 
@@ -93,7 +93,7 @@ const Placeholder = ({
 }): JSX.Element => {
   return (
     <div
-      className={`py-4 px-6 bg-stone-200 ${className}`}
+      className={`py-4 px-6 bg-stone-200  ${className}`}
       ref={innerRef}
       {...providedProps}
       onClick={onClick}

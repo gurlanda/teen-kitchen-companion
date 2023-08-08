@@ -23,7 +23,7 @@ const MenuEditPage = (): JSX.Element => {
 
   return (
     <div className="h-full">
-      <div className="flex flex-col gap-3 pt-5 mx-auto w-[min(90vw,100ch)] h-full">
+      <div className="flex flex-col gap-3 pt-5 mx-auto w-[min(90vw,120ch)] h-full">
         {/* <h1 className="text-xl font-bold">Menu edit</h1> */}
         <div className="flex gap-3 h-full">
           <MenuEditForm className="grow" />
