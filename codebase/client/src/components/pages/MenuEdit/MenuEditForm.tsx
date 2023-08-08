@@ -4,8 +4,11 @@ import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { Duration, add, format } from 'date-fns';
 
+import menuItemConverter from './model/menuItemConverter';
+import testMenuItems from './model/testMenuItems';
+
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
-  const dates = getDates(5);
+  const { dates, files } = menuItemConverter.fromServer(testMenuItems);
 
   function formatDate(date: Date): string {
     const formatString = 'M/d';
@@ -40,9 +43,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {filePlaceholders.map((value, index) => (
-                  <DraggablePlaceholder draggableId={value.id} index={index}>
-                    {value.value}
+                {files.map(({ fileUrl }, index) => (
+                  <DraggablePlaceholder draggableId={fileUrl} index={index}>
+                    {fileUrl}
                   </DraggablePlaceholder>
                 ))}
               </div>
@@ -67,28 +70,6 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 export function action() {
   return null;
 }
-
-function getDates(numberOfDates: number = 4): Date[] {
-  const startDate = new Date(2023, 7, 7);
-  const interval: Duration = { weeks: 1 };
-
-  const dates: Date[] = [startDate];
-  for (let i = 1; i < numberOfDates; i++) {
-    const lastDate = dates[i - 1];
-    const nextDate = add(lastDate, interval);
-    dates.push(nextDate);
-  }
-
-  return dates;
-}
-
-const filePlaceholders = [
-  { id: 'file1', value: 'File placeholder 1' },
-  { id: 'file2', value: 'File placeholder 2' },
-  { id: 'file3', value: 'File placeholder 3' },
-  { id: 'file4', value: 'File placeholder 4' },
-  { id: 'file5', value: 'File placeholder 5' },
-];
 
 type DivRef = React.LegacyRef<HTMLDivElement> | undefined;
 const Placeholder = ({
