@@ -9,7 +9,7 @@ import MenuEditForm from './MenuEditForm';
     + Implement: StorableMenuItem <-> MenuEditForm item
     + Set up the context
     + Implement: The context contains real dates and files
-    - Implement: Clicking on a MenuEditForm item changes the previewed file
+    + Implement: Clicking on a MenuEditForm item changes the previewed file
     - Implement: DnD works properly
     - Implement: File upload changes a MenuEditForm item
     - Implement: View that represents an empty file in a slot

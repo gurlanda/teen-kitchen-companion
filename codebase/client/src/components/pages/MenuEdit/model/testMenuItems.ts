@@ -9,7 +9,6 @@ const testMenuItems: MenuItem[] = [
   new MenuItem(new Date(2023, 7, 14), example2Pdf),
   new MenuItem(new Date(2023, 7, 21), example3Pdf),
   new MenuItem(new Date(2023, 7, 28), example4Pdf),
-  new MenuItem(new Date(2023, 8, 4), example1Pdf),
 ];
 
 export default testMenuItems;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form } from 'react-router-dom';
 import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
@@ -6,8 +6,10 @@ import { Duration, add, format } from 'date-fns';
 
 import menuItemConverter from './model/menuItemConverter';
 import testMenuItems from './model/testMenuItems';
+import MenuContext from './context/MenuContext';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
+  const { setPreviewedFile } = useContext(MenuContext);
   const { dates, files } = menuItemConverter.fromServer(testMenuItems);
 
   function formatDate(date: Date): string {
@@ -44,7 +46,11 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 {...provided.droppableProps}
               >
                 {files.map(({ fileUrl }, index) => (
-                  <DraggablePlaceholder draggableId={fileUrl} index={index}>
+                  <DraggablePlaceholder
+                    draggableId={fileUrl}
+                    index={index}
+                    onClick={() => setPreviewedFile(fileUrl)}
+                  >
                     {fileUrl}
                   </DraggablePlaceholder>
                 ))}
@@ -77,17 +83,20 @@ const Placeholder = ({
   className,
   innerRef,
   providedProps,
+  onClick,
 }: {
   children?: React.ReactNode;
   className?: string;
   innerRef?: DivRef;
   providedProps?: any;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }): JSX.Element => {
   return (
     <div
       className={`py-4 px-6 bg-stone-200 ${className}`}
       ref={innerRef}
       {...providedProps}
+      onClick={onClick}
     >
       {children || 'Placeholder'}
     </div>
@@ -98,10 +107,12 @@ const DraggablePlaceholder = ({
   draggableId,
   index,
   children,
+  onClick,
 }: {
   draggableId: string;
   index: number;
   children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }): JSX.Element => {
   return (
     <Draggable draggableId={draggableId} index={index}>
@@ -112,7 +123,8 @@ const DraggablePlaceholder = ({
             ...provided.draggableProps,
           }}
           innerRef={provided.innerRef}
-          className="bg-stone-300"
+          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500"
+          onClick={onClick}
         >
           {children}
         </Placeholder>
