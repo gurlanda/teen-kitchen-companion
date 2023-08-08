@@ -2,6 +2,85 @@ import React from 'react';
 import { Form } from 'react-router-dom';
 import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
+import { Duration, add, format } from 'date-fns';
+
+const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
+  const dates = getDates(5);
+
+  function formatDate(date: Date): string {
+    const formatString = 'M/d';
+    const dateString = format(date, formatString);
+    return `Week starting on ${dateString}`;
+  }
+
+  return (
+    <Form
+      className={`border border-gray-300 rounded-xl py-4 px-5 ${className}`}
+    >
+      <h2 className="text-lg font-semibold">Menu edit form</h2>
+
+      {/* File upload */}
+      {/* <div className="flex gap-2 ml-auto items-center">
+        <input type="file" accept=".pdf" onChange={onChooseFile} />
+        <Button onClick={uploadFileToDb}>Upload file</Button>
+      </div> */}
+
+      <div className="flex">
+        <div className="flex flex-col grow">
+          {dates.map((date, index) => (
+            <Placeholder key={index}>{formatDate(date)}</Placeholder>
+          ))}
+        </div>
+
+        <DragDropContext onDragEnd={onDragEnd}>
+          <StrictModeDroppable droppableId="fileColumn">
+            {(provided) => (
+              <div
+                className="flex flex-col grow"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {filePlaceholders.map((value, index) => (
+                  <DraggablePlaceholder draggableId={value.id} index={index}>
+                    {value.value}
+                  </DraggablePlaceholder>
+                ))}
+              </div>
+            )}
+          </StrictModeDroppable>
+        </DragDropContext>
+      </div>
+    </Form>
+  );
+
+  function onDragEnd() {}
+
+  function onChooseFile() {
+    window.alert('onChooseFile()');
+  }
+
+  function uploadFileToDb() {
+    window.alert('uploadFileToDb()');
+  }
+};
+
+export function action() {
+  return null;
+}
+
+function getDates(numberOfDates: number = 4): Date[] {
+  const startDate = new Date(2023, 7, 7);
+  const interval: Duration = { weeks: 1 };
+
+  const dates: Date[] = [startDate];
+  for (let i = 1; i < numberOfDates; i++) {
+    const lastDate = dates[i - 1];
+    const nextDate = add(lastDate, interval);
+    dates.push(nextDate);
+  }
+
+  return dates;
+}
 
 const filePlaceholders = [
   { id: 'file1', value: 'File placeholder 1' },
@@ -60,63 +139,6 @@ const DraggablePlaceholder = ({
     </Draggable>
   );
 };
-
-const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
-  return (
-    <Form
-      className={`border border-gray-300 rounded-xl py-4 px-5 ${className}`}
-    >
-      <h2 className="text-lg font-semibold">Menu edit form</h2>
-
-      {/* File upload */}
-      {/* <div className="flex gap-2 ml-auto items-center">
-        <input type="file" accept=".pdf" onChange={onChooseFile} />
-        <Button onClick={uploadFileToDb}>Upload file</Button>
-      </div> */}
-
-      <div className="flex">
-        <div className="flex flex-col grow">
-          <Placeholder>Date placeholder 1</Placeholder>
-          <Placeholder>Date placeholder 2</Placeholder>
-          <Placeholder>Date placeholder 3</Placeholder>
-          <Placeholder>Date placeholder 4</Placeholder>
-          <Placeholder>Date placeholder 5</Placeholder>
-        </div>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <StrictModeDroppable droppableId="fileColumn">
-            {(provided) => (
-              <div
-                className="flex flex-col grow"
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {filePlaceholders.map((value, index) => (
-                  <DraggablePlaceholder draggableId={value.id} index={index}>
-                    {value.value}
-                  </DraggablePlaceholder>
-                ))}
-              </div>
-            )}
-          </StrictModeDroppable>
-        </DragDropContext>
-      </div>
-    </Form>
-  );
-
-  function onDragEnd() {}
-
-  function onChooseFile() {
-    window.alert('onChooseFile()');
-  }
-
-  function uploadFileToDb() {
-    window.alert('uploadFileToDb()');
-  }
-};
-
-export function action() {
-  return null;
-}
 
 const Button = ({
   className,
