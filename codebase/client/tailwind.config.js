@@ -68,6 +68,7 @@ module.exports = {
         'screen-3/8': 'calc((100vw / 8) * 3)',
         'screen-5/8': 'calc((100vw / 8) * 5)',
         'screen-7/8': 'calc((100vw / 8) * 7)',
+        fluid: 'min(90vw, 80ch)',
       }),
     },
   },
