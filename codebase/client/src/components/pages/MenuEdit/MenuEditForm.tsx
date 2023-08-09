@@ -4,15 +4,17 @@ import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 import { Duration, add, format } from 'date-fns';
 
-import menuItemConverter from './model/menuItemConverter';
+import menuItemConverter, { FileItem } from './model/menuItemConverter';
 import testMenuItems from './model/testMenuItems';
 import MenuContext from './context/MenuContext';
+import createId from 'src/utils/createId';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { setPreviewedFile } = useContext(MenuContext);
   const { dates, files: receivedFiles } =
     menuItemConverter.fromServer(testMenuItems);
-  const [files, setFiles] = useState<string[]>(receivedFiles);
+  const [files, setFiles] = useState<FileItem[]>(receivedFiles);
+  const randomId = createId();
 
   return (
     <Form
@@ -27,9 +29,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       </div> */}
 
       <div className="flex">
-        <div className="flex flex-col grow">
+        <div className="flex flex-col grow basis-0">
           {dates.map((date, index) => (
-            <Placeholder key={index}>{formatDate(date)}</Placeholder>
+            <ColumnItem key={index}>{formatDate(date)}</ColumnItem>
           ))}
         </div>
 
@@ -37,20 +39,28 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
           <StrictModeDroppable droppableId="fileColumn">
             {(provided) => (
               <div
-                className="flex flex-col grow"
+                className="flex flex-col grow basis-0"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {files.map((fileUrl, index) => (
-                  <DraggablePlaceholder
-                    draggableId={fileUrl}
-                    index={index}
-                    key={fileUrl}
-                    onClick={() => setPreviewedFile(fileUrl)}
-                  >
-                    {fileUrl}
-                  </DraggablePlaceholder>
-                ))}
+                {files.map(({ fileUrl, id }, index) =>
+                  fileUrl === '' ? (
+                    <DraggableEmptySlot
+                      draggableId={id}
+                      index={index}
+                      key={id}
+                    />
+                  ) : (
+                    <DraggableColumnItem
+                      draggableId={id}
+                      index={index}
+                      key={id}
+                      onClick={() => setPreviewedFile(fileUrl)}
+                    >
+                      {fileUrl}
+                    </DraggableColumnItem>
+                  )
+                )}
                 {provided.placeholder}
               </div>
             )}
@@ -99,7 +109,7 @@ export function action() {
 }
 
 type DivRef = React.LegacyRef<HTMLDivElement> | undefined;
-const Placeholder = ({
+const ColumnItem = ({
   children,
   className,
   innerRef,
@@ -124,7 +134,7 @@ const Placeholder = ({
   );
 };
 
-const DraggablePlaceholder = ({
+const DraggableColumnItem = ({
   draggableId,
   index,
   children,
@@ -138,17 +148,46 @@ const DraggablePlaceholder = ({
   return (
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
-        <Placeholder
+        <ColumnItem
           providedProps={{
             ...provided.dragHandleProps,
             ...provided.draggableProps,
           }}
           innerRef={provided.innerRef}
-          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none"
+          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none min-w-0"
           onClick={onClick}
         >
           {children}
-        </Placeholder>
+        </ColumnItem>
+      )}
+    </Draggable>
+  );
+};
+
+const DraggableEmptySlot = ({
+  draggableId,
+  index,
+}: {
+  draggableId: string;
+  index: number;
+}): JSX.Element => {
+  return (
+    <Draggable draggableId={draggableId} index={index}>
+      {(provided) => (
+        <div
+          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-1 px-2"
+          {...provided.dragHandleProps}
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+        >
+          <div className="flex justify-center items-center py-3 px-4 border-2 border-gray-700 border-dashed rounded-lg">
+            <span className="relative">
+              {' '}
+              <i className=" absolute translate-x-[-120%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
+              Add a menu for this week.
+            </span>
+          </div>
+        </div>
       )}
     </Draggable>
   );

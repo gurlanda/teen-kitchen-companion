@@ -12,7 +12,7 @@ import MenuEditForm from './MenuEditForm';
     + Implement: Clicking on a MenuEditForm item changes the previewed file
     + Implement: DnD works properly
     - Implement: File upload changes a MenuEditForm item
-    - Implement: View that represents an empty file in a slot
+    + Implement: View that represents an empty file in a slot
     - Implement: Add new week
     - Implement: Proper UI for MenuEditForm
 
