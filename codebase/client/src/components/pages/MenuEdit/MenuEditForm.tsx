@@ -14,12 +14,6 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
     menuItemConverter.fromServer(testMenuItems);
   const [files, setFiles] = useState<string[]>(receivedFiles);
 
-  function formatDate(date: Date): string {
-    const formatString = 'M/d';
-    const dateString = format(date, formatString);
-    return `Week starting on ${dateString}`;
-  }
-
   return (
     <Form
       className={`border border-gray-300 rounded-xl py-4 px-5 max-w-[60%] ${className}`}
@@ -51,11 +45,13 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                   <DraggablePlaceholder
                     draggableId={fileUrl}
                     index={index}
+                    key={fileUrl}
                     onClick={() => setPreviewedFile(fileUrl)}
                   >
                     {fileUrl}
                   </DraggablePlaceholder>
                 ))}
+                {provided.placeholder}
               </div>
             )}
           </StrictModeDroppable>
@@ -66,6 +62,27 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
   function onDragEnd(result: DropResult) {
     const { draggableId: fileId, source, destination } = result;
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const newFiles = [...files];
+    const targetFile = newFiles.splice(source.index, 1)[0];
+    newFiles.splice(destination.index, 0, targetFile);
+    setFiles(newFiles);
+  }
+
+  function formatDate(date: Date): string {
+    const formatString = 'M/d';
+    const dateString = format(date, formatString);
+    return `Week starting on ${dateString}`;
   }
 
   function onChooseFile() {
@@ -127,7 +144,7 @@ const DraggablePlaceholder = ({
             ...provided.draggableProps,
           }}
           innerRef={provided.innerRef}
-          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500"
+          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none"
           onClick={onClick}
         >
           {children}
