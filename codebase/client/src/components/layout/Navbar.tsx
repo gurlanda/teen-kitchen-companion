@@ -70,6 +70,11 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
+          <NavLinkItem
+            to="/menu-edit"
+            text="MenuEdit"
+            onClick={toggleIsVisible}
+          />
           {authContext?.isSignedIn() && (
             <NavLinkItem
               to="/user-info"

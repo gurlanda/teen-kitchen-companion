@@ -2,13 +2,8 @@
 // TODO: Re-evaluate. I think this object should stay in the MenuEdit folder because it is only used by MenuEditForm. But this could change over the course of development.
 // TODO: Convert to a FirestoreConverter.
 
-import createId from 'src/utils/createId';
 import MenuItem from './MenuItem';
-
-export type FileItem = {
-  id: string;
-  fileUrl: string;
-};
+import FileItem from './FileItem';
 
 const menuItemConverter = {
   fromServer(menuItems: MenuItem[]): { dates: Date[]; files: FileItem[] } {
@@ -16,13 +11,8 @@ const menuItemConverter = {
     const files: FileItem[] = [];
 
     for (let item of menuItems) {
-      const fileItem: FileItem = {
-        id: createId(),
-        fileUrl: item.fileUrl,
-      };
-
       dates.push(item.startDate);
-      files.push(fileItem);
+      files.push(new FileItem(item.fileUrl));
     }
 
     return {

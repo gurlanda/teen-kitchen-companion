@@ -4,10 +4,11 @@ import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 import { Duration, add, format } from 'date-fns';
 
-import menuItemConverter, { FileItem } from './model/menuItemConverter';
+import menuItemConverter from './model/menuItemConverter';
 import testMenuItems from './model/testMenuItems';
 import MenuContext from './context/MenuContext';
 import createId from 'src/utils/createId';
+import FileItem from './model/FileItem';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { setPreviewedFile } = useContext(MenuContext);
@@ -49,6 +50,18 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                       draggableId={id}
                       index={index}
                       key={id}
+                      onChange={(e) => {
+                        const files = e.target.files;
+                        if (!files || files.length === 0) {
+                          return;
+                        }
+
+                        const chosenFile = files[0];
+                        const fileUrl = URL.createObjectURL(chosenFile);
+
+                        changeFile(id, fileUrl);
+                        setPreviewedFile(fileUrl);
+                      }}
                     />
                   ) : (
                     <DraggableColumnItem
@@ -69,6 +82,18 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       </div>
     </Form>
   );
+
+  function changeFile(fileItemId: string, newFileUrl: string): void {
+    const newFiles = files.map((file) => {
+      if (file.id === fileItemId) {
+        return new FileItem(newFileUrl, fileItemId);
+      } else {
+        return file.clone();
+      }
+    });
+
+    setFiles(newFiles);
+  }
 
   function onDragEnd(result: DropResult) {
     const { draggableId: fileId, source, destination } = result;
@@ -167,25 +192,33 @@ const DraggableColumnItem = ({
 const DraggableEmptySlot = ({
   draggableId,
   index,
+  onChange,
 }: {
   draggableId: string;
   index: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }): JSX.Element => {
   return (
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
         <div
-          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-1 px-2"
+          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-4 px-6"
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
-          <div className="flex justify-center items-center py-3 px-4 border-2 border-gray-700 border-dashed rounded-lg">
-            <span className="relative">
-              {' '}
+          <div className="flex gap-2 ml-auto items-center border-2 border-gray-700 border-dashed rounded-l">
+            <input
+              id={draggableId}
+              type="file"
+              accept="application/pdf"
+              onChange={onChange}
+              className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
+            />
+            <label htmlFor={draggableId} className="cursor-pointer relative">
               <i className=" absolute translate-x-[-120%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
               Add a menu for this week.
-            </span>
+            </label>
           </div>
         </div>
       )}
