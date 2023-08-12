@@ -1,17 +1,18 @@
 import { createContext } from 'react';
-import FileItem from '../model/FileItem';
+import File from '../model/File';
 
 interface MenuContext {
   previewedFile: string;
-  files: FileItem[];
+  files: File[];
   dates: Date[];
 
   setPreviewedFile(file: string): void;
   changeFile(index: number, fileUrl: string): void;
   moveFile(fromIndex: number, toIndex: number): void;
+  deleteFile(index: number): void;
 
   addNewWeek(): void;
-  deleteDate(index: number): void;
+  deleteWeek(index: number): void;
 }
 
 const initialMenuContext: MenuContext = {
@@ -22,8 +23,9 @@ const initialMenuContext: MenuContext = {
   setPreviewedFile(file: string) {},
   changeFile(index: number, fileUrl: string) {},
   moveFile(fromIndex: number, toIndex: number) {},
+  deleteFile(targetIndex: number) {},
   addNewWeek() {},
-  deleteDate(index: number) {},
+  deleteWeek(index: number) {},
 };
 
 const menuContext = createContext<MenuContext>(initialMenuContext);

@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Form } from 'react-router-dom';
 import StrictModeDroppable from './StrictModeDroppable';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { format } from 'date-fns';
 
 import MenuContext from './context/MenuContext';
-import ColumnItem from './components/ColumnItem';
 import DraggableColumnItem from './components/DraggableColumnItem';
 import DraggableEmptySlot from './components/DraggableEmptySlot';
+import Button from './components/Button';
+import DateItem from './components/DateItem';
+import FileItem from './components/FileItem';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, setPreviewedFile, changeFile, moveFile, addNewWeek } =
@@ -22,7 +23,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       <div className="flex">
         <div className="flex flex-col grow basis-0">
           {dates.map((date, index) => (
-            <ColumnItem key={index}>{formatDate(date)}</ColumnItem>
+            <DateItem date={date} key={index} index={index} />
           ))}
         </div>
 
@@ -34,12 +35,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {files.map(({ fileUrl, id }, index) =>
-                  fileUrl === '' ? (
+                {files.map((file, index) =>
+                  file.fileUrl === '' ? (
                     <DraggableEmptySlot
-                      draggableId={id}
+                      draggableId={file.id}
                       index={index}
-                      key={id}
+                      key={file.id}
                       onChange={(e) => {
                         const files = e.target.files;
                         if (!files || files.length === 0) {
@@ -54,14 +55,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                       }}
                     />
                   ) : (
-                    <DraggableColumnItem
-                      draggableId={id}
-                      index={index}
-                      key={id}
-                      onClick={() => setPreviewedFile(fileUrl)}
-                    >
-                      {fileUrl}
-                    </DraggableColumnItem>
+                    <FileItem file={file} index={index} key={file.id} />
                   )
                 )}
                 {provided.placeholder}
@@ -74,7 +68,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   );
 
   function onDragEnd(result: DropResult) {
-    const { draggableId: fileId, source, destination } = result;
+    const { source, destination } = result;
     if (!destination) {
       return;
     }
@@ -88,35 +82,10 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
     moveFile(source.index, destination.index);
   }
-
-  function formatDate(date: Date): string {
-    const formatString = 'M/d';
-    const dateString = format(date, formatString);
-    return `Week starting on ${dateString}`;
-  }
 };
 
 export function action() {
   return null;
 }
-
-const Button = ({
-  className,
-  onClick,
-  children,
-}: {
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <button
-      className={`border rounded-lg px-4 py-2 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
 
 export default MenuEditForm;

@@ -2,31 +2,35 @@ import { useState } from 'react';
 import { Duration, add } from 'date-fns';
 import MenuContext from './MenuContext';
 import example4Pdf from 'src/assets/pdf/example4.pdf';
-import FileItem from '../model/FileItem';
+import File from '../model/File';
 
 const MenuContextProvider = ({
   files: receivedFiles,
   dates: receivedDates,
   children,
 }: {
-  files: FileItem[];
+  files: File[];
   dates: Date[];
   children?: React.ReactNode;
 }): JSX.Element => {
   const [previewedFile, setPreviewedFile] = useState<string>(example4Pdf);
-  const [files, setFiles] = useState<FileItem[]>(receivedFiles);
+  const [files, setFiles] = useState<File[]>(receivedFiles);
   const [dates, setDates] = useState<Date[]>(receivedDates);
 
   function changeFile(targetIndex: number, fileUrl: string): void {
     const newFiles = files.map((file, index) => {
       if (index === targetIndex) {
-        return new FileItem(fileUrl, file.id);
+        return new File(fileUrl, file.id);
       } else {
         return file.clone();
       }
     });
 
     setFiles(newFiles);
+  }
+
+  function deleteFile(targetIndex: number) {
+    changeFile(targetIndex, '');
   }
 
   function moveFile(fromIndex: number, toIndex: number) {
@@ -52,16 +56,20 @@ const MenuContextProvider = ({
 
     setDates(newDates);
 
-    const newFiles = [new FileItem(), ...files.map((file) => file.clone())];
+    const newFiles = [new File(), ...files.map((file) => file.clone())];
     setFiles(newFiles);
   }
 
-  function deleteDate(targetIndex: number): void {
+  function deleteWeek(targetIndex: number): void {
     const newDates = dates
       .filter((date, index) => index !== targetIndex)
       .map((date) => new Date(date));
-
     setDates(newDates);
+
+    const newFiles = files
+      .filter((file, index) => index !== targetIndex)
+      .map((file) => file.clone());
+    setFiles(newFiles);
   }
 
   const providedValues = {
@@ -71,8 +79,9 @@ const MenuContextProvider = ({
     setPreviewedFile,
     changeFile,
     moveFile,
+    deleteFile,
     addNewWeek,
-    deleteDate,
+    deleteWeek,
   };
 
   return (

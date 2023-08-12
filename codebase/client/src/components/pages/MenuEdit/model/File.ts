@@ -1,6 +1,6 @@
 import createId from 'src/utils/createId';
 
-class FileItem {
+class File {
   private _id: string;
   private _fileUrl: string;
 
@@ -21,9 +21,9 @@ class FileItem {
     this._fileUrl = newUrl;
   }
 
-  clone(): FileItem {
-    return new FileItem(this.fileUrl, this.id);
+  clone(): File {
+    return new File(this.fileUrl, this.id);
   }
 }
 
-export default FileItem;
+export default File;
