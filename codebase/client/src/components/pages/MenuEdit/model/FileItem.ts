@@ -4,7 +4,7 @@ class FileItem {
   private _id: string;
   private _fileUrl: string;
 
-  constructor(fileUrl: string, id: string = createId()) {
+  constructor(fileUrl: string = '', id: string = createId()) {
     this._fileUrl = fileUrl;
     this._id = id;
   }

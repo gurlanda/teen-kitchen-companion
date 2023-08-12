@@ -13,7 +13,9 @@ import MenuEditForm from './MenuEditForm';
     + Implement: DnD works properly
     + Implement: File upload changes a MenuEditForm item
     + Implement: View that represents an empty file in a slot
-    - Implement: Add new week
+    + Implement: Add new week
+    - Implement: Delete week
+    - Implement: Delete file for week
     - Implement: Proper UI for MenuEditForm
 
  */
