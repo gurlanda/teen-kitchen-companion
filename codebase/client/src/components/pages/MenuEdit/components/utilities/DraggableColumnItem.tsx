@@ -23,7 +23,7 @@ const DraggableColumnItem = ({
             ...provided.draggableProps,
           }}
           innerRef={provided.innerRef}
-          className={`bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none min-w-0 ${className}`}
+          className={`bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none ${className}`}
           onClick={onClick}
         >
           {children}

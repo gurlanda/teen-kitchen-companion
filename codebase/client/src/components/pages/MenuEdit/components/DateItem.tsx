@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
-import ColumnItem from './ColumnItem';
+import ColumnItem from './utilities/ColumnItem';
 import { useContext } from 'react';
 import MenuContext from '../context/MenuContext';
-import Button from './Button';
+import Button from './utilities/Button';
 
 const DateItem = ({
   date,
@@ -15,7 +15,7 @@ const DateItem = ({
 
   return (
     <ColumnItem className="flex gap-2">
-      <span className="basis-0">{formatDate(date)}</span>
+      <span className="basis-0 grow">{formatDate(date)}</span>
       <Button className="basis-0" onClick={() => menuContext.deleteWeek(index)}>
         Delete week
       </Button>

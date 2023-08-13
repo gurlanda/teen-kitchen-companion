@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
-import ColumnItem from './ColumnItem';
+import ColumnItem from './utilities/ColumnItem';
 import { useContext } from 'react';
 import MenuContext from '../context/MenuContext';
-import Button from './Button';
+import Button from './utilities/Button';
 import File from '../model/File';
-import DraggableColumnItem from './DraggableColumnItem';
+import DraggableColumnItem from './utilities/DraggableColumnItem';
 
 const FileItem = ({
   file,
@@ -22,7 +22,7 @@ const FileItem = ({
       index={index}
       onClick={() => setPreviewedFile(file.url)}
     >
-      <span className="basis-0 grow overflow-hidden break-all">{file.url}</span>
+      <span className="basis-0 grow break-all">{file.url}</span>
       <Button
         onClick={(e) => {
           e.stopPropagation();

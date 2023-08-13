@@ -1,6 +1,6 @@
 import { Draggable } from 'react-beautiful-dnd';
 
-const DraggableEmptySlot = ({
+const EmptyFileItem = ({
   draggableId,
   index,
   onChange,
@@ -37,4 +37,4 @@ const DraggableEmptySlot = ({
   );
 };
 
-export default DraggableEmptySlot;
+export default EmptyFileItem;

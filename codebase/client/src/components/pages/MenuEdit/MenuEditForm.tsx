@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Form } from 'react-router-dom';
-import StrictModeDroppable from './components/StrictModeDroppable';
+import StrictModeDroppable from './components/utilities/StrictModeDroppable';
 import {
   DragDropContext,
   Draggable,
@@ -10,9 +10,9 @@ import {
 import { faker } from '@faker-js/faker';
 
 import MenuContext from './context/MenuContext';
-import DraggableColumnItem from './components/DraggableColumnItem';
-import DraggableEmptySlot from './components/DraggableEmptySlot';
-import Button from './components/Button';
+import DraggableColumnItem from './components/utilities/DraggableColumnItem';
+import EmptyFileItem from './components/EmptyFileItem';
+import Button from './components/utilities/Button';
 import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
 import createId from 'src/utils/createId';
@@ -89,7 +89,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
               >
                 {files.map((file, index) =>
                   file.url === '' ? (
-                    <DraggableEmptySlot
+                    <EmptyFileItem
                       draggableId={file.id}
                       index={index}
                       key={file.id}
