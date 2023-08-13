@@ -2,10 +2,10 @@ import createId from 'src/utils/createId';
 
 class File {
   private _id: string;
-  private _fileUrl: string;
+  private _url: string;
 
   constructor(fileUrl: string = '', id: string = createId()) {
-    this._fileUrl = fileUrl;
+    this._url = fileUrl;
     this._id = id;
   }
 
@@ -13,16 +13,16 @@ class File {
     return this._id;
   }
 
-  get fileUrl(): string {
-    return this._fileUrl;
+  get url(): string {
+    return this._url;
   }
 
-  set fileUrl(newUrl: string) {
-    this._fileUrl = newUrl;
+  set url(newUrl: string) {
+    this._url = newUrl;
   }
 
   clone(): File {
-    return new File(this.fileUrl, this.id);
+    return new File(this.url, this.id);
   }
 }
 

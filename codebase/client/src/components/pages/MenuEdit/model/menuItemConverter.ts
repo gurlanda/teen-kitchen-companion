@@ -34,7 +34,7 @@ const menuItemConverter = {
 
     const menuItems: MenuItem[] = [];
     for (let i = 0; i < numItems; i++) {
-      const menuItem = new MenuItem(dates[i], files[i].fileUrl);
+      const menuItem = new MenuItem(dates[i], files[i].url);
       menuItems.push(menuItem);
     }
 

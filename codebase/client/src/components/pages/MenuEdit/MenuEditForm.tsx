@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Form } from 'react-router-dom';
-import StrictModeDroppable from './StrictModeDroppable';
+import StrictModeDroppable from './components/StrictModeDroppable';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import MenuContext from './context/MenuContext';
@@ -21,7 +21,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       <h2 className="text-lg font-semibold">Menu edit form</h2>
       <Button onClick={() => addNewWeek()}>Add new week</Button>
       <div className="flex">
-        <div className="flex flex-col grow basis-0">
+        <div className="flex flex-col basis-0">
           {dates.map((date, index) => (
             <DateItem date={date} key={index} index={index} />
           ))}
@@ -31,12 +31,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
           <StrictModeDroppable droppableId="fileColumn">
             {(provided) => (
               <div
-                className="flex flex-col grow basis-0"
+                className="flex flex-col basis-0 max-w-[66%]"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 {files.map((file, index) =>
-                  file.fileUrl === '' ? (
+                  file.url === '' ? (
                     <DraggableEmptySlot
                       draggableId={file.id}
                       index={index}

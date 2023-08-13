@@ -17,17 +17,18 @@ const FileItem = ({
 
   return (
     <DraggableColumnItem
-      className="flex gap-2"
+      className="flex gap-2 max-w-[50%]"
       draggableId={file.id}
       index={index}
-      onClick={() => setPreviewedFile(file.fileUrl)}
+      onClick={() => setPreviewedFile(file.url)}
     >
-      <span>{file.fileUrl}</span>
+      <span className="basis-0 grow overflow-hidden">{file.url}</span>
       <Button
         onClick={(e) => {
           e.stopPropagation();
           deleteFile(index);
         }}
+        className="basis-0"
       >
         Delete file
       </Button>

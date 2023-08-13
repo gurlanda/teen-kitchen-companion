@@ -14,8 +14,8 @@ import MenuEditForm from './MenuEditForm';
     + Implement: File upload changes a MenuEditForm item
     + Implement: View that represents an empty file in a slot
     + Implement: Add new week
-    - Implement: Delete week
-    - Implement: Delete file for week
+    + Implement: Delete week
+    + Implement: Delete file for week
     - Implement: Proper UI for MenuEditForm
 
  */
@@ -26,10 +26,10 @@ const MenuEditPage = (): JSX.Element => {
   return (
     <div className="h-full">
       <div className="flex flex-col gap-3 pt-5 mx-auto w-[min(90vw,120ch)] h-full">
-        {/* <h1 className="text-xl font-bold">Menu edit</h1> */}
         <div className="flex gap-3 h-full">
           <MenuEditForm className="grow" />
-          <PdfViewer file={previewedFile} className="grow" />
+          <div className="grow">placeholder</div>
+          {/* <PdfViewer file={previewedFile} className="grow" /> */}
         </div>
       </div>
     </div>

@@ -15,8 +15,10 @@ const DateItem = ({
 
   return (
     <ColumnItem className="flex gap-2">
-      <span>{formatDate(date)}</span>
-      <Button onClick={() => menuContext.deleteWeek(index)}>Delete week</Button>
+      <span className="basis-0">{formatDate(date)}</span>
+      <Button className="basis-0" onClick={() => menuContext.deleteWeek(index)}>
+        Delete week
+      </Button>
     </ColumnItem>
   );
 };
