@@ -20,7 +20,7 @@ import MenuEditForm from './MenuEditForm';
     - Implement: Proper UI for MenuEditForm
       + Refactor components to be more cleanly organized
       + Add Replace File functionality
-      - Create PfOC for ellipses menu
+      + Create PfOC for ellipses menu
       - Redesign empty file component
         - Clicking any part of the component should activate the file upload dialog
         - Icon should be within the dashed border
