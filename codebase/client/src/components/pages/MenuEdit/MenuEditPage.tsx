@@ -28,8 +28,7 @@ const MenuEditPage = (): JSX.Element => {
       <div className="flex flex-col gap-3 pt-5 mx-auto w-[min(90vw,120ch)] h-full">
         <div className="flex gap-3 h-full">
           <MenuEditForm className="grow" />
-          <div className="grow">placeholder</div>
-          {/* <PdfViewer file={previewedFile} className="grow" /> */}
+          <PdfViewer file={previewedFile} className="grow" />
         </div>
       </div>
     </div>

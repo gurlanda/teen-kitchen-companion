@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import MenuItem from './MenuItem';
 import example1Pdf from 'src/assets/pdf/example1.pdf';
 import example2Pdf from 'src/assets/pdf/example2.pdf';

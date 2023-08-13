@@ -17,12 +17,12 @@ const FileItem = ({
 
   return (
     <DraggableColumnItem
-      className="flex gap-2 max-w-[50%]"
+      className="flex gap-2"
       draggableId={file.id}
       index={index}
       onClick={() => setPreviewedFile(file.url)}
     >
-      <span className="basis-0 grow overflow-hidden">{file.url}</span>
+      <span className="basis-0 grow overflow-hidden break-all">{file.url}</span>
       <Button
         onClick={(e) => {
           e.stopPropagation();
