@@ -1,10 +1,9 @@
 import { useContext, useRef, useState } from 'react';
 import MenuContext from '../context/MenuContext';
-import Button from './utilities/Button';
 import File from '../model/File';
-import DraggableColumnItem from './utilities/DraggableColumnItem';
 import ColumnItem from './utilities/ColumnItem';
 import { Draggable } from 'react-beautiful-dnd';
+import EllipsisMenu, { EllipsisMenuItem } from './utilities/EllipsisMenu';
 
 const FileItem = ({
   file,
@@ -61,19 +60,14 @@ const FileItem = ({
             </button>
           </ColumnItem>
 
-          {/* Ellipsis menu */}
-          <div
-            className={`absolute left-[calc(100%_+_8px)] top-1/2 -translate-y-1/2 bg-white border rounded-lg overflow-hidden ${
-              isEllipsisMenuVisible ? '' : 'hidden'
-            }`}
-          >
+          <EllipsisMenu isVisible={isEllipsisMenuVisible}>
             <EllipsisMenuItem onClick={onClickReplace}>
               Replace file
             </EllipsisMenuItem>
             <EllipsisMenuItem onClick={onClickDelete}>
               Delete file
             </EllipsisMenuItem>
-          </div>
+          </EllipsisMenu>
         </div>
       )}
     </Draggable>
@@ -95,23 +89,6 @@ const FileItem = ({
     inputRef.current.click();
     setIsEllipsisMenuVisible(false);
   }
-};
-
-const EllipsisMenuItem = ({
-  onClick,
-  children,
-}: {
-  onClick?: React.MouseEventHandler;
-  children?: React.ReactNode;
-}): JSX.Element => {
-  return (
-    <button
-      className="bg-white hover:bg-gray-50 active:bg-gray-100 px-4 py-2 w-full min-w-max"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
 };
 
 export default FileItem;
