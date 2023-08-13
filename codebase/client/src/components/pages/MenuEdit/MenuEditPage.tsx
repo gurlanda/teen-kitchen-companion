@@ -21,9 +21,9 @@ import MenuEditForm from './MenuEditForm';
       + Refactor components to be more cleanly organized
       + Add Replace File functionality
       + Create PfOC for ellipses menu
-      - Redesign empty file component
-        - Clicking any part of the component should activate the file upload dialog
-        - Icon should be within the dashed border
+      + Redesign empty file component
+        + Clicking any part of the component should activate the file upload dialog
+        + Icon should be within the dashed border
       - Enforce a maximum height for column items
       - Add visible borders between column items
       - Add column labels
