@@ -60,7 +60,11 @@ const FileItem = ({
             </button>
           </ColumnItem>
 
-          <EllipsisMenu isVisible={isEllipsisMenuVisible}>
+          <EllipsisMenu
+            isVisible={isEllipsisMenuVisible}
+            setIsVisible={setIsEllipsisMenuVisible}
+            id={'ellipsis-menu-' + file.id}
+          >
             <EllipsisMenuItem onClick={onClickReplace}>
               Replace file
             </EllipsisMenuItem>
