@@ -1,14 +1,16 @@
+import { useContext } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import MenuContext from '../context/MenuContext';
 
 const EmptyFileItem = ({
   draggableId,
   index,
-  onChange,
 }: {
   draggableId: string;
   index: number;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }): JSX.Element => {
+  const { changeFile, setPreviewedFile } = useContext(MenuContext);
+
   return (
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
@@ -23,7 +25,18 @@ const EmptyFileItem = ({
               id={draggableId}
               type="file"
               accept="application/pdf"
-              onChange={onChange}
+              onChange={(e) => {
+                const files = e.target.files;
+                if (!files || files.length === 0) {
+                  return;
+                }
+
+                const chosenFile = files[0];
+                const fileUrl = URL.createObjectURL(chosenFile);
+
+                changeFile(index, fileUrl);
+                setPreviewedFile(fileUrl);
+              }}
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
             <label htmlFor={draggableId} className="cursor-pointer relative">

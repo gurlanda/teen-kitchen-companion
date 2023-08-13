@@ -93,18 +93,6 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                       draggableId={file.id}
                       index={index}
                       key={file.id}
-                      onChange={(e) => {
-                        const files = e.target.files;
-                        if (!files || files.length === 0) {
-                          return;
-                        }
-
-                        const chosenFile = files[0];
-                        const fileUrl = URL.createObjectURL(chosenFile);
-
-                        changeFile(index, fileUrl);
-                        setPreviewedFile(fileUrl);
-                      }}
                     />
                   ) : (
                     <FileItem file={file} index={index} key={file.id} />
