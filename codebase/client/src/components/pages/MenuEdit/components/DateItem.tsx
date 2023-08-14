@@ -18,7 +18,7 @@ const DateItem = ({
   const [id] = useState<string>(createId());
 
   return (
-    <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-3">
+    <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-3 last:rounded-bl-xl">
       <span className="basis-0 grow text-center">
         {getDateItemContent(date)}
       </span>

@@ -73,9 +73,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       <h2 className="text-2xl font-semibold">Menu edit form</h2>
       <Button onClick={() => addNewWeek()}>Add new week</Button>
 
-      <div className="flex rounded-xl overflow-hidden">
+      <div className="flex">
         <div className="flex flex-col">
-          <ColumnItem className="flex items-center bg-slate-500 text-slate-100 text-xl">
+          <ColumnItem className="flex items-center bg-slate-500 text-slate-100 text-xl rounded-tl-xl">
             Week
           </ColumnItem>
           {dates.map((date, index) => (
@@ -91,7 +91,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl">
+                <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl rounded-tr-xl">
                   Menu file for the week
                 </ColumnItem>
                 {files.map((file, index) =>

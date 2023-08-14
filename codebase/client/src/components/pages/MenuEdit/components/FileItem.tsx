@@ -24,14 +24,14 @@ const FileItem = ({
     <Draggable draggableId={file.id} index={index}>
       {(provided) => (
         <div
-          className="relative"
+          className="relative last:rounded-br-xl"
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
           <ColumnItem
             className={`flex items-center relative gap-2 ${
-              isSelected ? 'bg-slate-200' : 'bg-slate-300'
+              isSelected ? 'bg-slate-100' : 'bg-slate-300'
             } hover:bg-slate-400 active:bg-slate-500 select-none`}
             onClick={() => setPreviewedFile(file.url)}
           >
@@ -56,7 +56,10 @@ const FileItem = ({
             <span className="basis-0 grow break-all">{file.url}</span>
             <button
               className="flex items-center"
-              onClick={() => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsEllipsisMenuVisible(!isEllipsisMenuVisible);
+              }}
             >
               <i className="fa-solid fa-ellipsis-v text-2xl" />
             </button>
