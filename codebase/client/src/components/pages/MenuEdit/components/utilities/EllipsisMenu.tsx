@@ -31,7 +31,9 @@ const EllipsisMenu = ({
       }
     };
 
-    document.addEventListener('click', hideWhenClickedOutside);
+    // Add as a capturing event handler
+    // There may be some outside elements that have event.stopPropagation() in a click listener. If this event listener is set as a bubbler, then it won't get invoked on such elements.
+    document.addEventListener('click', hideWhenClickedOutside, true);
 
     return () => {
       document.removeEventListener('click', hideWhenClickedOutside);
@@ -40,10 +42,11 @@ const EllipsisMenu = ({
 
   return (
     <div
-      className={`absolute left-[calc(100%_+_8px)] top-1/2 -translate-y-1/2 bg-white border rounded-lg overflow-hidden ${
+      className={`absolute z-10 left-[calc(100%_+_8px)] top-1/2 -translate-y-1/2 bg-white border rounded-lg overflow-hidden ${
         isVisible ? '' : 'hidden'
       }`}
       id={id}
+      onClick={() => setIsVisible(false)}
     >
       {children}
     </div>
@@ -59,7 +62,7 @@ export const EllipsisMenuItem = ({
 }): JSX.Element => {
   return (
     <button
-      className="bg-white hover:bg-gray-50 active:bg-gray-100 px-4 py-2 w-full min-w-max"
+      className="bg-white hover:bg-gray-100 active:bg-gray-200 px-4 py-2 w-full min-w-max"
       onClick={onClick}
     >
       {children}

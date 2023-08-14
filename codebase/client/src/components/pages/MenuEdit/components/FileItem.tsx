@@ -51,10 +51,7 @@ const FileItem = ({
             <span className="basis-0 grow break-all">{file.url}</span>
             <button
               className="flex items-center"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsEllipsisMenuVisible(!isEllipsisMenuVisible);
-              }}
+              onClick={() => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
             >
               <i className="fa-solid fa-ellipsis-v text-2xl" />
             </button>
@@ -78,14 +75,11 @@ const FileItem = ({
   );
 
   function onClickDelete(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.stopPropagation(); // If this isn't here, then clicking this button will cause the parent's onclick listener to trigger
     deleteFile(index);
     setIsEllipsisMenuVisible(false);
   }
 
   function onClickReplace(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.stopPropagation(); // If this isn't here, then clicking this button will cause the parent's onclick listener to trigger
-
     if (!inputRef.current) {
       return;
     }

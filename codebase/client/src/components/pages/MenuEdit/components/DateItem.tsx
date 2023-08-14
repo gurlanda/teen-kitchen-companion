@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
 import ColumnItem from './utilities/ColumnItem';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import MenuContext from '../context/MenuContext';
-import Button from './utilities/Button';
+import EllipsisMenu, { EllipsisMenuItem } from './utilities/EllipsisMenu';
+import createId from 'src/utils/createId';
 
 const DateItem = ({
   date,
@@ -12,13 +13,28 @@ const DateItem = ({
   index: number;
 }): JSX.Element => {
   const menuContext = useContext(MenuContext);
+  const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
+    useState<boolean>(false);
+  const [id] = useState<string>(createId());
 
   return (
-    <ColumnItem className="flex gap-2">
+    <ColumnItem className="relative flex gap-2">
       <span className="basis-0 grow">{formatDate(date)}</span>
-      <Button className="basis-0" onClick={() => menuContext.deleteWeek(index)}>
-        Delete week
-      </Button>
+      <button
+        className="basis-0 flex items-center"
+        onClick={(e) => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
+      >
+        <i className="fas fa-ellipsis-v text-2xl hover:text-blue-800 active:text-purple-900" />
+      </button>
+      <EllipsisMenu
+        isVisible={isEllipsisMenuVisible}
+        setIsVisible={setIsEllipsisMenuVisible}
+        id={'ellipsis-menu-' + id}
+      >
+        <EllipsisMenuItem onClick={() => menuContext.deleteWeek(index)}>
+          Delete week
+        </EllipsisMenuItem>
+      </EllipsisMenu>
     </ColumnItem>
   );
 };
