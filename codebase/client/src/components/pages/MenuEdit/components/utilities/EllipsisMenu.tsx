@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 const EllipsisMenu = ({
   isVisible,
@@ -70,6 +70,25 @@ export const EllipsisMenuItem = ({
       onClick={onClick}
     >
       {children}
+    </button>
+  );
+};
+
+export const EllipsisButton = ({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}): JSX.Element => {
+  return (
+    <button
+      className={`relative flex items-center
+
+      after:absolute after:h-[40px] after:w-[25px] after:cursor-pointer after:-translate-x-1/2 ${className}`}
+      onClick={onClick}
+    >
+      <i className="fa-solid fa-ellipsis-v text-2xl" />
     </button>
   );
 };

@@ -2,7 +2,10 @@ import { add, format } from 'date-fns';
 import ColumnItem from './utilities/ColumnItem';
 import { useContext, useState } from 'react';
 import MenuContext from '../context/MenuContext';
-import EllipsisMenu, { EllipsisMenuItem } from './utilities/EllipsisMenu';
+import EllipsisMenu, {
+  EllipsisButton,
+  EllipsisMenuItem,
+} from './utilities/EllipsisMenu';
 import createId from 'src/utils/createId';
 
 const DateItem = ({
@@ -22,12 +25,10 @@ const DateItem = ({
       <span className="basis-0 grow text-center">
         {getDateItemContent(date)}
       </span>
-      <button
-        className="basis-0 flex items-center"
-        onClick={(e) => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
-      >
-        <i className="fas fa-ellipsis-v text-2xl" />
-      </button>
+      <EllipsisButton
+        className="text-gray-300 hover:text-gray-100 active:text-gray-900"
+        onClick={() => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
+      />
       <EllipsisMenu
         isVisible={isEllipsisMenuVisible}
         setIsVisible={setIsEllipsisMenuVisible}

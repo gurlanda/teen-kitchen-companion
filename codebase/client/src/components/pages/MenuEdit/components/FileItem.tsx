@@ -3,7 +3,10 @@ import MenuContext from '../context/MenuContext';
 import File from '../model/File';
 import ColumnItem from './utilities/ColumnItem';
 import { Draggable } from 'react-beautiful-dnd';
-import EllipsisMenu, { EllipsisMenuItem } from './utilities/EllipsisMenu';
+import EllipsisMenu, {
+  EllipsisButton,
+  EllipsisMenuItem,
+} from './utilities/EllipsisMenu';
 
 const FileItem = ({
   file,
@@ -54,15 +57,13 @@ const FileItem = ({
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
             <span className="basis-0 grow break-all">{file.url}</span>
-            <button
-              className="flex items-center"
+            <EllipsisButton
+              className="text-gray-600 hover:text-gray-200 active:text-gray-300"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsEllipsisMenuVisible(!isEllipsisMenuVisible);
               }}
-            >
-              <i className="fa-solid fa-ellipsis-v text-2xl" />
-            </button>
+            />
           </ColumnItem>
 
           <EllipsisMenu
