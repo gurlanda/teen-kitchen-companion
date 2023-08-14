@@ -1,30 +1,15 @@
 import React, { ReactNode } from 'react';
 import TkpBanner from 'src/components/layout/TkpBanner';
 
-const LinkButton: React.FC<{
-  to: string;
-  children: ReactNode;
-}> = ({ to, children }) => {
-  return (
-    <a
-      className={`block px-4 py-4 bg-white border rounded-lg border-gray-400 text-center tk-acumin-pro-semi-condensed  hover:bg-slate-200 text-cyan-600`}
-      href={to}
-      target="_blank"
-    >
-      {children}
-    </a>
-  );
-};
-
 const Volunteer: React.FC = () => {
   return (
     <div className="text-lg">
       <TkpBanner>Would you like to volunteer?</TkpBanner>
 
       {/* Content */}
-      <div className="flex flex-col gap-10 max-w-[min(90vw,60ch)] mx-auto tk-acumin-pro-semi-condensed text-center">
+      <div className="flex flex-col gap-10 max-w-[min(90vw,60ch)] mx-auto font-body text-center">
         <div className="flex flex-col gap-3">
-          <h1 className="tk-acumin-pro-condensed text-3xl ">
+          <h1 className="font-heading font-bold text-4xl ">
             Volunteering at the Teen Kitchen Project
           </h1>
           <p>Volunteers are the heart of our organization.</p>
@@ -55,6 +40,21 @@ const Volunteer: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const LinkButton: React.FC<{
+  to: string;
+  children: ReactNode;
+}> = ({ to, children }) => {
+  return (
+    <a
+      className={`block px-4 py-4 bg-white border rounded-lg border-gray-400 text-center  hover:bg-slate-200 text-brand-teal`}
+      href={to}
+      target="_blank"
+    >
+      {children}
+    </a>
   );
 };
 

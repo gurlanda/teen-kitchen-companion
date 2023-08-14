@@ -1,73 +1,19 @@
 import React from 'react';
 import TkpBanner from 'src/components/layout/TkpBanner';
 
-const AboutParagraph: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  return <p className="leading-relaxed text-gray-800">{children}</p>;
-};
-
-const Section = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  return <section className="flex flex-col gap-4">{children}</section>;
-};
-
-const SectionWithHeadline = ({
-  headline,
-  children,
-}: {
-  headline: string;
-  children?: React.ReactNode;
-}): JSX.Element => {
-  return (
-    <section className="flex flex-col">
-      <H2>{headline}</H2>
-      <div className="flex flex-col gap-4">{children}</div>
-    </section>
-  );
-};
-
-const H2 = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  return <h2 className=" font-bold text-lg">{children}</h2>;
-};
-
-const H3 = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  return <h3 className=" font-bold italic">{children}</h3>;
-};
-
-const Ul = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  return <ul className="flex flex-col gap-2">{children}</ul>;
-};
-
-const Li = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  return <li className=" list-disc">{children}</li>;
-};
-
-const LiWithHeadline = ({
-  headline,
-  content,
-}: {
-  headline: string;
-  content: string;
-}): JSX.Element => {
-  return (
-    <Li>
-      <span className="underline">{headline}</span> {content}
-    </Li>
-  );
-};
-
 const About: React.FC = () => {
   return (
     <div className=" min-h-screen">
       {/* Hero */}
       <TkpBanner>About the Teen Kitchen Project</TkpBanner>
 
-      <main className="flex flex-col gap-8 max-w-[min(90vw,70ch)] mx-auto tk-acumin-pro-semi-condensed text-lg">
+      <main className="flex flex-col gap-8 max-w-[min(90vw,70ch)] mx-auto font-body text-lg">
         <Section>
-          <div className="flex flex-col tk-acumin-pro-condensed text-center">
-            <h2 className=" text-[#E4732E] text-4xl">Our Mission:</h2>
-            <h3 className=" text-3xl">
-              The Teen Kitchen Project builds healthy communities through food
+          <div className="flex flex-col gap-1 text-center">
+            <h2 className=" text-brand-orange text-5xl">Our Mission:</h2>
+            <h3 className="font-heading font-bold text-4xl">
+              The Teen Kitchen Project builds healthy communities
+              through&nbsp;food
             </h3>
           </div>
           <AboutParagraph>
@@ -237,6 +183,61 @@ const About: React.FC = () => {
         </SectionWithHeadline>
       </main>
     </div>
+  );
+};
+
+const AboutParagraph: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <p className="leading-relaxed">{children}</p>;
+};
+
+const Section = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  return <section className="flex flex-col gap-4">{children}</section>;
+};
+
+const SectionWithHeadline = ({
+  headline,
+  children,
+}: {
+  headline: string;
+  children?: React.ReactNode;
+}): JSX.Element => {
+  return (
+    <section className="flex flex-col gap-2">
+      <H2>{headline}</H2>
+      <div className="flex flex-col gap-4">{children}</div>
+    </section>
+  );
+};
+
+const H2 = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  return <h2 className="font-heading font-bold text-3xl">{children}</h2>;
+};
+
+const H3 = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  return <h3 className="text-lg font-extrabold italic">{children}</h3>;
+};
+
+const Ul = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  return <ul className="flex flex-col gap-2">{children}</ul>;
+};
+
+const Li = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  return <li className=" list-disc">{children}</li>;
+};
+
+const LiWithHeadline = ({
+  headline,
+  content,
+}: {
+  headline: string;
+  content: string;
+}): JSX.Element => {
+  return (
+    <Li>
+      <span className="underline">{headline}</span> {content}
+    </Li>
   );
 };
 

@@ -19,7 +19,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between py-4 h-20 bg-white">
+    <nav className="flex items-center justify-between py-4 h-20  bg-white">
       <Link
         to="/"
         className="flex items-center ml-3.5 lg:mr-2"
@@ -30,7 +30,7 @@ const Navbar: FC = () => {
           alt="Teen Kitchen Project logo"
           className="h-12 w-12 mr-1 pr-0"
         />
-        <h1 className="text-[2.66rem] text- text-gray-700 acumin">TKC</h1>
+        <h1 className="text-[2.66rem] acumin">TKC</h1>
       </Link>
 
       {/* Hamburger menu button for small screens */}
@@ -51,7 +51,7 @@ const Navbar: FC = () => {
       </label>
 
       <div
-        className={`absolute py-2 top-20 w-full z-50 shadow-lg text-gray-700 bg-white tk-acumin-pro-condensed  ${
+        className={`absolute py-2 top-20 w-full z-50 shadow-lg bg-white tk-acumin-pro-condensed  ${
           isVisible ? visible : invisible
         } lg:static lg:flex lg:shadow-none`}
       >
@@ -132,8 +132,8 @@ const NavLinkItem: FC<{
   return (
     <div onClick={onClick}>
       <Link to={to}>
-        <div className="py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-cyan-200">
-          <h1 className="text-2xl">{text}</h1>
+        <div className="font-heading py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-cyan-200">
+          <h1 className="text-3xl">{text}</h1>
         </div>
       </Link>
     </div>

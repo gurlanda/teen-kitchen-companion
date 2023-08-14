@@ -25,9 +25,9 @@ const TkpBanner = ({
         />
       </div>
       <h1
-        className={`px-4 max-w-[25ch] tk-acumin-pro-condensed ${
+        className={`px-4 max-w-[25ch] font-heading ${
           normalWeight ? '' : 'font-bold'
-        } ${hideLogo ? 'text-7xl' : 'text-5xl'} text-white text-center`}
+        } ${hideLogo ? 'text-8xl' : 'text-6xl'} text-white text-center`}
       >
         {children}
       </h1>

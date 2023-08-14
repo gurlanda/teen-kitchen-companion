@@ -6,7 +6,7 @@ import Footer from './components/layout/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="h-full">
+    <div className="h-full text-gray-800">
       <AuthContextProvider>
         <Navbar />
         <Outlet />

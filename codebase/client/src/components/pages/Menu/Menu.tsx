@@ -6,25 +6,6 @@ import example3Pdf from 'src/assets/pdf/example3.pdf';
 import example4Pdf from 'src/assets/pdf/example4.pdf';
 import EmailForm from 'src/components/layout/EmailForm';
 
-const Button = ({
-  className,
-  onClick,
-  children,
-}: {
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <button
-      className={`border rounded-lg px-4 py-2 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
-
 const Menu: React.FC = () => {
   const [fileUrl, setFileUrl] = useState<string>(example1Pdf);
 
@@ -47,9 +28,9 @@ const Menu: React.FC = () => {
   };
 
   return (
-    <div className="h-full tk-acumin-pro-semi-condensed text-gray-700">
+    <div className="h-full font-body">
       <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,100ch)]">
-        <h1 className="tk-acumin-pro-condensed text-4xl font-bold text-center">
+        <h1 className="font-heading text-5xl font-bold text-center">
           Weekly Menus
         </h1>
 
@@ -74,6 +55,25 @@ const Menu: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const Button = ({
+  className,
+  onClick,
+  children,
+}: {
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <button
+      className={`border rounded-lg px-4 py-2 ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 };
 

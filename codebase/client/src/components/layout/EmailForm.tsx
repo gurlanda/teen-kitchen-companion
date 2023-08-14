@@ -2,45 +2,6 @@ import React, { useState } from 'react';
 import Email from 'src/model/Email/Email';
 import { sendEmailWithCallable } from 'src/model/Email/sendEmail';
 
-const inputClasses = 'px-4 py-2 border border-gray-300 rounded-lg min-w-0';
-
-type InputValue = React.InputHTMLAttributes<HTMLInputElement>['value'];
-const Input = ({
-  id,
-  name,
-  type,
-  value,
-  className,
-  placeholder,
-  onClick,
-  onSubmit,
-  onChange,
-}: {
-  id?: string;
-  name?: string;
-  type: React.HTMLInputTypeAttribute;
-  value?: InputValue;
-  placeholder?: string;
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLInputElement>;
-  onSubmit?: React.FormEventHandler<HTMLInputElement>;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-}): JSX.Element => {
-  return (
-    <input
-      id={id}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      className={`${inputClasses} ${className}`}
-      value={value}
-      onClick={onClick}
-      onSubmit={onSubmit}
-      onChange={onChange}
-    />
-  );
-};
-
 const EmailForm = ({
   className,
   header,
@@ -73,8 +34,8 @@ const EmailForm = ({
     <form
       className={`flex flex-col gap-5 text-lg border border-gray-300 shadow-md shadow-gray-200 rounded-xl px-6 py-8 ${className}`}
     >
-      <div className="flex flex-col gap-1">
-        <h1 className="self-stretch text-2xl font-bold">
+      <div className="flex flex-col gap-2">
+        <h1 className="self-stretch text-4xl font-heading font-bold">
           {header === undefined ? 'Send an email' : header}
         </h1>
 
@@ -109,10 +70,48 @@ const EmailForm = ({
       </Label> */}
       <Input
         type="submit"
-        className="self-end cursor-pointer"
+        className="self-end cursor-pointer text-brand-teal"
         onClick={onSubmit}
       />
     </form>
+  );
+};
+
+const inputClasses = 'px-4 py-2 border border-gray-300 rounded-lg min-w-0';
+type InputValue = React.InputHTMLAttributes<HTMLInputElement>['value'];
+const Input = ({
+  id,
+  name,
+  type,
+  value,
+  className,
+  placeholder,
+  onClick,
+  onSubmit,
+  onChange,
+}: {
+  id?: string;
+  name?: string;
+  type: React.HTMLInputTypeAttribute;
+  value?: InputValue;
+  placeholder?: string;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLInputElement>;
+  onSubmit?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+}): JSX.Element => {
+  return (
+    <input
+      id={id}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      className={`${inputClasses} ${className}`}
+      value={value}
+      onClick={onClick}
+      onSubmit={onSubmit}
+      onChange={onChange}
+    />
   );
 };
 

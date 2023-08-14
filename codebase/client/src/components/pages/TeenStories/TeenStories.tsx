@@ -9,16 +9,18 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
   return (
     <div className="flex flex-col gap-10 md:odd:flex-row md:even:flex-row-reverse text-center">
       <div className="flex flex-col gap-4 items-center">
-        <h4 className="tk-acumin-pro-semi-condensed font-bold text-3xl text-cyan-500">
+        <h4 className="font-heading font-bold text-5xl text-brand-teal">
           {header}
         </h4>
         <img
-          className="border-8 border-cyan-500 max-w-[min(350px,90vw)]"
+          className="border-8 border-gray-500 max-w-[min(350px,90vw)]"
           src={img}
           alt={alt}
         />
       </div>
-      <p className="text-orange-700 basis-0 grow md:self-center">{content}</p>
+      <p className="text-brand-orange font-body basis-0 grow md:self-center">
+        {content}
+      </p>
     </div>
   );
 };

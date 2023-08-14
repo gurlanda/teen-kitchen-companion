@@ -1,48 +1,8 @@
 import React from 'react';
 
-interface ItemProps {
-  heading: string;
-  details: string;
-  bgColor: string;
-  textColor: string;
-  icon: string;
-  to: string;
-}
-
-const Item: React.FC<ItemProps> = ({
-  heading,
-  details,
-  bgColor,
-  textColor,
-  icon,
-  to,
-}) => {
-  return (
-    <div className="flex flex-col my-5 md:odd:flex-row md:even:flex-row-reverse">
-      <a
-        href={to}
-        className={`${bgColor} block px-6 py-10 basis-0 grow text-center text-white font-bold`}
-      >
-        <div
-          className={`${icon} bg-no-repeat bg-center h-28 w-full mb-2`}
-        ></div>
-        <h2 className={`font-bold text-2xl text-center text-white`}>
-          Click Here to Learn More
-        </h2>
-      </a>
-      <div className="bg-slate-100 flex flex-col items-center justify-center basis-0 grow p-6">
-        <h2 className={`font-bold text-2xl text-center ${textColor}`}>
-          {heading}
-        </h2>
-        <h3 className="text-md text-center">{details}</h3>
-      </div>
-    </div>
-  );
-};
-
 const Section3: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center mx-auto my-8 max-w-[min(150ch,90vw)] tk-acumin-pro-semi-condensed text-gray-800">
+    <div className="flex flex-col justify-center mx-auto my-8 max-w-[min(150ch,90vw)] font-body text-gray-800">
       <Item
         heading="Teens"
         details="Our teen program offers an exciting opportunity for growth &#38; team-building as well as developing valuable hands-on skills."
@@ -75,6 +35,50 @@ const Section3: React.FC = () => {
         icon="bg-heart-icon"
         to="https://teenkitchenproject.org/become-a-client/"
       />
+    </div>
+  );
+};
+
+interface ItemProps {
+  heading: string;
+  details: string;
+  bgColor: string;
+  textColor: string;
+  icon: string;
+  to: string;
+}
+
+const Item: React.FC<ItemProps> = ({
+  heading,
+  details,
+  bgColor,
+  textColor,
+  icon,
+  to,
+}) => {
+  return (
+    <div className="flex flex-col my-5 md:odd:flex-row md:even:flex-row-reverse">
+      <a
+        href={to}
+        target="_blank"
+        className={`${bgColor} flex flex-col pt-10 pb-14 justify-center basis-0 grow text-center text-white font-bold`}
+      >
+        <div className={`${icon} bg-no-repeat bg-center h-28 w-full`}></div>
+        <h2
+          className={`font-bold font-heading text-5xl text-center text-white`}
+        >
+          Click Here to Learn More
+        </h2>
+      </a>
+
+      <div className="bg-slate-100 flex flex-col gap-3 items-center justify-center basis-0 grow p-6">
+        <h2
+          className={`font-bold font-heading text-5xl text-center ${textColor}`}
+        >
+          {heading}
+        </h2>
+        <h3 className="text-lg text-center">{details}</h3>
+      </div>
     </div>
   );
 };
