@@ -68,7 +68,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
   return (
     <Form
-      className={`flex flex-col gap-4 border border-gray-300 rounded-xl py-4 px-5 max-w-[60%] ${className}`}
+      className={`flex flex-col gap-4 border border-gray-300 rounded-xl pt-7 pb-5 px-8 max-w-[60%] ${className}`}
     >
       <h2 className="text-2xl font-semibold">Menu edit form</h2>
       <Button onClick={() => addNewWeek()}>Add new week</Button>
