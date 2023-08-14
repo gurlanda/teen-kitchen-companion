@@ -62,12 +62,6 @@ const Menu: React.FC = () => {
             <FileChoiceButton file={example3Pdf}>Week 3</FileChoiceButton>
             <FileChoiceButton file={example4Pdf}>Week 4</FileChoiceButton>
           </div>
-
-          {/* File upload */}
-          {/* <div className="flex gap-2 ml-auto items-center">
-            <input type="file" accept=".pdf" onChange={onChooseFile} />
-            <Button onClick={uploadFileToDb}>Upload file</Button>
-          </div> */}
         </div>
 
         <div className="min-h-full flex flex-col gap-4">
@@ -75,6 +69,7 @@ const Menu: React.FC = () => {
           <EmailForm
             className="grow-[1]"
             header="Send a message to our registered dietician"
+            content="You can contact our registered dietition for a free consultation or chatting about your meals. Fill out this form to make an appointment or to chat with them!"
           />
         </div>
       </div>

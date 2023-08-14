@@ -44,9 +44,11 @@ const Input = ({
 const EmailForm = ({
   className,
   header,
+  content,
 }: {
   className?: string;
   header?: string;
+  content?: string;
 }): JSX.Element => {
   // const [recipient, setRecipient] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
@@ -71,9 +73,19 @@ const EmailForm = ({
     <form
       className={`flex flex-col gap-5 text-lg border border-gray-300 shadow-md shadow-gray-200 rounded-xl px-6 py-8 ${className}`}
     >
-      <h1 className="self-stretch text-2xl font-bold">
-        {header === undefined ? 'Send an email' : header}
-      </h1>
+      <div className="flex flex-col gap-1">
+        <h1 className="self-stretch text-2xl font-bold">
+          {header === undefined ? 'Send an email' : header}
+        </h1>
+
+        {content && (
+          <p>
+            You can contact our registered dietition for a free consultation or
+            chatting about your meals. Click here to contact or make an
+            appointment to chat with them!
+          </p>
+        )}
+      </div>
       <div className="flex flex-col gap-2">
         <Input
           type="text"
