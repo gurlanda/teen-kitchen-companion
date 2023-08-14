@@ -12,10 +12,13 @@ const FileItem = ({
   file: File;
   index: number;
 }): JSX.Element => {
-  const { setPreviewedFile, deleteFile, changeFile } = useContext(MenuContext);
+  const { previewedFile, setPreviewedFile, deleteFile, changeFile } =
+    useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
     useState<boolean>(false);
+
+  const isSelected = previewedFile === file.url;
 
   return (
     <Draggable draggableId={file.id} index={index}>
@@ -27,7 +30,9 @@ const FileItem = ({
           ref={provided.innerRef}
         >
           <ColumnItem
-            className={`flex items-center relative gap-2 bg-slate-300 hover:bg-slate-400 active:bg-slate-500 select-none`}
+            className={`flex items-center relative gap-2 ${
+              isSelected ? 'bg-slate-200' : 'bg-slate-300'
+            } hover:bg-slate-400 active:bg-slate-500 select-none`}
             onClick={() => setPreviewedFile(file.url)}
           >
             <input
