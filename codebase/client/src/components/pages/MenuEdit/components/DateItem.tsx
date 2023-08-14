@@ -24,12 +24,13 @@ const DateItem = ({
         className="basis-0 flex items-center"
         onClick={(e) => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
       >
-        <i className="fas fa-ellipsis-v text-2xl hover:text-blue-800 active:text-purple-900" />
+        <i className="fas fa-ellipsis-v text-2xl" />
       </button>
       <EllipsisMenu
         isVisible={isEllipsisMenuVisible}
         setIsVisible={setIsEllipsisMenuVisible}
         id={'ellipsis-menu-' + id}
+        className="text-black"
       >
         <EllipsisMenuItem onClick={() => menuContext.deleteWeek(index)}>
           Delete week
