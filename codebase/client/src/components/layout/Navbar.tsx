@@ -19,7 +19,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between py-4 h-20  bg-white">
+    <nav className="flex items-center justify-between h-fit bg-white">
       <Link
         to="/"
         className="flex items-center ml-3.5 lg:mr-2"
@@ -84,7 +84,7 @@ const Navbar: FC = () => {
           )}
         </div>
 
-        <div className="flex  pl-3 py-2 pt-3 lg:px-5 text-xl">
+        <div className="flex pl-3 py-2 pt-3 lg:px-5 text-xl">
           {!authContext?.isSignedIn() && (
             <Link to="/sign-in">
               <button
