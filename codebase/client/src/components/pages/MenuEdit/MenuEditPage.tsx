@@ -27,7 +27,7 @@ import MenuEditForm from './MenuEditForm';
       + Enforce a maximum height for column items
       - Add visible borders between column items
       + Add column labels
-      - Change label for week dates
+      + Change label for week dates
       - Redesign typography
 
  */

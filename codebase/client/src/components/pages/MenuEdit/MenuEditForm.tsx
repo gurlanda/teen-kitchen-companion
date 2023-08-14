@@ -74,7 +74,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
       <Button onClick={() => addNewWeek()}>Add new week</Button>
 
       <div className="flex rounded-xl overflow-hidden">
-        <div className="flex flex-col grow">
+        <div className="flex flex-col">
           <ColumnItem className="flex items-center bg-slate-500 text-slate-100">
             Week
           </ColumnItem>
