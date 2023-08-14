@@ -53,7 +53,7 @@ const EmptyFileItem = ({
               className="cursor-pointer relative pl-7"
             >
               <i className=" absolute translate-x-[-125%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
-              Add a menu for this week.
+              Click here to add a menu for this week.
             </label>
           </div>
         </ColumnItem>
