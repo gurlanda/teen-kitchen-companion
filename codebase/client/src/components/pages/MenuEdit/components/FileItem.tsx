@@ -59,14 +59,15 @@ const FileItem = ({
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
             <span className="basis-0 grow break-all">{file.url}</span>
-            <EllipsisButton
-              className="text-gray-600 hover:text-gray-200 active:text-gray-300"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsEllipsisMenuVisible(!isEllipsisMenuVisible);
-              }}
-            />
           </ColumnItem>
+
+          <EllipsisButton
+            className="text-gray-500 hover:text-gray-50 active:text-gray-900"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsEllipsisMenuVisible(!isEllipsisMenuVisible);
+            }}
+          />
 
           <EllipsisMenu
             isVisible={isEllipsisMenuVisible}

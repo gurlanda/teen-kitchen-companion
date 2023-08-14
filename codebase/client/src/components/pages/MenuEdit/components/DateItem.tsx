@@ -21,14 +21,16 @@ const DateItem = ({
   const [id] = useState<string>(createId());
 
   return (
-    <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-3 last:rounded-bl-md">
+    <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-7 last:rounded-bl-md">
       <span className="basis-0 grow text-center">
         {getDateItemContent(date)}
       </span>
+
       <EllipsisButton
         className="text-gray-300 hover:text-gray-100 active:text-gray-900"
         onClick={() => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
       />
+
       <EllipsisMenu
         isVisible={isEllipsisMenuVisible}
         setIsVisible={setIsEllipsisMenuVisible}

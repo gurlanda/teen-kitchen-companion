@@ -83,7 +83,7 @@ export const EllipsisButton = ({
 }): JSX.Element => {
   return (
     <button
-      className={`relative flex items-center
+      className={`absolute right-[10px] top-1/2 -translate-y-1/2 flex items-center
 
       after:absolute after:h-[40px] after:w-[25px] after:cursor-pointer after:-translate-x-1/2 ${className}`}
       onClick={onClick}
