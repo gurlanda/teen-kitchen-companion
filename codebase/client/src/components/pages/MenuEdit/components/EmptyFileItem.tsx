@@ -1,6 +1,7 @@
 import { useContext, useRef } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import MenuContext from '../context/MenuContext';
+import ColumnItem from './utilities/ColumnItem';
 
 const EmptyFileItem = ({
   draggableId,
@@ -15,14 +16,19 @@ const EmptyFileItem = ({
   return (
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
-        <div
-          className="bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-2 px-3"
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-          onClick={() => inputRef.current?.click()}
+        <ColumnItem
+          className="flex items-stretch bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-1 px-2 cursor-pointer"
+          providedProps={{
+            ...provided.dragHandleProps,
+            ...provided.draggableProps,
+          }}
+          innerRef={provided.innerRef}
+          onClick={() => {
+            window.alert(`ID: ${draggableId}`);
+            // inputRef.current?.click();
+          }}
         >
-          <div className="flex items-center justify-center gap-2 px-4 py-3 ml-auto  border-2 border-gray-700 border-dashed rounded-lg">
+          <div className="grow flex items-center justify-center gap-2 px-4 py-3 ml-auto  border-2 border-gray-700 border-dashed rounded-lg">
             <input
               id={draggableId}
               type="file"
@@ -50,7 +56,7 @@ const EmptyFileItem = ({
               Add a menu for this week.
             </label>
           </div>
-        </div>
+        </ColumnItem>
       )}
     </Draggable>
   );

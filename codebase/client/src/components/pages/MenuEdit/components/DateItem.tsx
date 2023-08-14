@@ -18,7 +18,7 @@ const DateItem = ({
   const [id] = useState<string>(createId());
 
   return (
-    <ColumnItem className="relative flex gap-2">
+    <ColumnItem className="relative flex items-center gap-2">
       <span className="basis-0 grow">{formatDate(date)}</span>
       <button
         className="basis-0 flex items-center"
