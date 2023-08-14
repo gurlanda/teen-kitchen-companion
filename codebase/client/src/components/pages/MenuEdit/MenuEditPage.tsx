@@ -24,9 +24,9 @@ import MenuEditForm from './MenuEditForm';
       + Redesign empty file component
         + Clicking any part of the component should activate the file upload dialog
         + Icon should be within the dashed border
-      - Enforce a maximum height for column items
+      + Enforce a maximum height for column items
       - Add visible borders between column items
-      - Add column labels
+      + Add column labels
       - Change label for week dates
       - Redesign typography
 

@@ -16,6 +16,7 @@ import Button from './components/utilities/Button';
 import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
 import createId from 'src/utils/createId';
+import ColumnItem from './components/utilities/ColumnItem';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, setPreviewedFile, changeFile, moveFile, addNewWeek } =
@@ -74,6 +75,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
       <div className="flex rounded-xl overflow-hidden">
         <div className="flex flex-col grow">
+          <ColumnItem className="flex items-center bg-slate-500 text-slate-100">
+            Week
+          </ColumnItem>
           {dates.map((date, index) => (
             <DateItem date={date} key={index} index={index} />
           ))}
@@ -87,6 +91,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
+                <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400">
+                  File
+                </ColumnItem>
                 {files.map((file, index) =>
                   file.url === '' ? (
                     <EmptyFileItem
