@@ -6,9 +6,11 @@ import ColumnItem from './utilities/ColumnItem';
 const EmptyFileItem = ({
   draggableId,
   index,
+  className,
 }: {
   draggableId: string;
   index: number;
+  className?: string;
 }): JSX.Element => {
   const { changeFile, setPreviewedFile } = useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,7 +19,7 @@ const EmptyFileItem = ({
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
         <ColumnItem
-          className="flex items-stretch bg-slate-300 hover:bg-slate-400 active:bg-slate-500 py-[8px] px-[10px] cursor-pointer"
+          className={`flex items-stretch bg-slate-300 hover:bg-slate-400 active:bg-slate-500 py-[8px] px-[10px] cursor-pointer ${className}`}
           providedProps={{
             ...provided.dragHandleProps,
             ...provided.draggableProps,
@@ -25,7 +27,7 @@ const EmptyFileItem = ({
           innerRef={provided.innerRef}
           onClick={() => inputRef.current?.click()}
         >
-          <div className="grow flex items-center justify-center gap-2 px-4 py-3 ml-auto  border-2 border-gray-700 border-dashed rounded-lg">
+          <div className="grow flex items-center justify-center gap-2 px-4 py-3 ml-auto  border-2 border-gray-500 text-gray-600 border-dashed rounded-lg">
             <input
               id={draggableId}
               type="file"

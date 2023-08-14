@@ -11,9 +11,11 @@ import EllipsisMenu, {
 const FileItem = ({
   file,
   index,
+  className,
 }: {
   file: File;
   index: number;
+  className?: string;
 }): JSX.Element => {
   const { previewedFile, setPreviewedFile, deleteFile, changeFile } =
     useContext(MenuContext);
@@ -27,7 +29,7 @@ const FileItem = ({
     <Draggable draggableId={file.id} index={index}>
       {(provided) => (
         <div
-          className="relative last:rounded-br-xl"
+          className="relative"
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
@@ -35,7 +37,7 @@ const FileItem = ({
           <ColumnItem
             className={`flex items-center relative gap-2 ${
               isSelected ? 'bg-slate-100' : 'bg-slate-300'
-            } hover:bg-slate-400 active:bg-slate-500 select-none`}
+            } hover:bg-slate-400 active:bg-slate-500 select-none ${className}`}
             onClick={() => setPreviewedFile(file.url)}
           >
             <input

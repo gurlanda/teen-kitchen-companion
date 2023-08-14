@@ -24,7 +24,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
   return (
     <Form
-      className={`flex flex-col gap-4 border border-gray-300 rounded-xl pt-7 pb-5 px-8 max-w-[60%] ${className}`}
+      className={`flex flex-col gap-4 border border-gray-300 rounded-md pt-7 pb-5 px-8 max-w-[60%] ${className}`}
     >
       <section className="flex flex-col gap-1">
         <h2 className="text-3xl font-semibold">Edit weekly menus</h2>
@@ -41,7 +41,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
       <div className="flex">
         <div className="flex flex-col">
-          <ColumnItem className="flex items-center bg-slate-500 text-slate-100 text-xl rounded-tl-xl">
+          <ColumnItem className="flex items-center bg-slate-500 text-slate-100 text-xl rounded-tl-md">
             Week
           </ColumnItem>
           {dates.map((date, index) => (
@@ -57,20 +57,31 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl rounded-tr-xl">
+                <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl rounded-tr-md">
                   Weekly menu file
                 </ColumnItem>
-                {files.map((file, index) =>
-                  file.url === '' ? (
+                {files.map((file, index) => {
+                  const isLastElement: boolean = index === files.length - 1;
+                  const lastElementStyles: string = isLastElement
+                    ? 'rounded-br-md'
+                    : '';
+
+                  return file.url === '' ? (
                     <EmptyFileItem
                       draggableId={file.id}
                       index={index}
                       key={file.id}
+                      className={lastElementStyles}
                     />
                   ) : (
-                    <FileItem file={file} index={index} key={file.id} />
-                  )
-                )}
+                    <FileItem
+                      file={file}
+                      index={index}
+                      key={file.id}
+                      className={lastElementStyles}
+                    />
+                  );
+                })}
                 {provided.placeholder}
               </div>
             )}
