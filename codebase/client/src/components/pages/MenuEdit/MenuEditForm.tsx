@@ -67,12 +67,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
 
   return (
     <Form
-      className={`flex flex-col gap-2 border border-gray-300 rounded-xl py-4 px-5 max-w-[60%] ${className}`}
+      className={`flex flex-col gap-4 border border-gray-300 rounded-xl py-4 px-5 max-w-[60%] ${className}`}
     >
       <h2 className="text-lg font-semibold">Menu edit form</h2>
       <Button onClick={() => addNewWeek()}>Add new week</Button>
 
-      <div className="flex">
+      <div className="flex rounded-xl overflow-hidden">
         <div className="flex flex-col grow">
           {dates.map((date, index) => (
             <DateItem date={date} key={index} index={index} />

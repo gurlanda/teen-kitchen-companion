@@ -17,7 +17,7 @@ const EmptyFileItem = ({
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
         <ColumnItem
-          className="flex items-stretch bg-stone-300 hover:bg-stone-400 active:bg-stone-500 py-1 px-2 cursor-pointer"
+          className="flex items-stretch bg-slate-300 hover:bg-slate-400 active:bg-slate-500 py-[8px] px-[10px] cursor-pointer"
           providedProps={{
             ...provided.dragHandleProps,
             ...provided.draggableProps,

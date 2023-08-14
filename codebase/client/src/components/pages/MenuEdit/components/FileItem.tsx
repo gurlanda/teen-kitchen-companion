@@ -27,7 +27,7 @@ const FileItem = ({
           ref={provided.innerRef}
         >
           <ColumnItem
-            className={`flex items-center relative gap-2 bg-stone-300 hover:bg-stone-400 active:bg-stone-500 select-none`}
+            className={`flex items-center relative gap-2 bg-slate-300 hover:bg-slate-400 active:bg-slate-500 select-none`}
             onClick={() => setPreviewedFile(file.url)}
           >
             <input

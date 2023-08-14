@@ -14,7 +14,7 @@ const ColumnItem = ({
 }): JSX.Element => {
   return (
     <div
-      className={`h-[70px] py-4 px-6 bg-stone-200 ${className}`}
+      className={`h-[70px] py-4 px-6  ${className}`}
       ref={innerRef}
       {...providedProps}
       onClick={onClick}
