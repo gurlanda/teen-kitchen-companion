@@ -50,6 +50,8 @@ const EmptyFileItem = ({
             <label
               htmlFor={draggableId}
               className="cursor-pointer relative pl-7"
+              onClick={(e) => e.stopPropagation()}
+              // If propagation isn't stopped, then the MouseEvent will bubble up to the ColumnItem and trigger its click listener
             >
               <i className=" absolute translate-x-[-125%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
               Click here to add a menu for this week.
