@@ -28,7 +28,7 @@ import MenuEditForm from './MenuEditForm';
       - Add visible borders between column items
       + Add column labels
       + Change label for week dates
-      - Redesign typography
+      + Redesign typography
       + Increase click area for vertical ellipses
       + Add hover & active styles to vertical ellipses
 

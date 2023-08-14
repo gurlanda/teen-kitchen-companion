@@ -22,56 +22,22 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, setPreviewedFile, changeFile, moveFile, addNewWeek } =
     useContext(MenuContext);
 
-  const placeholders = [
-    'placeholder',
-    'placeholder',
-    'placeholder',
-    'placeholder',
-    'placeholder',
-    'placeholder',
-  ];
-
-  const longContent =
-    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid maxime quasi dignissimos voluptas quas fuga similique quibusdam consequuntur sapiente unde, velit culpa eaque quod nihil.';
-  const longPlaceholders = [
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-    {
-      id: createId(),
-      content:
-        faker.internet.url() + faker.internet.url() + faker.internet.url(),
-    },
-  ];
-
   return (
     <Form
       className={`flex flex-col gap-4 border border-gray-300 rounded-xl pt-7 pb-5 px-8 max-w-[60%] ${className}`}
     >
-      <h2 className="text-2xl font-semibold">Menu edit form</h2>
-      <Button onClick={() => addNewWeek()}>Add new week</Button>
+      <section className="flex flex-col gap-1">
+        <h2 className="text-3xl font-semibold">Edit weekly menus</h2>
+
+        <p>
+          Click a menu to preview it. Rearrange menus by dragging a menu and
+          dropping it to the desired week. Reveal more options by clicking a
+          <i className="fas fa-ellipsis-v px-[6px]" />
+          button.
+        </p>
+      </section>
+
+      <Button onClick={() => addNewWeek()}>Add new weekly menu</Button>
 
       <div className="flex">
         <div className="flex flex-col">
@@ -87,12 +53,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
           <StrictModeDroppable droppableId="fileColumn">
             {(provided) => (
               <div
-                className="flex flex-col grow"
+                className="flex flex-col grow text-gray-800"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 <ColumnItem className="flex items-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl rounded-tr-xl">
-                  Menu file for the week
+                  Weekly menu file
                 </ColumnItem>
                 {files.map((file, index) =>
                   file.url === '' ? (
@@ -136,47 +102,3 @@ export function action() {
 }
 
 export default MenuEditForm;
-
-/* <div className="flex h-full w-full">
-        <div className="flex flex-col grow">
-          {placeholders.map((content, index) => (
-            <div className="bg-stone-100 even:bg-stone-300" key={index}>
-              {content}
-            </div>
-          ))}
-        </div>
-
-        <DragDropContext onDragEnd={() => {}}>
-          <StrictModeDroppable droppableId="testDroppable">
-            {(provided) => {
-              return (
-                <div
-                  className="flex flex-col grow"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {longPlaceholders.map((content, index) => (
-                    <Draggable
-                      draggableId={content.id}
-                      index={index}
-                      key={content.id}
-                    >
-                      {(provided) => (
-                        <div
-                          className="bg-slate-100 even:bg-slate-300"
-                          ref={provided.innerRef}
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                        >
-                          {content.content}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              );
-            }}
-          </StrictModeDroppable>
-        </DragDropContext>
-      </div> */
