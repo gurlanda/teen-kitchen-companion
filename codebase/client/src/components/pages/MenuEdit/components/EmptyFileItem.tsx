@@ -25,7 +25,7 @@ const EmptyFileItem = ({
           innerRef={provided.innerRef}
           onClick={() => {
             window.alert(`ID: ${draggableId}`);
-            // inputRef.current?.click();
+            inputRef.current?.click();
           }}
         >
           <div className="grow flex items-center justify-center gap-2 px-4 py-3 ml-auto  border-2 border-gray-700 border-dashed rounded-lg">
