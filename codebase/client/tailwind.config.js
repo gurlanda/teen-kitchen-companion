@@ -70,6 +70,15 @@ module.exports = {
         'screen-7/8': 'calc((100vw / 8) * 7)',
         fluid: 'min(90vw, 80ch)',
       }),
+      colors: {
+        'brand-black': '#101820',
+        'brand-teal': '#009CA6',
+        'brand-orange': '#E87722',
+      },
+      fontFamily: {
+        body: ['Avenir Medium', 'sans-serif'],
+        heading: ['acumin-pro-extra-condensed', 'sans-serif'],
+      },
     },
   },
   plugins: [],

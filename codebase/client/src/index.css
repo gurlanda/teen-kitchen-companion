@@ -4,6 +4,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('./assets/fonts/avenir-medium.woff2') format('woff2'),
+    url('./assets/fonts/avenir-medium.woff') format('woff'),
+    url('./assets/fonts/avenir-medium.ttf') format('truetype');
+}
+
 html,
 body,
 #root {
