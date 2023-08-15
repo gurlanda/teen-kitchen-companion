@@ -1,6 +1,7 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import * as Auth from 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 
@@ -29,6 +30,12 @@ function initializeAuthServices() {
   };
 }
 
+function initializeCloudStorageServices(app: FirebaseApp) {
+  const storageRef = getStorage(app);
+
+  return { storageRef };
+}
+
 function initializeFirestoreServices(app: FirebaseApp) {
   const firestoreRef = getFirestore(app);
   return {
@@ -42,7 +49,14 @@ function getFirebaseServices() {
   const cloudFunctions = initializeCloudFunctions();
   const authServices = initializeAuthServices();
   const firestoreServices = initializeFirestoreServices(app);
-  return { ...cloudFunctions, ...authServices, ...firestoreServices };
+  const cloudStorageServices = initializeCloudStorageServices(app);
+
+  return {
+    ...cloudFunctions,
+    ...authServices,
+    ...firestoreServices,
+    ...cloudStorageServices,
+  };
 }
 
 export default getFirebaseServices;
