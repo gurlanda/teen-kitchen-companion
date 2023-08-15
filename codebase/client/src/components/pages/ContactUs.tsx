@@ -1,6 +1,7 @@
 import React from 'react';
 import tkpLogo from 'src/assets/img/tkpFullLogo.png';
 import TkpBanner from '../layout/TkpBanner';
+import EmailForm from '../layout/EmailForm';
 
 const ContactUs: React.FC = () => {
   return (
@@ -40,7 +41,7 @@ const ContactUs: React.FC = () => {
           </div>
         </aside>
         {/* Misc info */}
-        <main className="flex flex-col gap-5">
+        <main className="flex flex-col gap-7">
           <section className="flex flex-col gap-1">
             <h3 className="font-heading font-bold text-3xl">Additional Info</h3>
             <div className="space-y-3">
@@ -68,6 +69,14 @@ const ContactUs: React.FC = () => {
               2.
             </p>
           </section>
+
+          <EmailForm
+            className="border-none shadow-none"
+            paddingClassName=""
+            header="Send a message to our registered dietician"
+            headingSizeClassName="text-3xl"
+            content="You can contact our registered dietition for a free consultation. Fill out this form to make an appointment or chat with them about your meals!"
+          />
         </main>
       </div>
     </div>

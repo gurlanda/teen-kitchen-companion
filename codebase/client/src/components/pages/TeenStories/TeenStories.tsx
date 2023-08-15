@@ -3,6 +3,25 @@ import StoryData from './StorySections/StoryData';
 import stories from './StorySections/stories';
 import createId from '../../../utils/createId';
 import TkpBanner from 'src/components/layout/TkpBanner';
+import EmailForm from 'src/components/layout/EmailForm';
+
+const TeenStories: React.FC = () => {
+  return (
+    <div className="text-xl">
+      <TkpBanner>Read some of the stories from our team!</TkpBanner>
+      {/* Stories */}
+      <div className="flex flex-col gap-10 md:gap-16 max-w-[min(90ch,90vw)] mx-auto">
+        {stories.map((story) => (
+          <Story data={story} key={createId()} />
+        ))}
+        <EmailForm
+          header="Send a message to our volunteers"
+          content="Fill out this form to send a message to our teen cooks and other volunteers!"
+        />
+      </div>
+    </div>
+  );
+};
 
 const Story: React.FC<{ data: StoryData }> = ({ data }) => {
   const { header, img, alt, content } = data;
@@ -21,20 +40,6 @@ const Story: React.FC<{ data: StoryData }> = ({ data }) => {
       <p className="text-brand-orange font-body basis-0 grow md:self-center">
         {content}
       </p>
-    </div>
-  );
-};
-
-const TeenStories: React.FC = () => {
-  return (
-    <div className="text-xl">
-      <TkpBanner>Read some of the stories from our team!</TkpBanner>
-      {/* Stories */}
-      <div className="flex flex-col gap-10 md:gap-16 max-w-[min(90ch,90vw)] mx-auto">
-        {stories.map((story) => (
-          <Story data={story} key={createId()} />
-        ))}
-      </div>
     </div>
   );
 };

@@ -6,13 +6,17 @@ const EmailForm = ({
   className,
   header,
   content,
+  headingSizeClassName,
+  paddingClassName,
 }: {
   className?: string;
-  header?: string;
+  header: string;
   content?: string;
+  paddingClassName?: string;
+  headingSizeClassName?: string;
 }): JSX.Element => {
-  // const [recipient, setRecipient] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
+  const [senderEmail, setSenderEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
 
   const clearFields = () => {
@@ -25,27 +29,30 @@ const EmailForm = ({
   ) => {
     e.preventDefault();
 
-    const email = new Email(subject, message);
+    const senderInfo = `Sender email: ${senderEmail}\n`;
+    const messageBody = senderInfo + message;
+
+    const email = new Email(subject, messageBody);
     sendEmailWithCallable(email);
     clearFields();
   };
 
   return (
     <form
-      className={`flex flex-col gap-5 text-lg border border-gray-300 shadow-md shadow-gray-200 rounded-xl px-6 py-8 ${className}`}
+      className={`flex flex-col gap-5 text-lg border border-gray-300 shadow-md shadow-gray-200 rounded-xl ${
+        paddingClassName ?? 'px-6 py-8'
+      } ${className}`}
     >
       <div className="flex flex-col gap-2">
-        <h1 className="self-stretch text-4xl font-heading font-bold">
-          {header === undefined ? 'Send an email' : header}
+        <h1
+          className={`self-stretch  ${
+            headingSizeClassName ?? 'text-4xl'
+          } font-heading font-bold`}
+        >
+          {header ?? 'Send an email'}
         </h1>
 
-        {content && (
-          <p>
-            You can contact our registered dietition for a free consultation or
-            chatting about your meals. Click here to contact or make an
-            appointment to chat with them!
-          </p>
-        )}
+        {content && <p>{content}</p>}
       </div>
       <div className="flex flex-col gap-2">
         <Input
@@ -54,6 +61,14 @@ const EmailForm = ({
           placeholder="Subject line"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSubject(e.target.value)
+          }
+        />
+        <Input
+          type="email"
+          value={senderEmail}
+          placeholder="Your email"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSenderEmail(e.target.value)
           }
         />
         <textarea
@@ -77,7 +92,8 @@ const EmailForm = ({
   );
 };
 
-const inputClasses = 'px-4 py-2 border border-gray-300 rounded-lg min-w-0';
+const inputClasses =
+  'px-4 py-2 border border-gray-300 focus:outline-brand-teal rounded-lg min-w-0';
 type InputValue = React.InputHTMLAttributes<HTMLInputElement>['value'];
 const Input = ({
   id,

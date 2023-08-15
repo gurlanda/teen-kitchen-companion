@@ -50,7 +50,9 @@ const Menu: React.FC = () => {
           <EmailForm
             className="grow-[1]"
             header="Send a message to our registered dietician"
-            content="You can contact our registered dietition for a free consultation or chatting about your meals. Fill out this form to make an appointment or to chat with them!"
+            content="You can contact our registered dietition for a free consultation.
+            Fill out this form to make an appointment or chat with them about
+            your meals!"
           />
         </div>
       </div>
