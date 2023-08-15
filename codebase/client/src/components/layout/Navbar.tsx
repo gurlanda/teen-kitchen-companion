@@ -57,7 +57,7 @@ const Navbar: FC = () => {
       >
         <div className="pl-5 lg:flex lg:grow">
           {/* <NavLinkItem to="/" text="How it Works" onClick={toggleIsVisible} /> */}
-          <NavLinkItem to="/menu" text="Our Menu" onClick={toggleIsVisible} />
+          <NavLinkItem to="/menus" text="Our Menu" onClick={toggleIsVisible} />
           <NavLinkItem
             to="/volunteer"
             text="Volunteer"
@@ -71,7 +71,7 @@ const Navbar: FC = () => {
           />
           <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
           <NavLinkItem
-            to="/menu-edit"
+            to="/edit-menus"
             text="MenuEdit"
             onClick={toggleIsVisible}
           />

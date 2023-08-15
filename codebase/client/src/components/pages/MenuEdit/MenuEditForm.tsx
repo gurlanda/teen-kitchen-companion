@@ -26,8 +26,8 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
     <Form
       className={`flex flex-col gap-4 border border-gray-300 rounded-md pt-7 pb-5 px-8 max-w-[60%] ${className}`}
     >
-      <section className="flex flex-col gap-1">
-        <h2 className="text-3xl font-semibold">Edit weekly menus</h2>
+      <section className="flex flex-col gap-3">
+        <h2 className="text-5xl font-heading font-bold">Edit weekly menus</h2>
 
         <p>
           Click a menu to preview it. Rearrange menus by dragging a menu and

@@ -32,8 +32,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/menu" element={<Menu />} />
-      <Route path="/menu-edit" element={<MenuEdit />} action={menuEditAction} />
+      <Route path="/menus" element={<Menu />} />
+      <Route
+        path="/edit-menus"
+        element={<MenuEdit />}
+        action={menuEditAction}
+      />
       <Route path="/volunteer" element={<Volunteer />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/stories" element={<TeenStories />} />
