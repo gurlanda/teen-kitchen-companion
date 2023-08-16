@@ -1,25 +1,18 @@
 import { useContext } from 'react';
 import { Form } from 'react-router-dom';
 import StrictModeDroppable from './components/utilities/StrictModeDroppable';
-import {
-  DragDropContext,
-  Draggable,
-  DropResult,
-  Droppable,
-} from 'react-beautiful-dnd';
-import { faker } from '@faker-js/faker';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import MenuContext from './context/MenuContext';
-import DraggableColumnItem from './components/utilities/DraggableColumnItem';
 import EmptyFileItem from './components/EmptyFileItem';
 import Button from './components/utilities/Button';
 import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
-import createId from 'src/utils/createId';
+
 import ColumnItem from './components/utilities/ColumnItem';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
-  const { files, dates, setPreviewedFile, changeFile, moveFile, addNewWeek } =
+  const { files, dates, moveFile, addNewWeek, uploadAllFiles } =
     useContext(MenuContext);
 
   return (
@@ -37,7 +30,14 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
         </p>
       </section>
 
-      <Button onClick={() => addNewWeek()}>Add new weekly menu</Button>
+      <div className="flex gap-2">
+        <Button className="grow" onClick={() => addNewWeek()}>
+          Add new weekly menu
+        </Button>
+        <Button className="grow" onClick={() => uploadAllFiles()}>
+          Upload changes
+        </Button>
+      </div>
 
       <div className="flex">
         <div className="flex flex-col">

@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from 'react';
 import MenuContext from '../context/MenuContext';
-import File from '../model/File';
+import MenuFile from '../model/MenuFile';
 import ColumnItem from './utilities/ColumnItem';
 import { Draggable } from 'react-beautiful-dnd';
 import EllipsisMenu, {
@@ -13,7 +13,7 @@ const FileItem = ({
   index,
   className,
 }: {
-  file: File;
+  file: MenuFile;
   index: number;
   className?: string;
 }): JSX.Element => {

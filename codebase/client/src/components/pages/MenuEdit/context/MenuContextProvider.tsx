@@ -2,25 +2,27 @@ import { useState } from 'react';
 import { Duration, add } from 'date-fns';
 import MenuContext from './MenuContext';
 import example4Pdf from 'src/assets/pdf/example4.pdf';
-import File from '../model/File';
+import MenuFile from '../model/MenuFile';
+import menuItemConverter from '../model/menuItemConverter';
+import uploadNewMenu from '../firebase/uploadNewMenu';
 
 const MenuContextProvider = ({
   files: receivedFiles,
   dates: receivedDates,
   children,
 }: {
-  files: File[];
+  files: MenuFile[];
   dates: Date[];
   children?: React.ReactNode;
 }): JSX.Element => {
   const [previewedFile, setPreviewedFile] = useState<string>(example4Pdf);
-  const [files, setFiles] = useState<File[]>(receivedFiles);
+  const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
   const [dates, setDates] = useState<Date[]>(receivedDates);
 
   function changeFile(targetIndex: number, fileUrl: string): void {
     const newFiles = files.map((file, index) => {
       if (index === targetIndex) {
-        return new File(fileUrl, file.id);
+        return new MenuFile(fileUrl, file.id);
       } else {
         return file.clone();
       }
@@ -56,7 +58,7 @@ const MenuContextProvider = ({
 
     setDates(newDates);
 
-    const newFiles = [new File(), ...files.map((file) => file.clone())];
+    const newFiles = [new MenuFile(), ...files.map((file) => file.clone())];
     setFiles(newFiles);
   }
 
@@ -72,6 +74,19 @@ const MenuContextProvider = ({
     setFiles(newFiles);
   }
 
+  async function uploadAllFiles() {
+    const menus = menuItemConverter.toServer(dates, files);
+
+    // TODO: Remove or replace on deployment
+    if (menus === null || menus.length < 1) {
+      window.alert('An error occured');
+      return;
+    }
+
+    menus.forEach(async (menu) => await uploadNewMenu(menu));
+    window.alert('Uploaded!');
+  }
+
   const providedValues = {
     previewedFile,
     files,
@@ -80,6 +95,7 @@ const MenuContextProvider = ({
     changeFile,
     moveFile,
     deleteFile,
+    uploadAllFiles,
     addNewWeek,
     deleteWeek,
   };

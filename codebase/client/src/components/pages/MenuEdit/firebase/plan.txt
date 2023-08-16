@@ -1,0 +1,39 @@
+Structure
+  MenuItem
+    startDate: Date
+    uid: uid
+  
+  menus: MenuItem[]
+
+Server
+  Storage
+
+Store one menu in the cloud
+  - User uploads file
+  - Get a blob?
+  - Create an ID for the file
+  - Create a Storage reference
+  - Upload the file
+  - Get a URL after uploading?
+  - Create a MenuItem
+  - Create a Firestore reference
+  - Upload the file data
+
+Retrieve one menu 
+  - Create a query for the menu
+  - Use the query to get a snapshot
+  - Retrieve the MenuItem
+  - Derive the Storage URL from the MenuItem
+  - Download the file
+
+Store multiple menus
+  - For each new file, perform Store One Menu
+  - No need to sort; sorting is done in the client
+
+Retrieve the latest menus
+  - Need to learn how to query based on Dates
+
+Update menu list after changes
+
+Client -> Server
+  - 

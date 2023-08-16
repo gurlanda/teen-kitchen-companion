@@ -1,6 +1,5 @@
 import createId from 'src/utils/createId';
-
-class File {
+class MenuFile {
   private _id: string;
   private _url: string;
 
@@ -21,9 +20,9 @@ class File {
     this._url = newUrl;
   }
 
-  clone(): File {
-    return new File(this.url, this.id);
+  clone(): MenuFile {
+    return new MenuFile(this.url, this.id);
   }
 }
 
-export default File;
+export default MenuFile;
