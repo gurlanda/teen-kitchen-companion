@@ -1,16 +1,18 @@
 import createId from 'src/utils/createId';
+import MenuFile from './MenuFile';
 
 export type StorableMenu = {
   startDate: Date;
+  fileId: string | null;
 };
 
 class Menu {
   private _startDate: Date;
-  private _fileUrl: string;
+  private _file: MenuFile;
   private _id: string;
 
-  constructor(startDate: Date, fileUrl: string, id: string = createId()) {
-    this._fileUrl = fileUrl;
+  constructor(startDate: Date, file: MenuFile, id: string = createId()) {
+    this._file = file.clone();
     this._startDate = new Date(startDate);
     this._id = id;
   }
@@ -19,8 +21,8 @@ class Menu {
     return new Date(this._startDate);
   }
 
-  get fileUrl(): string {
-    return this._fileUrl;
+  get file(): MenuFile {
+    return this._file.clone();
   }
 
   get id(): string {
@@ -28,19 +30,26 @@ class Menu {
   }
 
   clone(): Menu {
-    return new Menu(this._startDate, this._fileUrl, this._id);
+    return new Menu(this._startDate, this._file, this._id);
   }
 
   toStorable(): StorableMenu {
-    return { startDate: new Date(this.startDate) };
+    let menuFileId: string | null;
+    if (this._file.url === null) {
+      menuFileId = null;
+    } else {
+      menuFileId = this._file.id;
+    }
+
+    return { startDate: new Date(this.startDate), fileId: menuFileId };
   }
 
   static fromStorable(
     storableMenuItem: StorableMenu,
-    fileUrl: string,
+    menuFile: MenuFile,
     id: string
   ): Menu {
-    return new Menu(storableMenuItem.startDate, fileUrl, id);
+    return new Menu(storableMenuItem.startDate, menuFile, id);
   }
 }
 

@@ -1,10 +1,11 @@
 import { createContext } from 'react';
 import MenuFile from '../model/MenuFile';
+import MenuDate from '../model/MenuDate';
 
 interface MenuContext {
   previewedFile: string;
   files: MenuFile[];
-  dates: Date[];
+  dates: MenuDate[];
 
   setPreviewedFile(file: string): void;
   changeFile(index: number, fileUrl: string): void;

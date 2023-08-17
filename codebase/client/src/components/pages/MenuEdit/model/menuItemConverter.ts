@@ -3,16 +3,17 @@
 // TODO: Convert to a FirestoreConverter.
 
 import Menu from './Menu';
+import MenuDate from './MenuDate';
 import MenuFile from './MenuFile';
 
 const menuItemConverter = {
-  fromServer(menuItems: Menu[]): { dates: Date[]; files: MenuFile[] } {
-    const dates: Date[] = [];
+  separate(menuItems: Menu[]): { dates: MenuDate[]; files: MenuFile[] } {
+    const dates: MenuDate[] = [];
     const files: MenuFile[] = [];
 
     for (let item of menuItems) {
-      dates.push(item.startDate);
-      files.push(new MenuFile(item.fileUrl));
+      dates.push(new MenuDate(item.startDate, item.id));
+      files.push(item.file.clone());
     }
 
     return {
@@ -22,7 +23,7 @@ const menuItemConverter = {
   },
 
   // Returns null if dates.length !== files.length
-  toServer(dates: Date[], files: MenuFile[]): Menu[] | null {
+  combine(dates: MenuDate[], files: MenuFile[]): Menu[] | null {
     if (dates.length !== files.length) {
       return null;
     }
@@ -34,7 +35,14 @@ const menuItemConverter = {
 
     const menuItems: Menu[] = [];
     for (let i = 0; i < numItems; i++) {
-      const menuItem = new Menu(dates[i], files[i].url);
+      const currentMenuDate = dates[i];
+      const currentMenuFile = files[i];
+      const menuItem = new Menu(
+        currentMenuDate.startDate,
+        currentMenuFile.clone(),
+        currentMenuDate.id
+      );
+
       menuItems.push(menuItem);
     }
 

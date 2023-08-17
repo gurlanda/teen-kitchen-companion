@@ -38,7 +38,7 @@ const FileItem = ({
             className={`flex items-center relative gap-2 ${
               isSelected ? 'bg-slate-100' : 'bg-slate-300'
             } hover:bg-slate-400 active:bg-slate-500 select-none ${className}`}
-            onClick={() => setPreviewedFile(file.url)}
+            onClick={() => (file.url ? setPreviewedFile(file.url) : null)}
           >
             <input
               type="file"

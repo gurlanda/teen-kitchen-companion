@@ -1,12 +1,12 @@
 import { updateDoc } from 'firebase/firestore';
-import { StorableMenu } from '../model/Menu';
-import getMenuDocRef from './getMenuDocRefWithConverter';
+import Menu from '../model/Menu';
+import getMenuDocRef from './getMenuDocRef';
 
-async function updateMenuDate(newStartDate: Date, menuId: string) {
-  const newMenuData: StorableMenu = {
-    startDate: newStartDate,
-  };
-  const menuDocRef = getMenuDocRef(menuId);
+async function updateMenuDate(menu: Menu, newStartDate: Date) {
+  const newMenuData = menu.toStorable();
+  newMenuData.startDate = new Date(newStartDate);
+
+  const menuDocRef = getMenuDocRef(menu.id);
   await updateDoc(menuDocRef, newMenuData);
 }
 

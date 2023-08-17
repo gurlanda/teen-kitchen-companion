@@ -1,16 +1,17 @@
 import Menu from '../model/Menu';
 import { uploadBytes } from 'firebase/storage';
 import getMenuStorageRef from './getMenuStorageRef';
-import getMenuStorageUrl from './getMenuStorageUrl';
-import getMenuDocRef from './getMenuDocRefWithConverter';
+import getMenuDocRef from './getMenuDocRef';
 import { setDoc } from 'firebase/firestore';
 
 async function uploadNewMenu(localMenuItem: Menu) {
   try {
-    const menuStorageRef = getMenuStorageRef(localMenuItem.id);
+    // TODO: Abort if already exists
+    const menuStorageRef = getMenuStorageRef(localMenuItem.file.id);
 
-    if (localMenuItem.fileUrl !== '') {
-      const menuBlob = await getBlobFromUrl(localMenuItem.fileUrl);
+    const fileUrl = localMenuItem.file.url;
+    if (fileUrl && fileUrl !== '') {
+      const menuBlob = await getBlobFromUrl(fileUrl);
       await uploadBytes(menuStorageRef, menuBlob);
     }
 

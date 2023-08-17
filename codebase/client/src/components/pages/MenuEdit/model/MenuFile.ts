@@ -1,9 +1,9 @@
 import createId from 'src/utils/createId';
 class MenuFile {
   private _id: string;
-  private _url: string;
+  private _url: string | null;
 
-  constructor(fileUrl: string = '', id: string = createId()) {
+  constructor(fileUrl: string | null = null, id: string = createId()) {
     this._url = fileUrl;
     this._id = id;
   }
@@ -12,11 +12,11 @@ class MenuFile {
     return this._id;
   }
 
-  get url(): string {
+  get url(): string | null {
     return this._url;
   }
 
-  set url(newUrl: string) {
+  set url(newUrl: string | null) {
     this._url = newUrl;
   }
 

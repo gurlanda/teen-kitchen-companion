@@ -4,7 +4,7 @@ import menuItemConverter from './model/menuItemConverter';
 import testMenuItems from './model/testMenuItems';
 
 const MenuEdit = ({}: {}): JSX.Element => {
-  const { files, dates } = menuItemConverter.fromServer(testMenuItems);
+  const { files, dates } = menuItemConverter.separate([]);
 
   return (
     <MenuContextProvider files={files} dates={dates}>

@@ -45,7 +45,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
             Week
           </ColumnItem>
           {dates.map((date, index) => (
-            <DateItem date={date} key={index} index={index} />
+            <DateItem menuDate={date} key={index} index={index} />
           ))}
         </div>
 
@@ -66,7 +66,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                     ? 'rounded-br-md'
                     : '';
 
-                  return file.url === '' ? (
+                  return file.url === null ? (
                     <EmptyFileItem
                       draggableId={file.id}
                       index={index}

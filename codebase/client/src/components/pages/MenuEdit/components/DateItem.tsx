@@ -7,12 +7,13 @@ import EllipsisMenu, {
   EllipsisMenuItem,
 } from './utilities/EllipsisMenu';
 import createId from 'src/utils/createId';
+import MenuDate from '../model/MenuDate';
 
 const DateItem = ({
-  date,
+  menuDate,
   index,
 }: {
-  date: Date;
+  menuDate: MenuDate;
   index: number;
 }): JSX.Element => {
   const menuContext = useContext(MenuContext);
@@ -23,7 +24,7 @@ const DateItem = ({
   return (
     <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-7 last:rounded-bl-md">
       <span className="basis-0 grow text-center">
-        {getDateItemContent(date)}
+        {getDateItemContent(menuDate.startDate)}
       </span>
 
       <EllipsisButton
