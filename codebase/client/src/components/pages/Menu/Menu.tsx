@@ -63,8 +63,13 @@ const Menu: React.FC = () => {
       }
     }
 
+    const isChosen = menu.id === currentMenu?.id;
+
     return (
-      <Button onClick={onClick} className="font-medium">
+      <Button
+        onClick={onClick}
+        className={`font-medium ${isChosen && 'bg-brand-teal text-white'}`}
+      >
         {weekRangeText()}
       </Button>
     );
@@ -91,9 +96,8 @@ const Menu: React.FC = () => {
 
         <div className="min-h-full flex flex-col gap-4">
           <PdfViewer file={currentMenu?.file.url ?? null} className="grow-[2]">
-            {
-              "Unfortunately, no menu has been uploaded for this week. Please choose a different week's menu to view."
-            }
+            Unfortunately, no menu has been uploaded for this week. Please
+            choose a different week's menu to view.
           </PdfViewer>
           <EmailForm
             className="grow-[1]"
