@@ -1,2 +1,2 @@
-const numMenusAvailableToClients = 5;
+const numMenusAvailableToClients = 4;
 export default numMenusAvailableToClients;
