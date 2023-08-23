@@ -1,7 +1,6 @@
 import { getDoc } from 'firebase/firestore';
 import Menu, { StorableMenu } from '../model/Menu';
 import getMenuDocRef from './getMenuDocRef';
-import getMenuStorageUrl from './getMenuStorageUrl';
 import MenuFile from '../model/MenuFile';
 import getMenuFileFromFirebase from './getMenuFileFromFirebase';
 
