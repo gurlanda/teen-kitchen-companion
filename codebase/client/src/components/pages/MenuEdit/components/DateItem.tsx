@@ -12,9 +12,11 @@ import MenuDate from '../model/MenuDate';
 const DateItem = ({
   menuDate,
   index,
+  isVisibleByClient,
 }: {
   menuDate: MenuDate;
   index: number;
+  isVisibleByClient?: boolean;
 }): JSX.Element => {
   const menuContext = useContext(MenuContext);
   const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
@@ -22,13 +24,27 @@ const DateItem = ({
   const [id] = useState<string>(createId());
 
   return (
-    <ColumnItem className="relative flex items-center gap-2 bg-slate-400 text-slate-50 pl-[16px] pr-7 last:rounded-bl-md">
+    <ColumnItem
+      className={`relative flex items-center gap-2 
+
+      ${
+        isVisibleByClient
+          ? 'bg-sky-400 bg-opacity-40 text-slate-800'
+          : 'bg-slate-400 text-slate-50'
+      } 
+      
+      pl-[16px] pr-7 last:rounded-bl-md `}
+    >
       <span className="basis-0 grow text-center">
         {getDateItemContent(menuDate.startDate)}
       </span>
 
       <EllipsisButton
-        className="text-gray-300 hover:text-gray-100 active:text-gray-900"
+        className={`${
+          isVisibleByClient
+            ? 'text-sky-500 text-opacity-50 hover:text-sky-100 active:text-sky-900'
+            : 'text-gray-300 hover:text-gray-100 active:text-gray-900'
+        }`}
         onClick={() => setIsEllipsisMenuVisible(!isEllipsisMenuVisible)}
       />
 

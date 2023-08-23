@@ -10,6 +10,14 @@ import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
 
 import ColumnItem from './components/utilities/ColumnItem';
+import {
+  Interval,
+  addWeeks,
+  intervalToDuration,
+  isWithinInterval,
+  previousSunday,
+} from 'date-fns';
+import numMenusAvailableToClients from './firebase/numMenusAvailableToClients';
 
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, moveFile, addNewWeek, uploadAllFiles } =
@@ -45,7 +53,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
             Week
           </ColumnItem>
           {dates.map((date, index) => (
-            <DateItem menuDate={date} key={index} index={index} />
+            <DateItem
+              menuDate={date}
+              key={index}
+              index={index}
+              isVisibleByClient={dateIsVisibleToClient(date.startDate)}
+            />
           ))}
         </div>
 
@@ -65,6 +78,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                   const lastElementStyles: string = isLastElement
                     ? 'rounded-br-md'
                     : '';
+                  const dateAtIndex = dates[index].startDate;
 
                   return file.url === null ? (
                     <EmptyFileItem
@@ -72,6 +86,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                       index={index}
                       key={file.id}
                       className={lastElementStyles}
+                      isVisibleByClient={dateIsVisibleToClient(dateAtIndex)}
                     />
                   ) : (
                     <FileItem
@@ -79,6 +94,7 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                       index={index}
                       key={file.id}
                       className={lastElementStyles}
+                      isVisibleByClient={dateIsVisibleToClient(dateAtIndex)}
                     />
                   );
                 })}
@@ -105,6 +121,19 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
     }
 
     moveFile(source.index, destination.index);
+  }
+
+  function dateIsVisibleToClient(date: Date): boolean {
+    const numberOfWeeksInVisbilityInterval = numMenusAvailableToClients;
+    const earliestVisibleDate = addWeeks(
+      previousSunday(Date.now()),
+      -numberOfWeeksInVisbilityInterval
+    );
+    const visibilityInterval: Interval = {
+      start: earliestVisibleDate,
+      end: Date.now(),
+    };
+    return isWithinInterval(date, visibilityInterval);
   }
 };
 

@@ -12,10 +12,12 @@ const FileItem = ({
   file,
   index,
   className,
+  isVisibleByClient,
 }: {
   file: MenuFile;
   index: number;
   className?: string;
+  isVisibleByClient?: boolean;
 }): JSX.Element => {
   const { previewedFile, setPreviewedFile, deleteFile, changeFile } =
     useContext(MenuContext);
@@ -24,6 +26,13 @@ const FileItem = ({
     useState<boolean>(false);
 
   const isSelected = previewedFile === file.url;
+
+  const isVisibleByClientStyles = `${
+    isSelected ? 'bg-sky-100' : 'bg-sky-300'
+  } hover:bg-sky-400 active:bg-sky-500 bg-opacity-30 hover:bg-opacity-40 active:bg-opacity-50`;
+  const isNotVisibleByClientStyles = `${
+    isSelected ? 'bg-slate-100' : 'bg-slate-300'
+  } hover:bg-slate-400 active:bg-slate-500`;
 
   return (
     <Draggable draggableId={file.id} index={index}>
@@ -35,9 +44,15 @@ const FileItem = ({
           ref={provided.innerRef}
         >
           <ColumnItem
-            className={`flex items-center relative gap-2 ${
-              isSelected ? 'bg-slate-100' : 'bg-slate-300'
-            } hover:bg-slate-400 active:bg-slate-500 select-none ${className}`}
+            className={`flex items-center relative gap-2
+            
+            ${
+              isVisibleByClient
+                ? isVisibleByClientStyles
+                : isNotVisibleByClientStyles
+            }
+            
+            select-none ${className}`}
             onClick={() => (file.url ? setPreviewedFile(file.url) : null)}
           >
             <input
@@ -64,7 +79,13 @@ const FileItem = ({
           </ColumnItem>
 
           <EllipsisButton
-            className="text-gray-500 hover:text-gray-50 active:text-gray-900"
+            className={`
+              ${
+                isVisibleByClient
+                  ? 'text-sky-500 text-opacity-50 hover:text-sky-100 active:text-sky-900'
+                  : 'text-gray-500 hover:text-gray-50 active:text-gray-900'
+              }
+            `}
             onClick={(e) => {
               e.stopPropagation();
               setIsEllipsisMenuVisible(!isEllipsisMenuVisible);

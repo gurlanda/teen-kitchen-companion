@@ -7,19 +7,32 @@ const EmptyFileItem = ({
   draggableId,
   index,
   className,
+  isVisibleByClient,
 }: {
   draggableId: string;
   index: number;
   className?: string;
+  isVisibleByClient?: boolean;
 }): JSX.Element => {
   const { changeFile, setPreviewedFile } = useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const isVisibleByClientStyles = `bg-sky-300 hover:bg-sky-400 active:bg-sky-500 bg-opacity-30 hover:bg-opacity-40 active:bg-opacity-50`;
+  const isNotVisibleByClientStyles = `bg-slate-300 hover:bg-slate-400 active:bg-slate-500`;
 
   return (
     <Draggable draggableId={draggableId} index={index}>
       {(provided) => (
         <ColumnItem
-          className={`flex items-stretch bg-slate-300 hover:bg-slate-400 active:bg-slate-500 py-[8px] px-[10px] cursor-pointer ${className}`}
+          className={`flex items-stretch
+          
+          ${
+            isVisibleByClient
+              ? isVisibleByClientStyles
+              : isNotVisibleByClientStyles
+          }
+          
+          py-[8px] px-[10px] cursor-pointer ${className}`}
           providedProps={{
             ...provided.dragHandleProps,
             ...provided.draggableProps,
