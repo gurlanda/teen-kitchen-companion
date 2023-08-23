@@ -58,7 +58,9 @@ const FileItem = ({
               }}
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
-            <span className="basis-0 grow break-all">{file.url}</span>
+            <span className="basis-0 grow break-all">
+              {file.url ? shorten(file.url) : 'No URL for this file.'}
+            </span>
           </ColumnItem>
 
           <EllipsisButton
@@ -100,5 +102,29 @@ const FileItem = ({
     setIsEllipsisMenuVisible(false);
   }
 };
+
+// Shortens a string by cutting off the head-end of the string
+// We prioritize the tail-end of the string because that's where ID's are likely to be
+function shorten(
+  input: string,
+  maxSize: number = 50,
+  hasEllipsisPrefix: boolean = true
+): string {
+  let prefix: string;
+  if (hasEllipsisPrefix) {
+    maxSize -= 3;
+    prefix = '...';
+  } else {
+    prefix = '';
+  }
+
+  if (input.length <= maxSize) {
+    return input;
+  }
+
+  const startIndex = input.length - maxSize;
+  const output = prefix + input.substring(startIndex, input.length);
+  return output;
+}
 
 export default FileItem;

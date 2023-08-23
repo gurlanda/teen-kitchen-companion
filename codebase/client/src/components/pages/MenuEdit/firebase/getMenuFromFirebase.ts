@@ -1,8 +1,9 @@
 import { getDoc } from 'firebase/firestore';
 import Menu, { StorableMenu } from '../model/Menu';
 import getMenuDocRef from './getMenuDocRef';
-import getMenuCloudStorageUrl from './getMenuStorageUrl';
+import getMenuStorageUrl from './getMenuStorageUrl';
 import MenuFile from '../model/MenuFile';
+import getMenuFileFromFirebase from './getMenuFileFromFirebase';
 
 async function getMenuFromFirebase(menuId: string): Promise<Menu | undefined> {
   const menuDocRef = getMenuDocRef(menuId);
@@ -13,15 +14,7 @@ async function getMenuFromFirebase(menuId: string): Promise<Menu | undefined> {
     return undefined;
   }
 
-  let menuFile: MenuFile;
-  const fileId = storableMenu.fileId;
-  if (fileId !== null) {
-    const menuDownloadUrl = await getMenuCloudStorageUrl(menuId);
-    menuFile = new MenuFile(menuDownloadUrl, fileId);
-  } else {
-    menuFile = new MenuFile();
-  }
-
+  const menuFile: MenuFile = await getMenuFileFromFirebase(storableMenu.fileId);
   return Menu.fromStorable(storableMenu, menuFile, menuId);
 }
 

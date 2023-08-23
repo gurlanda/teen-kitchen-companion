@@ -12,16 +12,17 @@ import MenuFile from '../model/MenuFile';
 import menuItemConverter from '../model/menuItemConverter';
 import uploadNewMenu from '../firebase/uploadNewMenu';
 import MenuDate from '../model/MenuDate';
+import Menu from '../model/Menu';
 
 const MenuContextProvider = ({
-  files: receivedFiles,
-  dates: receivedDates,
+  menus,
   children,
 }: {
-  files: MenuFile[];
-  dates: MenuDate[];
+  menus: Menu[];
   children?: React.ReactNode;
 }): JSX.Element => {
+  const { files: receivedFiles, dates: receivedDates } =
+    menuItemConverter.separate(menus);
   const [previewedFile, setPreviewedFile] = useState<string>(example4Pdf);
   const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
   const [dates, setDates] = useState<MenuDate[]>(receivedDates);

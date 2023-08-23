@@ -7,13 +7,13 @@ import MenuDate from './MenuDate';
 import MenuFile from './MenuFile';
 
 const menuItemConverter = {
-  separate(menuItems: Menu[]): { dates: MenuDate[]; files: MenuFile[] } {
+  separate(menus: Menu[]): { dates: MenuDate[]; files: MenuFile[] } {
     const dates: MenuDate[] = [];
     const files: MenuFile[] = [];
 
-    for (let item of menuItems) {
-      dates.push(new MenuDate(item.startDate, item.id));
-      files.push(item.file.clone());
+    for (let menu of menus) {
+      dates.push(new MenuDate(menu.startDate, menu.id));
+      files.push(menu.file.clone());
     }
 
     return {

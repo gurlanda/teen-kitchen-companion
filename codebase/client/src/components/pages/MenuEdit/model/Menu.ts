@@ -1,8 +1,9 @@
 import createId from 'src/utils/createId';
 import MenuFile from './MenuFile';
+import { Timestamp } from 'firebase/firestore';
 
 export type StorableMenu = {
-  startDate: Date;
+  startDate: Timestamp;
   fileId: string | null;
 };
 
@@ -41,15 +42,18 @@ class Menu {
       menuFileId = this._file.id;
     }
 
-    return { startDate: new Date(this.startDate), fileId: menuFileId };
+    return {
+      startDate: Timestamp.fromDate(this._startDate),
+      fileId: menuFileId,
+    };
   }
 
   static fromStorable(
-    storableMenuItem: StorableMenu,
+    storableMenu: StorableMenu,
     menuFile: MenuFile,
     id: string
   ): Menu {
-    return new Menu(storableMenuItem.startDate, menuFile, id);
+    return new Menu(storableMenu.startDate.toDate(), menuFile, id);
   }
 }
 

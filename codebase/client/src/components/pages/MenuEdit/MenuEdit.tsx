@@ -1,16 +1,32 @@
+import { useEffect, useState } from 'react';
 import MenuContextProvider from './context/MenuContextProvider';
 import MenuEditPage from './MenuEditPage';
-import menuItemConverter from './model/menuItemConverter';
-import testMenuItems from './model/testMenuItems';
+import Menu from './model/Menu';
+import getAllMenus from './firebase/getAllMenus';
+import Loading from 'src/components/layout/Loading';
 
 const MenuEdit = ({}: {}): JSX.Element => {
-  const { files, dates } = menuItemConverter.separate([]);
+  const [menus, setMenus] = useState<Menu[] | null>(null);
 
-  return (
-    <MenuContextProvider files={files} dates={dates}>
-      <MenuEditPage />
-    </MenuContextProvider>
-  );
+  useEffect(() => {
+    async function retrieveMenus() {
+      const retrievedMenus = await getAllMenus();
+      console.log(retrievedMenus);
+      setMenus(retrievedMenus);
+    }
+
+    retrieveMenus();
+  }, []);
+
+  if (menus === null) {
+    return <Loading />;
+  } else {
+    return (
+      <MenuContextProvider menus={menus}>
+        <MenuEditPage />
+      </MenuContextProvider>
+    );
+  }
 };
 
 export default MenuEdit;
