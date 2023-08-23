@@ -98,7 +98,7 @@ const Navbar: FC = () => {
           {!authContext?.isSignedIn() && (
             <Link to="/sign-up">
               <button
-                className="border-cyan-500 text-white bg-cyan-600 hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1"
+                className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1"
                 onClick={toggleIsVisible}
               >
                 Sign Up
@@ -107,7 +107,7 @@ const Navbar: FC = () => {
           )}
           {authContext?.isSignedIn() && (
             <button
-              className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
+              className="border-gray-400 hover:bg-slate-200 text-brand-teal bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
               onClick={() => authContext?.signOut()}
             >
               Log Out
