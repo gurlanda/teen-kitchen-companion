@@ -1,13 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PdfViewer from 'src/components/layout/PdfViewer';
 import example1Pdf from 'src/assets/pdf/example1.pdf';
 import example2Pdf from 'src/assets/pdf/example2.pdf';
 import example3Pdf from 'src/assets/pdf/example3.pdf';
 import example4Pdf from 'src/assets/pdf/example4.pdf';
 import EmailForm from 'src/components/layout/EmailForm';
+import getMenusAvailableToClients from '../MenuEdit/firebase/getMenusAvailableToClients';
+import MenuType from '../MenuEdit/model/Menu';
+import Loading from 'src/components/layout/Loading';
+import format from 'date-fns/format';
+import add from 'date-fns/add';
 
 const Menu: React.FC = () => {
   const [fileUrl, setFileUrl] = useState<string>(example1Pdf);
+  const [menus, setMenus] = useState<MenuType[] | null>(null);
+  const [currentMenu, setCurrentMenu] = useState<MenuType | null>(null);
+
+  useEffect(() => {
+    async function loadMenus() {
+      const fetchedMenus = await getMenusAvailableToClients();
+      setMenus(fetchedMenus);
+
+      if (fetchedMenus.length > 0) {
+        setCurrentMenu(fetchedMenus[0]);
+      }
+    }
+
+    loadMenus();
+  }, []);
 
   const FileChoiceButton = ({
     file,
@@ -16,7 +36,7 @@ const Menu: React.FC = () => {
     file: string;
     children?: React.ReactNode;
   }): JSX.Element => {
-    function onClick(e: React.MouseEvent<HTMLButtonElement>) {
+    function onClick() {
       setFileUrl(file);
     }
 
@@ -27,7 +47,32 @@ const Menu: React.FC = () => {
     );
   };
 
-  return (
+  const MenuChoiceButton = ({ menu }: { menu: MenuType }): JSX.Element => {
+    function onClick() {
+      setCurrentMenu(menu);
+    }
+
+    function weekRangeText(): string {
+      const endOfWeek: Date = add(menu.startDate, { days: 6 });
+      return `${formatDate(menu.startDate)} to ${formatDate(endOfWeek)}`;
+
+      function formatDate(date: Date): string {
+        const formatString = 'M/d';
+        const dateString = format(date, formatString);
+        return dateString;
+      }
+    }
+
+    return (
+      <Button onClick={onClick} className="font-medium">
+        {weekRangeText()}
+      </Button>
+    );
+  };
+
+  return menus === null ? (
+    <Loading />
+  ) : (
     <div className="h-full font-body">
       <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,100ch)]">
         <h1 className="font-heading text-5xl font-bold text-center">
@@ -38,15 +83,18 @@ const Menu: React.FC = () => {
         <div className="flex py-5 px-10 justify-center gap-2">
           {/* File buttons */}
           <div className="flex gap-2">
-            <FileChoiceButton file={example1Pdf}>Week 1</FileChoiceButton>
-            <FileChoiceButton file={example2Pdf}>Week 2</FileChoiceButton>
-            <FileChoiceButton file={example3Pdf}>Week 3</FileChoiceButton>
-            <FileChoiceButton file={example4Pdf}>Week 4</FileChoiceButton>
+            {menus.map((menu, index) => (
+              <MenuChoiceButton key={index} menu={menu} />
+            ))}
           </div>
         </div>
 
         <div className="min-h-full flex flex-col gap-4">
-          <PdfViewer file={fileUrl} className="grow-[2]" />
+          <PdfViewer file={currentMenu?.file.url ?? null} className="grow-[2]">
+            {
+              "Unfortunately, no menu has been uploaded for this week. Please choose a different week's menu to view."
+            }
+          </PdfViewer>
           <EmailForm
             className="grow-[1]"
             header="Send a message to our registered dietician"
