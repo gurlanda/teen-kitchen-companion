@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
         method="post"
         className="flex flex-col px-8 py-5 mt-10 gap-4 w-[min(90vw,75ch)] mx-auto border rounded-xl shadow shadow-gray-300"
       >
-        <h1 className="font-bold text-xl">Sign In</h1>
+        <h1 className="font-heading font-bold text-4xl">Sign In</h1>
         <Input
           type="text"
           name="email"

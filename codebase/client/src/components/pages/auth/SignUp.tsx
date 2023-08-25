@@ -58,7 +58,7 @@ const SignUp = ({}: {}): JSX.Element => {
         className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 px-8 py-5 mt-10 w-[min(90vw,75ch)] mx-auto"
         method="post"
       >
-        <h1 className="font-bold text-xl">Sign Up!</h1>
+        <h1 className="font-heading font-bold text-4xl">Sign Up!</h1>
         <Input
           type="text"
           name="firstName"
