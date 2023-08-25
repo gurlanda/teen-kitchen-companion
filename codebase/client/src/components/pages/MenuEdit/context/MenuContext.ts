@@ -15,6 +15,8 @@ interface MenuContext {
 
   addNewWeek(): void;
   deleteWeek(index: number): void;
+
+  isDataChanged(): boolean;
 }
 
 const initialMenuContext: MenuContext = {
@@ -29,6 +31,9 @@ const initialMenuContext: MenuContext = {
   addNewWeek() {},
   deleteWeek(index: number) {},
   async uploadAllFiles() {},
+  isDataChanged() {
+    return false;
+  },
 };
 
 const menuContext = createContext<MenuContext>(initialMenuContext);

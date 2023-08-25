@@ -10,17 +10,27 @@ import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
 
 import ColumnItem from './components/utilities/ColumnItem';
-import {
-  Interval,
-  addWeeks,
-  intervalToDuration,
-  isWithinInterval,
-  previousSunday,
-} from 'date-fns';
+import { Interval, addWeeks, isWithinInterval, previousSunday } from 'date-fns';
 import numMenusAvailableToClients from './firebase/numMenusAvailableToClients';
 
+/*
+
+  Todo. Implement:
+    + Menu.equals(other: Menu)
+    ? MenuDate.equals(other: MenuDate)
+    + MenuFile.equals(other: MenuFile)
+    + Save copy of server weekly menus, detect changes using X.equals()
+      + Combine MenuDates and MenuFiles to form Menus
+      + For each X: Menu
+        - If !X.equals(Corresponding menu from the saved copy), then there are changes
+      + If there are changes, make Upload Changes button clickable
+      + If there are no changes, make Upload Changes button unclickable
+    - New function: updateMenu(menuId: string, newMenuData: Menu), using setDoc()
+
+*/
+
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
-  const { files, dates, moveFile, addNewWeek, uploadAllFiles } =
+  const { files, dates, moveFile, addNewWeek, uploadAllFiles, isDataChanged } =
     useContext(MenuContext);
 
   return (
@@ -42,8 +52,12 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
         <Button className="grow" onClick={() => addNewWeek()}>
           Add new weekly menu
         </Button>
-        <Button className="grow" onClick={() => uploadAllFiles()}>
-          Upload changes
+        <Button
+          className={`grow disabled:border-gray-300 disabled:text-gray-300`}
+          disabled={!isDataChanged()}
+          onClick={() => uploadAllFiles()}
+        >
+          {isDataChanged() ? 'Upload changes' : 'No changes to upload'}
         </Button>
       </div>
 

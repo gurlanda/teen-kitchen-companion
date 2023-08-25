@@ -23,6 +23,10 @@ class MenuFile {
   clone(): MenuFile {
     return new MenuFile(this.url, this.id);
   }
+
+  equals(other: MenuFile): boolean {
+    return this._id === other.id && this._url === other.url;
+  }
 }
 
 export default MenuFile;

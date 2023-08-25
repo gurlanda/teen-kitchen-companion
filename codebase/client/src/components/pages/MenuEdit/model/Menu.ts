@@ -1,6 +1,7 @@
 import createId from 'src/utils/createId';
 import MenuFile from './MenuFile';
 import { Timestamp } from 'firebase/firestore';
+import { isSameDay } from 'date-fns';
 
 export type StorableMenu = {
   startDate: Timestamp;
@@ -32,6 +33,14 @@ class Menu {
 
   clone(): Menu {
     return new Menu(this._startDate, this._file, this._id);
+  }
+
+  equals(other: Menu): boolean {
+    return (
+      this._id === other.id &&
+      isSameDay(this._startDate, other.startDate) &&
+      this._file.equals(other.file)
+    );
   }
 
   toStorable(): StorableMenu {

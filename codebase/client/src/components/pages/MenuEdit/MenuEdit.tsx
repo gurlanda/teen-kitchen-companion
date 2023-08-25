@@ -11,7 +11,6 @@ const MenuEdit = ({}: {}): JSX.Element => {
   useEffect(() => {
     async function retrieveMenus() {
       const retrievedMenus = await getAllMenus();
-      console.log(retrievedMenus);
       setMenus(retrievedMenus);
     }
 

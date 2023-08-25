@@ -26,14 +26,52 @@ const MenuContextProvider = ({
   const [previewedFile, setPreviewedFile] = useState<string>(example4Pdf);
   const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
   const [dates, setDates] = useState<MenuDate[]>(receivedDates);
+  const [originalMenus, setOriginalMenus] = useState<Menu[]>(
+    menus.map((menu) => menu.clone())
+  );
 
-  function changeFile(targetIndex: number, fileUrl?: string): void {
+  function isDataChanged(): boolean {
+    const currentMenus = menuItemConverter.combine(dates, files);
+    if (currentMenus === null) {
+      return true;
+    }
+
+    if (currentMenus.length !== originalMenus.length) {
+      return true;
+    }
+
+    let areChangesPresent: boolean = false;
+    for (let i = 0; i < currentMenus.length; i++) {
+      const localMenu = currentMenus[i];
+      const serverMenu = originalMenus[i];
+      if (!localMenu.equals(serverMenu)) {
+        areChangesPresent = true;
+        break;
+      }
+    }
+
+    console.dir({
+      areChangesPresent,
+    });
+
+    return areChangesPresent;
+  }
+
+  function changeFile(
+    targetIndex: number,
+    fileUrl: string | null = null
+  ): void {
     const newFiles = files.map((file, index) => {
       if (index === targetIndex) {
         return new MenuFile(fileUrl, file.id);
       } else {
         return file.clone();
       }
+    });
+
+    console.dir({
+      localMenus: menuItemConverter.combine(dates, newFiles),
+      serverMenus: menus,
     });
 
     setFiles(newFiles);
@@ -111,6 +149,7 @@ const MenuContextProvider = ({
     }
 
     menus.forEach(async (menu) => await uploadNewMenu(menu));
+    setOriginalMenus(menus);
     window.alert('Uploaded!');
   }
 
@@ -125,6 +164,7 @@ const MenuContextProvider = ({
     uploadAllFiles,
     addNewWeek,
     deleteWeek,
+    isDataChanged,
   };
 
   return (
