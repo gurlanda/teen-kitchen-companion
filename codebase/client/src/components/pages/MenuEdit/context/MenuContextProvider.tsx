@@ -7,7 +7,6 @@ import {
   startOfToday,
 } from 'date-fns';
 import MenuContext from './MenuContext';
-import example4Pdf from 'src/assets/pdf/example4.pdf';
 import MenuFile from '../model/MenuFile';
 import menuItemConverter from '../model/menuItemConverter';
 import uploadNewMenu from '../firebase/uploadNewMenu';
@@ -23,7 +22,9 @@ const MenuContextProvider = ({
 }): JSX.Element => {
   const { files: receivedFiles, dates: receivedDates } =
     menuItemConverter.separate(menus);
-  const [previewedFile, setPreviewedFile] = useState<string>(example4Pdf);
+  const [previewedFile, setPreviewedFile] = useState<string | null>(
+    receivedFiles[0].url
+  );
   const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
   const [dates, setDates] = useState<MenuDate[]>(receivedDates);
   const [originalMenus, setOriginalMenus] = useState<Menu[]>(
@@ -140,17 +141,21 @@ const MenuContextProvider = ({
   }
 
   async function uploadAllFiles() {
-    const menus = menuItemConverter.combine(dates, files);
+    try {
+      const menus = menuItemConverter.combine(dates, files);
 
-    // TODO: Remove or replace on deployment
-    if (menus === null || menus.length < 1) {
-      window.alert('An error occured');
-      return;
+      // TODO: Remove or replace on deployment
+      if (menus === null || menus.length < 1) {
+        window.alert('An error occured');
+        return;
+      }
+
+      menus.forEach(async (menu) => await uploadNewMenu(menu));
+      setOriginalMenus(menus);
+      window.alert('Uploaded!');
+    } catch (error) {
+      console.log(error);
     }
-
-    menus.forEach(async (menu) => await uploadNewMenu(menu));
-    setOriginalMenus(menus);
-    window.alert('Uploaded!');
   }
 
   const providedValues = {

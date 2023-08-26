@@ -14,13 +14,13 @@ import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
 import Home from './components/pages/Home';
 import SignIn, { action as signInAction } from './components/pages/auth/SignIn';
-import Menu from './components/pages/Menu/Menu';
-import TeenStories from './components/pages/TeenStories/TeenStories';
-import Volunteer from './components/pages/Volunteer/Volunteer';
+import Menu from './components/pages/Menu';
+import TeenStories from './components/pages/TeenStories';
+import Volunteer from './components/pages/Volunteer';
 import NotFound from './components/pages/NotFound';
 import SignUp, { action as signUpAction } from './components/pages/auth/SignUp';
 import UserInfo from './components/pages/UserInfo';
-import MenuEdit from './components/pages/MenuEdit/MenuEdit';
+import MenuEdit from './components/pages/MenuEdit';
 import { action as menuEditAction } from 'src/components/pages/MenuEdit/MenuEditForm';
 
 const root = ReactDOM.createRoot(

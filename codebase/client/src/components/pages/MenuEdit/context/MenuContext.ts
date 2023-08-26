@@ -3,7 +3,7 @@ import MenuFile from '../model/MenuFile';
 import MenuDate from '../model/MenuDate';
 
 interface MenuContext {
-  previewedFile: string;
+  previewedFile: string | null;
   files: MenuFile[];
   dates: MenuDate[];
 

@@ -5,7 +5,7 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import MenuContext from './context/MenuContext';
 import EmptyFileItem from './components/EmptyFileItem';
-import Button from './components/utilities/Button';
+import Button from '../../layout/Button';
 import DateItem from './components/DateItem';
 import FileItem from './components/FileItem';
 

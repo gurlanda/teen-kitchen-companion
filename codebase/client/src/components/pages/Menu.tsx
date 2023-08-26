@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PdfViewer from 'src/components/layout/PdfViewer';
-import example1Pdf from 'src/assets/pdf/example1.pdf';
-import example2Pdf from 'src/assets/pdf/example2.pdf';
-import example3Pdf from 'src/assets/pdf/example3.pdf';
-import example4Pdf from 'src/assets/pdf/example4.pdf';
 import EmailForm from 'src/components/layout/EmailForm';
-import getMenusAvailableToClients from '../MenuEdit/firebase/getMenusAvailableToClients';
-import MenuType from '../MenuEdit/model/Menu';
+import getMenusAvailableToClients from './MenuEdit/firebase/getMenusAvailableToClients';
+import MenuType from './MenuEdit/model/Menu';
 import Loading from 'src/components/layout/Loading';
 import format from 'date-fns/format';
 import add from 'date-fns/add';
 
 const Menu: React.FC = () => {
-  const [fileUrl, setFileUrl] = useState<string>(example1Pdf);
   const [menus, setMenus] = useState<MenuType[] | null>(null);
   const [currentMenu, setCurrentMenu] = useState<MenuType | null>(null);
 
@@ -28,24 +23,6 @@ const Menu: React.FC = () => {
 
     loadMenus();
   }, []);
-
-  const FileChoiceButton = ({
-    file,
-    children,
-  }: {
-    file: string;
-    children?: React.ReactNode;
-  }): JSX.Element => {
-    function onClick() {
-      setFileUrl(file);
-    }
-
-    return (
-      <Button onClick={onClick} className="font-medium">
-        {children}
-      </Button>
-    );
-  };
 
   const MenuChoiceButton = ({ menu }: { menu: MenuType }): JSX.Element => {
     function onClick() {
