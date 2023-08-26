@@ -12,6 +12,7 @@ import menuItemConverter from 'src/model/Menu/menuItemConverter';
 import uploadNewMenu from '../../../../firebase/Menu/uploadNewMenu';
 import MenuDate from 'src/model/Menu/MenuDate';
 import Menu from 'src/model/Menu/Menu';
+import setMenu from 'src/firebase/Menu/setMenu';
 
 const MenuContextProvider = ({
   menus,
@@ -150,7 +151,16 @@ const MenuContextProvider = ({
         return;
       }
 
-      menus.forEach(async (menu) => await uploadNewMenu(menu));
+      for (let i = 0; i < menus.length; i++) {
+        const currentMenu = menus[i];
+        const originalMenu = originalMenus[i];
+        if (currentMenu.equals(originalMenu)) {
+          continue;
+        }
+
+        await setMenu(currentMenu);
+      }
+
       setOriginalMenus(menus);
       window.alert('Uploaded!');
     } catch (error) {

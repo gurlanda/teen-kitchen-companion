@@ -13,22 +13,6 @@ import ColumnItem from './components/utilities/ColumnItem';
 import { Interval, addWeeks, isWithinInterval, previousSunday } from 'date-fns';
 import numMenusAvailableToClients from 'src/firebase/Menu/numMenusAvailableToClients';
 
-/*
-
-  Todo. Implement:
-    + Menu.equals(other: Menu)
-    ? MenuDate.equals(other: MenuDate)
-    + MenuFile.equals(other: MenuFile)
-    + Save copy of server weekly menus, detect changes using X.equals()
-      + Combine MenuDates and MenuFiles to form Menus
-      + For each X: Menu
-        - If !X.equals(Corresponding menu from the saved copy), then there are changes
-      + If there are changes, make Upload Changes button clickable
-      + If there are no changes, make Upload Changes button unclickable
-    - New function: updateMenu(menuId: string, newMenuData: Menu), using setDoc()
-
-*/
-
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, moveFile, addNewWeek, uploadAllFiles, isDataChanged } =
     useContext(MenuContext);
