@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import MenuFile from '../model/MenuFile';
-import MenuDate from '../model/MenuDate';
+import MenuFile from 'src/model/Menu/MenuFile';
+import MenuDate from 'src/model/Menu/MenuDate';
 
 interface MenuContext {
   previewedFile: string | null;

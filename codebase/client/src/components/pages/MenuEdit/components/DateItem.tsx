@@ -7,7 +7,7 @@ import EllipsisMenu, {
   EllipsisMenuItem,
 } from './utilities/EllipsisMenu';
 import createId from 'src/utils/createId';
-import MenuDate from '../model/MenuDate';
+import MenuDate from 'src/model/Menu/MenuDate';
 
 const DateItem = ({
   menuDate,

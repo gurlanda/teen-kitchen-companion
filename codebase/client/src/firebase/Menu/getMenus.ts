@@ -1,5 +1,5 @@
 import { Query, getDocs } from 'firebase/firestore';
-import Menu, { StorableMenu } from '../model/Menu';
+import Menu, { StorableMenu } from 'src/model/Menu/Menu';
 import getMenuFileFromFirebase from './getMenuFileFromFirebase';
 
 async function getMenus(query: Query): Promise<Menu[]> {

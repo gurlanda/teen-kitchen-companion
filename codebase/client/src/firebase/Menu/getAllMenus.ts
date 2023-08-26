@@ -1,5 +1,5 @@
 import { orderBy, query } from 'firebase/firestore';
-import Menu from '../model/Menu';
+import Menu from 'src/model/Menu/Menu';
 import getMenus from './getMenus';
 import menusCollectionRef from './menusCollectionRef';
 

@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from 'react';
 import MenuContext from '../context/MenuContext';
-import MenuFile from '../model/MenuFile';
+import MenuFile from 'src/model/Menu/MenuFile';
 import ColumnItem from './utilities/ColumnItem';
 import { Draggable } from 'react-beautiful-dnd';
 import EllipsisMenu, {

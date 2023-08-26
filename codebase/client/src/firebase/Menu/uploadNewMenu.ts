@@ -1,4 +1,4 @@
-import Menu from '../model/Menu';
+import Menu from '../../model/Menu/Menu';
 import { uploadBytes } from 'firebase/storage';
 import getMenuStorageRef from './getMenuStorageRef';
 import getMenuDocRef from './getMenuDocRef';

@@ -11,7 +11,7 @@ import FileItem from './components/FileItem';
 
 import ColumnItem from './components/utilities/ColumnItem';
 import { Interval, addWeeks, isWithinInterval, previousSunday } from 'date-fns';
-import numMenusAvailableToClients from './firebase/numMenusAvailableToClients';
+import numMenusAvailableToClients from 'src/firebase/Menu/numMenusAvailableToClients';
 
 /*
 

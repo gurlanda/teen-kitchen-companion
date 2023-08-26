@@ -1,4 +1,4 @@
-import MenuFile from '../model/MenuFile';
+import MenuFile from 'src/model/Menu/MenuFile';
 import getMenuStorageUrl from './getMenuStorageUrl';
 
 async function getMenuFileFromFirebase(

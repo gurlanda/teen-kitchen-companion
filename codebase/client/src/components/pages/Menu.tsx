@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PdfViewer from 'src/components/layout/PdfViewer';
 import EmailForm from 'src/components/layout/EmailForm';
-import getMenusAvailableToClients from './MenuEdit/firebase/getMenusAvailableToClients';
-import MenuType from './MenuEdit/model/Menu';
+import getMenusAvailableToClients from 'src/firebase/Menu/getMenusAvailableToClients';
+import MenuType from 'src/model/Menu/Menu';
 import Loading from 'src/components/layout/Loading';
 import format from 'date-fns/format';
 import add from 'date-fns/add';

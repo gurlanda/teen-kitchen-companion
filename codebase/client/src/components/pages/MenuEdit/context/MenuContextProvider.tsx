@@ -7,11 +7,11 @@ import {
   startOfToday,
 } from 'date-fns';
 import MenuContext from './MenuContext';
-import MenuFile from '../model/MenuFile';
-import menuItemConverter from '../model/menuItemConverter';
-import uploadNewMenu from '../firebase/uploadNewMenu';
-import MenuDate from '../model/MenuDate';
-import Menu from '../model/Menu';
+import MenuFile from 'src/model/Menu/MenuFile';
+import menuItemConverter from 'src/model/Menu/menuItemConverter';
+import uploadNewMenu from '../../../../firebase/Menu/uploadNewMenu';
+import MenuDate from 'src/model/Menu/MenuDate';
+import Menu from 'src/model/Menu/Menu';
 
 const MenuContextProvider = ({
   menus,

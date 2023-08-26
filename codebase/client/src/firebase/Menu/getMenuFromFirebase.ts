@@ -1,7 +1,7 @@
 import { getDoc } from 'firebase/firestore';
-import Menu, { StorableMenu } from '../model/Menu';
+import Menu, { StorableMenu } from 'src/model/Menu/Menu';
 import getMenuDocRef from './getMenuDocRef';
-import MenuFile from '../model/MenuFile';
+import MenuFile from 'src/model/Menu/MenuFile';
 import getMenuFileFromFirebase from './getMenuFileFromFirebase';
 
 async function getMenuFromFirebase(menuId: string): Promise<Menu | undefined> {

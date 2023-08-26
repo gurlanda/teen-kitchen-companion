@@ -1,6 +1,6 @@
 import { deleteDoc } from 'firebase/firestore';
 import getMenuDocRef from './getMenuDocRef';
-import Menu from '../model/Menu';
+import Menu from 'src/model/Menu/Menu';
 import getMenuStorageRef from './getMenuStorageRef';
 import { deleteObject } from 'firebase/storage';
 
