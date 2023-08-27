@@ -71,9 +71,12 @@ module.exports = {
         fluid: 'min(90vw, 80ch)',
       }),
       colors: {
-        'brand-black': '#101820',
         'brand-teal': '#009CA6',
         'brand-orange': '#E87722',
+        'brand-green': '#A1AB41',
+        'brand-purple': '#9E219C',
+        'brand-black': '#101820',
+        'brand-gray': '#666666',
       },
       fontFamily: {
         body: ['Avenir Medium', 'sans-serif'],

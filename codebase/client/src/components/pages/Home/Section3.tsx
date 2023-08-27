@@ -1,39 +1,40 @@
 import React from 'react';
+const className = 'bg-brand-black';
 
 const Section3: React.FC = () => {
   return (
-    <div className="flex flex-col justify-center mx-auto my-8 max-w-[min(150ch,90vw)] font-body text-gray-800">
+    <div className="flex flex-col justify-center mx-auto my-8 max-w-[min(150ch,90vw)] font-body">
       <Item
         heading="Teens"
         details="Our teen program offers an exciting opportunity for growth &#38; team-building as well as developing valuable hands-on skills."
-        bgColor="bg-orange-600"
-        textColor="text-orange-600"
+        bgColor="bg-brand-orange"
+        textColor="text-brand-orange"
         icon="bg-gradcap-icon"
         to="https://teenkitchenproject.org/join-our-team/become-a-teen-volunteer/"
       />
       <Item
+        heading="Receive"
+        details="We feel there is no greater gift when you are ill than that of healthy and delicious food, prepared with love, and delivered to you."
+        bgColor="bg-brand-green"
+        textColor="text-brand-green"
+        icon="bg-heart-icon"
+        to="https://teenkitchenproject.org/become-a-client/"
+      />
+      <Item
         heading="Volunteer"
         details="Adult volunteers make our project possible. The value to you and to that of our clients is both welcome and profoundly gratifying."
-        bgColor="bg-cyan-600"
-        textColor="text-cyan-600"
+        bgColor="bg-brand-teal"
+        textColor="text-brand-teal"
         icon="bg-people-icon"
         to="https://teenkitchenproject.org/join-our-team/become-an-adult-volunteer/"
       />
       <Item
         heading="Donate"
         details="Your donations are crucial to keeping families in crisis provided with healthy meals. Volunteers can't do it alone."
-        bgColor="bg-green-600"
-        textColor="text-green-600"
+        bgColor="bg-brand-purple"
+        textColor="text-brand-purple"
         icon="bg-coin-icon"
         to="https://teenkitchenproject.org/donate/"
-      />
-      <Item
-        heading="Receive"
-        details="We feel there is no greater gift when you are ill than that of healthy and delicious food, prepared with love, and delivered to you."
-        bgColor="bg-purple-600"
-        textColor="text-purple-600"
-        icon="bg-heart-icon"
-        to="https://teenkitchenproject.org/become-a-client/"
       />
     </div>
   );
