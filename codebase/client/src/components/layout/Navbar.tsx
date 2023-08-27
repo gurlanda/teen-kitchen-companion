@@ -132,7 +132,7 @@ const NavLinkItem: FC<{
   return (
     <div onClick={onClick}>
       <Link to={to}>
-        <div className="font-heading py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-cyan-200">
+        <div className="font-heading py-2 lg:px-2 lg:py-4 lg:hover:border-y-2 lg:border-transparent lg:border-y-2 lg:hover:border-brand-teal">
           <h1 className="text-3xl">{text}</h1>
         </div>
       </Link>
