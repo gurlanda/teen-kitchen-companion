@@ -15,10 +15,6 @@ const SignIn: React.FC = () => {
   const authContext = useContext(AuthContext);
 
   const onSubmit = async () => {
-    if (!authContext) {
-      return;
-    }
-
     try {
       await authContext.signIn(email, password);
       window.alert('Signed in successfully!');

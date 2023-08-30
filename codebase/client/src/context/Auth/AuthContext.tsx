@@ -11,5 +11,16 @@ interface AuthContext {
   isSignedIn(): boolean;
 }
 
-const authContext = createContext<AuthContext | undefined>(undefined);
+const defaultAuthContext: AuthContext = {
+  user: undefined,
+  isAdmin: false,
+  signUp: async () => {},
+  signIn: async () => {},
+  signOut: async () => {},
+  isSignedIn: () => {
+    return false;
+  },
+};
+
+const authContext = createContext<AuthContext>(defaultAuthContext);
 export default authContext;

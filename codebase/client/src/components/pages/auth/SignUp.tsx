@@ -24,10 +24,6 @@ const SignUp = ({}: {}): JSX.Element => {
   }
 
   const onSubmit: React.MouseEventHandler<HTMLInputElement> = () => {
-    if (!authContext) {
-      return;
-    }
-
     if (!isAllInputValid()) {
       // TODO
       return;

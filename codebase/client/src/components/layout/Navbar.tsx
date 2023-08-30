@@ -1,4 +1,4 @@
-import { FC, useState, useContext, useEffect } from 'react';
+import { FC, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
@@ -70,21 +70,21 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
-          {authContext?.isAdmin && (
+          {authContext.isAdmin && (
             <NavLinkItem
               to="/edit-menus"
               text="Edit Menus"
               onClick={toggleIsVisible}
             />
           )}
-          {authContext?.isAdmin && (
+          {authContext.isAdmin && (
             <NavLinkItem
               to="/add-admin"
               text="Add an Admin"
               onClick={toggleIsVisible}
             />
           )}
-          {authContext?.isSignedIn() && (
+          {authContext.isSignedIn() && (
             <NavLinkItem
               to="/user-info"
               text="User"
@@ -94,7 +94,7 @@ const Navbar: FC = () => {
         </div>
 
         <div className="flex pl-3 py-2 pt-3 lg:px-5 text-xl">
-          {!authContext?.isSignedIn() && (
+          {!authContext.isSignedIn() && (
             <Link to="/sign-in">
               <button
                 className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
@@ -104,7 +104,7 @@ const Navbar: FC = () => {
               </button>
             </Link>
           )}
-          {!authContext?.isSignedIn() && (
+          {!authContext.isSignedIn() && (
             <Link to="/sign-up">
               <button
                 className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1"
@@ -114,15 +114,15 @@ const Navbar: FC = () => {
               </button>
             </Link>
           )}
-          {authContext?.isSignedIn() && (
+          {authContext.isSignedIn() && (
             <button
               className="border-gray-400 hover:bg-slate-200 text-brand-teal bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
-              onClick={() => authContext?.signOut()}
+              onClick={() => authContext.signOut()}
             >
               Log Out
             </button>
           )}
-          {/* {authContext?.isSignedIn() && (
+          {/* {authContext.isSignedIn() && (
             <div className="py-2 lg:px-2">
               <h1 className="text-2xl">User ID: {userContext?.user?.id}</h1>
             </div>

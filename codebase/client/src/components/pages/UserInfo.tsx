@@ -7,7 +7,7 @@ const UserInfo: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authContext || !authContext.isSignedIn()) {
+    if (!authContext.isSignedIn()) {
       navigate('/');
     }
   }, [authContext]);
