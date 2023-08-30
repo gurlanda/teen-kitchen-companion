@@ -15,9 +15,11 @@ function initializeCloudFunctions() {
   /* Callable Cloud Functions */
   const functions = getFunctions();
   const testMailer = httpsCallable(functions, 'testMailer');
+  const addAdmin = httpsCallable(functions, 'addAdmin');
 
   return {
     testMailer,
+    addAdmin,
   };
 }
 

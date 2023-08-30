@@ -13,7 +13,21 @@ service cloud.firestore {
     // all client requests to your Firestore database will be denied until you Update
     // your rules
     match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2023, 8, 28);
+      allow read, write: if request.time < timestamp.date(2023, 9, 28);
+    }
+
+    // All users can only access their own data
+    // Users and Admins cannot access the data of other Users or Admins
+    match /users/{userId} {
+      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+      allow create: if true;
+    }
+
+    // Anyone can read any menu
+    // Only Admins can write to menus
+    match /menus/{menuId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
     }
   }
 }

@@ -3,7 +3,6 @@ import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
 import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import StorableUser from 'src/model/User/StorableUser';
-import UserType from 'src/model/User/UserType';
 
 const SignUp = ({}: {}): JSX.Element => {
   const authContext = useContext(AuthContext);
@@ -16,7 +15,7 @@ const SignUp = ({}: {}): JSX.Element => {
   const [lastName, setLastName] = useState<string>('');
   const [preferredLanguage, setPreferredLanguage] =
     useState<PreferredLanguage.Type>(PreferredLanguage.ENGLISH);
-  const [userType, setUserType] = useState<UserType.Type>(UserType.USER);
+  // const [userType, setUserType] = useState<UserType.Type>(UserType.USER);
 
   // TODO
   // Checks if the current input fits constraints
@@ -38,7 +37,6 @@ const SignUp = ({}: {}): JSX.Element => {
       firstName,
       lastName,
       email,
-      type: userType,
       preferredLanguage,
     };
 
@@ -102,7 +100,7 @@ const SignUp = ({}: {}): JSX.Element => {
             </label>
           </div>
         </fieldset>
-        <fieldset className="flex flex-col gap-2">
+        {/* <fieldset className="flex flex-col gap-2">
           <span>User type</span>
           <div className="flex gap-2">
             <label htmlFor="user">
@@ -128,7 +126,7 @@ const SignUp = ({}: {}): JSX.Element => {
               Admin
             </label>
           </div>
-        </fieldset>
+        </fieldset> */}
         <Input
           type="text"
           name="email"

@@ -9,7 +9,7 @@ import {
 import MenuContext from './MenuContext';
 import MenuFile from 'src/model/Menu/MenuFile';
 import menuItemConverter from 'src/model/Menu/menuItemConverter';
-import uploadNewMenu from '../../../../firebase/Menu/uploadNewMenu';
+import uploadNewMenu from '../../../../../firebase/Menu/uploadNewMenu';
 import MenuDate from 'src/model/Menu/MenuDate';
 import Menu from 'src/model/Menu/Menu';
 import setMenu from 'src/firebase/Menu/setMenu';

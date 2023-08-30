@@ -20,8 +20,11 @@ import Volunteer from './components/pages/Volunteer';
 import NotFound from './components/pages/NotFound';
 import SignUp, { action as signUpAction } from './components/pages/auth/SignUp';
 import UserInfo from './components/pages/UserInfo';
-import MenuEdit from './components/pages/MenuEdit';
-import { action as menuEditAction } from 'src/components/pages/MenuEdit/MenuEditForm';
+import MenuEdit from './components/pages/admin/MenuEdit';
+import { action as menuEditAction } from 'src/components/pages/admin/MenuEdit/MenuEditForm';
+import AddAdmin, {
+  action as addAdminAction,
+} from './components/pages/admin/AddAdmin';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -43,6 +46,7 @@ const router = createBrowserRouter(
       <Route path="/stories" element={<TeenStories />} />
       <Route path="/sign-in" element={<SignIn />} action={signInAction} />
       <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
+      <Route path="/add-admin" element={<AddAdmin />} action={addAdminAction} />
       <Route path="/user-info" element={<UserInfo />} />
       <Route errorElement={<NotFound />}></Route>
     </Route>

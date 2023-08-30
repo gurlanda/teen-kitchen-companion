@@ -11,6 +11,7 @@ import User from 'src/model/User/User';
 import StorableUser from 'src/model/User/StorableUser';
 import retrieveUserData from 'src/firebase/User/retrieveUserData';
 import initializeUser from 'src/firebase/User/initializeUser';
+import isCurrentUserAdmin from 'src/firebase/User/isCurrentUserAdmin';
 
 const AuthContextProvider = ({
   children,
@@ -18,6 +19,7 @@ const AuthContextProvider = ({
   children?: React.ReactNode;
 }): JSX.Element => {
   const [user, setUser] = useState<User | undefined>(undefined);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   function isSignedIn(): boolean {
     if (user === undefined) {
@@ -49,8 +51,10 @@ const AuthContextProvider = ({
 
     // Update the database
     await initializeUser(user);
+    const userIsAdmin = await isCurrentUserAdmin();
 
     setUser(user);
+    setIsAdmin(userIsAdmin);
   }
 
   async function signIn(email: string, password: string): Promise<void> {
@@ -65,7 +69,9 @@ const AuthContextProvider = ({
 
       const userId = userCredential.user.uid;
       const user = await retrieveUserData(userId);
+      const currentUserIsAdmin = await isCurrentUserAdmin();
       setUser(user);
+      setIsAdmin(currentUserIsAdmin);
 
       return;
     } catch (error) {
@@ -80,9 +86,10 @@ const AuthContextProvider = ({
     const { authRef } = getFirebaseServices();
     firebaseSignOut(authRef);
     setUser(undefined);
+    setIsAdmin(false);
   }
 
-  const providedValues = { user, signUp, signIn, signOut, isSignedIn };
+  const providedValues = { user, isAdmin, signUp, signIn, signOut, isSignedIn };
 
   return (
     <AuthContext.Provider value={providedValues}>

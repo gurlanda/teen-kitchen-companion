@@ -4,6 +4,7 @@ import User from 'src/model/User/User';
 
 interface AuthContext {
   user: User | undefined;
+  isAdmin: boolean;
   signUp(newUser: StorableUser, password: string): Promise<void>;
   signIn(email: string, password: string): Promise<void>;
   signOut(): Promise<void>;

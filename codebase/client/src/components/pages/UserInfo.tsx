@@ -24,7 +24,7 @@ const UserInfo: React.FC = () => {
         </span>
         <span>Email: {authContext?.user?.email}</span>
         <span>User ID: {authContext?.user?.id}</span>
-        <span>User type: {authContext?.user?.type}</span>
+        <span>User type: {authContext?.isAdmin ? 'Admin' : 'User'}</span>
         <span>Preferred language: {authContext?.user?.preferredLanguage}</span>
       </div>
     </div>
