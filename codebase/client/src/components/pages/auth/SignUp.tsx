@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
+import LanguageContext from 'src/context/Language/LanguageContext';
 import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import StorableUser from 'src/model/User/StorableUser';
 
@@ -13,9 +14,10 @@ const SignUp = ({}: {}): JSX.Element => {
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  const [preferredLanguage, setPreferredLanguage] =
-    useState<PreferredLanguage.Type>(PreferredLanguage.ENGLISH);
-  // const [userType, setUserType] = useState<UserType.Type>(UserType.USER);
+  const languageContext = useContext(LanguageContext);
+  const [preferredLanguage, setPreferredLanguage] = useState<string>(
+    languageContext.preferredLanguage
+  );
 
   // TODO
   // Checks if the current input fits constraints
@@ -33,7 +35,11 @@ const SignUp = ({}: {}): JSX.Element => {
       firstName,
       lastName,
       email,
-      preferredLanguage,
+      preferredLanguage: PreferredLanguage.isPreferredLanguage(
+        preferredLanguage
+      )
+        ? (preferredLanguage as PreferredLanguage.Type)
+        : PreferredLanguage.ENGLISH,
     };
 
     try {
@@ -56,7 +62,11 @@ const SignUp = ({}: {}): JSX.Element => {
         <Input
           type="text"
           name="firstName"
-          placeholder="First name"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'First name'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setFirstName(e.target.value)}
           value={firstName}
@@ -64,7 +74,11 @@ const SignUp = ({}: {}): JSX.Element => {
         <Input
           type="text"
           name="lastName"
-          placeholder="Last name"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Last name'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
@@ -126,7 +140,11 @@ const SignUp = ({}: {}): JSX.Element => {
         <Input
           type="text"
           name="email"
-          placeholder="Preferred email address"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Preferred email address'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -134,7 +152,11 @@ const SignUp = ({}: {}): JSX.Element => {
         <Input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Password'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setPassword(e.target.value)}
           value={password}
@@ -142,7 +164,11 @@ const SignUp = ({}: {}): JSX.Element => {
         <Input
           type="password"
           name="confirmedPassword"
-          placeholder="Confirm password"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Confirm password'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setConfirmedPassword(e.target.value)}
           value={confirmedPassword}

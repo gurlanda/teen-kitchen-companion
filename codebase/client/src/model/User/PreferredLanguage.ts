@@ -3,7 +3,18 @@ namespace PreferredLanguage {
   export const SPANISH = 'SPANISH';
   export const asArray = [ENGLISH, SPANISH];
 
-  export type Type = (typeof asArray)[number];
+  export type Type = 'ENGLISH' | 'SPANISH';
+
+  export function isPreferredLanguage(input: string): boolean {
+    switch (input) {
+      case ENGLISH:
+        return true;
+      case SPANISH:
+        return true;
+      default:
+        return false;
+    }
+  }
 }
 
 export default PreferredLanguage;

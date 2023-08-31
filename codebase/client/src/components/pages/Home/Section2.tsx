@@ -1,36 +1,76 @@
-import React from 'react';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import mealPrep from 'src/assets/img/single-person-meal-prep.png';
+import { useContext } from 'react';
 
 const Section2: React.FC = () => {
+  const { preferredLanguage } = useContext(LanguageContext);
+
   return (
     <div className="flex flex-col py-16 justify-center bg-slate-300 px-2 text-center md:py-12 lg:py-10 lg:flex-row font-body">
       <ItemGroup>
         <SectionItem
-          heading="Work with Intention"
-          details="Our actions and choices lead to the greatest positive impact."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Work with Intention'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Our actions and choices lead to the greatest positive impact.'
+              : 'Lorem ipsum'
+          }
         />
         <div className="bg-family-icon bg-no-repeat bg-center h-28 w-28 md:px-6"></div>
         <SectionItem
-          heading="Young People are the Future"
-          details="Young people are intelligent, responsible, capable, creative, caring, and must be central participants in shaping our collective future."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Young People are the Future'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Young people are intelligent, responsible, capable, creative, caring, and must be central participants in shaping our collective future.'
+              : 'Lorem ipsum'
+          }
         />
       </ItemGroup>
       <div className="basis-0 grow-[5] min-w-[450px]">
         <img
           src={mealPrep}
-          alt="A cook from the Teen Kitchen Project preparing a set of meals."
+          alt={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'A cook from the Teen Kitchen Project preparing a set of meals.'
+              : 'Lorem ipsum'
+          }
           className="min-h-full object-cover object-center"
         />
       </div>
       <ItemGroup>
         <SectionItem
-          heading="Food is Love"
-          details="The preparation and sharing of food allows our community to experience gratitude, compassion, connection, and serving those in greatest need."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Food is Love'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'The preparation and sharing of food allows our community to experience gratitude, compassion, connection, and serving those in greatest need.'
+              : 'Lorem ipsum'
+          }
         />
         <div className="bg-food-love-icon bg-no-repeat bg-center h-28 w-28 md:px-6"></div>
         <SectionItem
-          heading="Integrity Matters"
-          details="We are committed to trust, respect, and honesty."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Integrity Matters'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'We are committed to trust, respect, and honesty.'
+              : 'Lorem ipsum'
+          }
         />
       </ItemGroup>
     </div>

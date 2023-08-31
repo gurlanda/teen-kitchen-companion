@@ -7,6 +7,8 @@ import EllipsisMenu, {
   EllipsisButton,
   EllipsisMenuItem,
 } from './utilities/EllipsisMenu';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const FileItem = ({
   file,
@@ -24,6 +26,7 @@ const FileItem = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
     useState<boolean>(false);
+  const { preferredLanguage } = useContext(LanguageContext);
 
   const isSelected = previewedFile === file.url;
 
@@ -74,7 +77,11 @@ const FileItem = ({
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
             <span className="basis-0 grow break-all">
-              {file.url ? shorten(file.url) : 'No URL for this file.'}
+              {file.url
+                ? shorten(file.url)
+                : preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'No URL for this file.'
+                : 'Lorem ipsum'}
             </span>
           </ColumnItem>
 
@@ -98,10 +105,14 @@ const FileItem = ({
             id={'ellipsis-menu-' + file.id}
           >
             <EllipsisMenuItem onClick={onClickReplace}>
-              Replace file
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Replace file'
+                : 'Lorem ipsum'}
             </EllipsisMenuItem>
             <EllipsisMenuItem onClick={onClickDelete}>
-              Delete file
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Delete file'
+                : 'Lorem ipsum'}
             </EllipsisMenuItem>
           </EllipsisMenu>
         </div>

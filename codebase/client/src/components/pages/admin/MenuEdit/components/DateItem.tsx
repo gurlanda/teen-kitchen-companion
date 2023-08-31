@@ -8,6 +8,8 @@ import EllipsisMenu, {
 } from './utilities/EllipsisMenu';
 import createId from 'src/utils/createId';
 import MenuDate from 'src/model/Menu/MenuDate';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const DateItem = ({
   menuDate,
@@ -22,6 +24,7 @@ const DateItem = ({
   const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
     useState<boolean>(false);
   const [id] = useState<string>(createId());
+  const { preferredLanguage } = useContext(LanguageContext);
 
   return (
     <ColumnItem
@@ -55,7 +58,9 @@ const DateItem = ({
         className="text-black"
       >
         <EllipsisMenuItem onClick={() => menuContext.deleteWeek(index)}>
-          Delete week
+          {preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'Delete week'
+            : 'Lorem ipsum'}
         </EllipsisMenuItem>
       </EllipsisMenu>
     </ColumnItem>

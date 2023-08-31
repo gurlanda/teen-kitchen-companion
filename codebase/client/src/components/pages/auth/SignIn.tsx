@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
-
-export function action() {
-  return null;
-}
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +11,7 @@ const SignIn: React.FC = () => {
   // Used to navigate to the admin page upon login
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
+  const { preferredLanguage } = useContext(LanguageContext);
 
   const onSubmit = async () => {
     try {
@@ -31,11 +30,19 @@ const SignIn: React.FC = () => {
         method="post"
         className="flex flex-col px-8 py-5 mt-10 gap-4 w-[min(90vw,75ch)] mx-auto border rounded-xl shadow shadow-gray-300"
       >
-        <h1 className="font-heading font-bold text-4xl">Sign In</h1>
+        <h1 className="font-heading font-bold text-4xl">
+          {preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'Sign In'
+            : 'Lorem ipsum'}
+        </h1>
         <Input
           type="text"
           name="email"
-          placeholder="Email address"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Email address'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -43,7 +50,11 @@ const SignIn: React.FC = () => {
         <Input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Password'
+              : 'Lorem ipsum'
+          }
           required
           onChange={(e) => setPassword(e.target.value)}
           value={password}
@@ -95,5 +106,9 @@ const Input = ({
     </input>
   );
 };
+
+export function action() {
+  return null;
+}
 
 export default SignIn;

@@ -1,7 +1,9 @@
 import { useContext, useRef } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import MenuContext from '../context/MenuContext';
+import LanguageContext from 'src/context/Language/LanguageContext';
 import ColumnItem from './utilities/ColumnItem';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const EmptyFileItem = ({
   draggableId,
@@ -16,6 +18,7 @@ const EmptyFileItem = ({
 }): JSX.Element => {
   const { changeFile, setPreviewedFile } = useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { preferredLanguage } = useContext(LanguageContext);
 
   const isVisibleByClientStyles = `bg-sky-300 hover:bg-sky-400 active:bg-sky-500 bg-opacity-30 hover:bg-opacity-40 active:bg-opacity-50`;
   const isNotVisibleByClientStyles = `bg-slate-300 hover:bg-slate-400 active:bg-slate-500`;
@@ -67,7 +70,9 @@ const EmptyFileItem = ({
               // If propagation isn't stopped, then the MouseEvent will bubble up to the ColumnItem and trigger its click listener
             >
               <i className=" absolute translate-x-[-125%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
-              Click here to add a menu for this week.
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Click here to add a menu for this week.'
+                : 'Lorem ipsum'}
             </label>
           </div>
         </ColumnItem>

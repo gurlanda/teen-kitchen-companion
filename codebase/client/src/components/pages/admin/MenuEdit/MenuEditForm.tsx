@@ -3,6 +3,8 @@ import { Form } from 'react-router-dom';
 import StrictModeDroppable from './components/utilities/StrictModeDroppable';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import MenuContext from './context/MenuContext';
 import EmptyFileItem from './components/EmptyFileItem';
 import Button from '../../../layout/Button';
@@ -16,39 +18,58 @@ import numMenusAvailableToClients from 'src/firebase/Menu/numMenusAvailableToCli
 const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
   const { files, dates, moveFile, addNewWeek, uploadAllFiles, isDataChanged } =
     useContext(MenuContext);
+  const { preferredLanguage } = useContext(LanguageContext);
 
   return (
     <Form
       className={`flex flex-col gap-4 border border-gray-300 rounded-md pt-7 pb-5 px-8 max-w-[60%] ${className}`}
     >
       <section className="flex flex-col gap-3">
-        <h2 className="text-5xl font-heading font-bold">Edit weekly menus</h2>
+        <h2 className="text-5xl font-heading font-bold">
+          {preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'Edit weekly menus'
+            : 'Lorem ipsum'}
+        </h2>
 
         <p>
-          Click a menu to preview it. Rearrange menus by dragging a menu and
-          dropping it to the desired week. Reveal more options by clicking a
-          <i className="fas fa-ellipsis-v px-[6px]" />
-          button.
+          {preferredLanguage === PreferredLanguage.ENGLISH ? (
+            <span>
+              Click a menu to preview it. Rearrange menus by dragging a menu and
+              dropping it to the desired week. Reveal more options by clicking a
+              <i className="fas fa-ellipsis-v px-[6px]" />
+              button.
+            </span>
+          ) : (
+            'Lorem ipsum'
+          )}
         </p>
       </section>
 
       <div className="flex gap-2">
         <Button className="grow" onClick={() => addNewWeek()}>
-          Add new weekly menu
+          {preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'Add new weekly menu'
+            : 'Lorem ipsum'}
         </Button>
         <Button
           className={`grow disabled:border-gray-300 disabled:text-gray-300`}
           disabled={!isDataChanged()}
           onClick={() => uploadAllFiles()}
         >
-          {isDataChanged() ? 'Upload changes' : 'No changes to upload'}
+          {isDataChanged()
+            ? preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Upload changes'
+              : 'Lorem ipsum'
+            : preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'No changes to upload'
+            : 'Lorem ipsum'}
         </Button>
       </div>
 
       <div className="flex">
         <div className="flex flex-col">
           <ColumnItem className="flex items-center justify-center bg-slate-500 text-slate-100 text-xl rounded-tl-md">
-            Week
+            {preferredLanguage === PreferredLanguage.ENGLISH ? 'Week' : 'Lorem'}
           </ColumnItem>
           {dates.map((date, index) => (
             <DateItem
@@ -69,7 +90,9 @@ const MenuEditForm = ({ className }: { className?: string }): JSX.Element => {
                 {...provided.droppableProps}
               >
                 <ColumnItem className="flex items-center justify-center bg-slate-500 text-slate-100 border-l border-slate-400 text-xl rounded-tr-md">
-                  Weekly menu file
+                  {preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Weekly menu file'
+                    : 'Lorem ipsum'}
                 </ColumnItem>
                 {files.map((file, index) => {
                   const isLastElement: boolean = index === files.length - 1;

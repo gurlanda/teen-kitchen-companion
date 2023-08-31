@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import PdfViewer from 'src/components/layout/PdfViewer';
 import EmailForm from 'src/components/layout/EmailForm';
 import getMenusAvailableToClients from 'src/firebase/Menu/getMenusAvailableToClients';
@@ -8,6 +10,7 @@ import format from 'date-fns/format';
 import add from 'date-fns/add';
 
 const Menu: React.FC = () => {
+  const { preferredLanguage } = useContext(LanguageContext);
   const [menus, setMenus] = useState<MenuType[] | null>(null);
   const [currentMenu, setCurrentMenu] = useState<MenuType | null>(null);
 
@@ -58,7 +61,9 @@ const Menu: React.FC = () => {
     <div className="h-full font-body">
       <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,100ch)]">
         <h1 className="font-heading text-5xl font-bold text-center">
-          Weekly Menus
+          {preferredLanguage === PreferredLanguage.ENGLISH
+            ? 'Weekly Menus'
+            : 'Lorem ipsum'}
         </h1>
 
         {/* Menu select */}
@@ -73,15 +78,27 @@ const Menu: React.FC = () => {
 
         <div className="min-h-full flex flex-col gap-4">
           <PdfViewer file={currentMenu?.file.url ?? null} className="grow-[2]">
-            Unfortunately, no menu has been uploaded for this week. Please
-            choose a different week's menu to view.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                Unfortunately, no menu has been uploaded for this week. Please
+                choose a different week's menu to view.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </PdfViewer>
           <EmailForm
             className="grow-[1]"
-            header="Send a message to our registered dietician"
-            content="You can contact our registered dietition for a free consultation.
-            Fill out this form to make an appointment or chat with them about
-            your meals!"
+            header={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Send a message to our registered dietician'
+                : 'Lorem ipsum'
+            }
+            content={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'You can contact our registered dietition for a free consultation. Fill out this form to make an appointment or chat with them about your meals!'
+                : 'Lorem ipsum'
+            }
           />
         </div>
       </div>

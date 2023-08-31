@@ -1,183 +1,421 @@
-import React from 'react';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 import TkpBanner from 'src/components/layout/TkpBanner';
+import { useContext } from 'react';
 
 const About: React.FC = () => {
+  const { preferredLanguage } = useContext(LanguageContext);
+
   return (
     <div className=" min-h-screen">
       {/* Hero */}
-      <TkpBanner>About the Teen Kitchen Project</TkpBanner>
+      <TkpBanner>
+        {preferredLanguage === PreferredLanguage.ENGLISH
+          ? 'About the Teen Kitchen Project'
+          : 'Lorem ipsum'}
+      </TkpBanner>
 
       <main className="flex flex-col gap-8 max-w-[min(90vw,70ch)] mx-auto font-body text-lg">
         <Section>
           <div className="flex flex-col gap-1 text-center">
-            <h2 className=" text-brand-orange text-5xl">Our Mission:</h2>
+            <h2 className=" text-brand-orange text-5xl">
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Our Mission:'
+                : 'Lorem ipsum'}
+            </h2>
             <h3 className="font-heading font-bold text-4xl">
-              The Teen Kitchen Project builds healthy communities
-              through&nbsp;food
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  The Teen Kitchen Project builds healthy communities
+                  through&nbsp;food
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
             </h3>
           </div>
           <AboutParagraph>
-            The <strong>Teen Kitchen Project</strong> is a nonprofit
-            organization that brings young people into the kitchen to learn to
-            cook delicious and nourishing food. The meals they prepare are
-            delivered to individuals and families who are in crisis due to a
-            life-threatening illness like cancer. We serve families in{' '}
-            <strong>Santa Cruz County, California</strong>.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                The <strong>Teen Kitchen Project</strong> is a nonprofit
+                organization that brings young people into the kitchen to learn
+                to cook delicious and nourishing food. The meals they prepare
+                are delivered to individuals and families who are in crisis due
+                to a life-threatening illness like cancer. We serve families in{' '}
+                <strong>Santa Cruz County, California</strong>.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </AboutParagraph>
           <AboutParagraph>
-            The teens gain skills in cooking healthy food, learn about the
-            impact of their food choices, and are offered an opportunity to
-            build connections through community service.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                The teens gain skills in cooking healthy food, learn about the
+                impact of their food choices, and are offered an opportunity to
+                build connections through community service.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </AboutParagraph>
           <AboutParagraph>
-            The Teen Kitchen Project operates on Sundays all day, and Monday,
-            Tuesday, and Wednesday afternoons, out of a commercial kitchen in
-            Soquel, California. We are supported through donations from the
-            community, grants, and contracts with local and state agencies.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                The Teen Kitchen Project operates on Sundays all day, and
+                Monday, Tuesday, and Wednesday afternoons, out of a commercial
+                kitchen in Soquel, California. We are supported through
+                donations from the community, grants, and contracts with local
+                and state agencies.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </AboutParagraph>
         </Section>
 
-        <SectionWithHeadline headline="Background and Overview of Teen Kitchen Project">
+        <SectionWithHeadline
+          headline={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Background and Overview of Teen Kitchen Project'
+              : 'Lorem ipsum'
+          }
+        >
           <AboutParagraph>
-            Teen Kitchen Project (TKP) was founded by current Executive Director
-            Angela Farley after her own family experienced a life-threatening
-            illness. In 2011 her son was diagnosed with cancer. During his
-            treatment, friends and family brought home cooked meals to help keep
-            Angela's family nourished. After her son's treatment was
-            successfully completed, she made a commitment to help others as she
-            was helped during her time of need.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                Teen Kitchen Project (TKP) was founded by current Executive
+                Director Angela Farley after her own family experienced a
+                life-threatening illness. In 2011 her son was diagnosed with
+                cancer. During his treatment, friends and family brought home
+                cooked meals to help keep Angela's family nourished. After her
+                son's treatment was successfully completed, she made a
+                commitment to help others as she was helped during her time of
+                need.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </AboutParagraph>
           <AboutParagraph>
-            Founded in 2012, TKP provides home-delivered, medically tailored
-            meals (MTMs) to individuals in Santa Cruz County. Meals are designed
-            by an in-house Registered Dietitian Nutritionist and Executive Chef,
-            prepared by teen chefs who benefit from the opportunity to give back
-            to their community while learning valuable workforce and life skills
-            and delivered by volunteer adults who perform weekly wellness checks
-            for meal recipients.
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                Founded in 2012, TKP provides home-delivered, medically tailored
+                meals (MTMs) to individuals in Santa Cruz County. Meals are
+                designed by an in-house Registered Dietitian Nutritionist and
+                Executive Chef, prepared by teen chefs who benefit from the
+                opportunity to give back to their community while learning
+                valuable workforce and life skills and delivered by volunteer
+                adults who perform weekly wellness checks for meal recipients.
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </AboutParagraph>
         </SectionWithHeadline>
 
-        <SectionWithHeadline headline="Organizational Mission and Values">
+        <SectionWithHeadline
+          headline={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Organizational Mission and Values'
+              : 'Lorem ipsum'
+          }
+        >
           <div className="flex flex-col">
-            <H3>Our Mission</H3>
-            <p>To build healthy communities through food.</p>
+            <H3>
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Our Mission'
+                : 'Lorem ipsum'}
+            </H3>
+            <p>
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'To build healthy communities through food.'
+                : 'Lorem ipsum'}
+            </p>
           </div>
 
           <div className="flex flex-col">
-            <H3>Our Values</H3>
+            <H3>
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Our Values'
+                : 'Lorem ipsum'}
+            </H3>
             <Ul>
               <LiWithHeadline
-                headline="Work with Intention:"
-                content="Our actions and choices lead to the
-            greatest positive impact."
+                headline={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Work with Intention:'
+                    : 'Lorem ipsum'
+                }
+                content={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Our actions and choices lead to the greatest positive impact.'
+                    : 'Lorem ipsum'
+                }
               />
               <LiWithHeadline
-                headline="Food is Love:"
-                content="The preparation and sharing of food allows
-            our community to experience gratitude, compassion, connection, and
-            serving those in greatest need."
+                headline={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Food is Love:'
+                    : 'Lorem ipsum'
+                }
+                content={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'The preparation and sharing of food allows and serving those in greatest need.'
+                    : 'Lorem ipsum'
+                }
               />
               <LiWithHeadline
-                headline="Young People are the Future:"
-                content="Young people are
-            intelligent, responsible, capable, creative, caring, and must be
-            central participants in shaping our collective future."
+                headline={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Young People are the Future:'
+                    : 'Lorem ipsum'
+                }
+                content={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Young people are intelligent, responsible, capable, creative, caring, and must be central participants in shaping our collective future.'
+                    : 'Lorem ipsum'
+                }
               />
               <LiWithHeadline
-                headline="Integrity Matters:"
-                content="We are committed to trust, respect,
-            and honesty."
+                headline={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'Integrity Matters:'
+                    : 'Lorem ipsum'
+                }
+                content={
+                  preferredLanguage === PreferredLanguage.ENGLISH
+                    ? 'We are committed to trust, respect, and honesty.'
+                    : 'Lorem ipsum'
+                }
               />
             </Ul>
           </div>
         </SectionWithHeadline>
 
-        <SectionWithHeadline headline="Current Programs and Services">
+        <SectionWithHeadline
+          headline={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Current Programs and Services'
+              : 'Lorem ipsum'
+          }
+        >
           {/* <p>TKP's services include:</p> */}
           <Ul>
             <LiWithHeadline
-              headline="Meal Delivery Service:"
-              content="Clients are referred by healthcare providers. Professional chefs train employee/volunteer teen chefs in preparing, cooking and packaging meals for delivery. A Registered Dietitian evaluates meals to ensure they are in accordance with DASH (Dietary Approaches to Stop Hypertension) guidelines and are diabetes-friendly (lower carb, no refined sugars). Meals are delivered for 12 weeks with the possibility of recertification for an additional 12 weeks with a doctor referral.
-"
+              headline={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Meal Delivery Service:'
+                  : 'Lorem ipsum'
+              }
+              content={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Clients are referred by healthcare providers. Professional chefs train employee/volunteer teen chefs in preparing, cooking and packaging meals for delivery. A Registered Dietitian evaluates meals to ensure they are in accordance with DASH (Dietary Approaches to Stop Hypertension) guidelines and are diabetes-friendly (lower carb, no refined sugars). Meals are delivered for 12 weeks with the possibility of recertification for an additional 12 weeks with a doctor referral.'
+                  : 'Lorem ipsum'
+              }
             />
             <LiWithHeadline
-              headline="Nutritional Counseling:"
-              content="All clients receive individualized nutritional counseling sessions from a bilingual Registered Dietitian to discuss clients' health goals in relation to their current diagnosis.
-"
+              headline={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Nutritional Counseling:'
+                  : 'Lorem ipsum'
+              }
+              content={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? "All clients receive individualized nutritional counseling sessions from a bilingual Registered Dietitian to discuss clients' health goals in relation to their current diagnosis."
+                  : 'Lorem ipsum'
+              }
             />
             <LiWithHeadline
-              headline="Teen Chef Program:"
-              content="Working under the guidance of experienced chefs, approximately 85 teen chefs per year (ages 14-18) learn how to prepare, cook and package meals for delivery. Teens gain the opportunity to give back to their community while learning about nutrition, teamwork, leadership and workforce skills."
+              headline={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Teen Chef Program:'
+                  : 'Lorem ipsum'
+              }
+              content={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Working under the guidance of experienced chefs, approximately 85 teen chefs per year (ages 14-18) learn how to prepare, cook and package meals for delivery. Teens gain the opportunity to give back to their community while learning about nutrition, teamwork, leadership and workforce skills.'
+                  : 'Lorem ipsum'
+              }
             />
             <LiWithHeadline
-              headline="Classes and Camps:"
-              content="TKP offers a range of cooking classes and camps for children and youth.
-"
+              headline={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Classes and Camps:'
+                  : 'Lorem ipsum'
+              }
+              content={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'TKP offers a range of cooking classes and camps for children and youth.'
+                  : 'Lorem ipsum'
+              }
             />
           </Ul>
         </SectionWithHeadline>
 
-        <SectionWithHeadline headline="Financial Position">
+        <SectionWithHeadline
+          headline={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Financial Position'
+              : 'Lorem ipsum'
+          }
+        >
           <Ul>
-            <li>TKP's annual budget for 2023 is $1.2M.</li>
             <li>
-              In 2022, 84% of the organization's total budget was allocated to
-              programs, 9% to administration and 5% to fundraising. Most
-              personnel expenses are allocated to programs, with the remaining
-              amount allocated to administration and fundraising.
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>TKP's annual budget for 2023 is $1.2M.</>
+              ) : (
+                'Lorem ipsum'
+              )}
             </li>
             <li>
-              TKP has diversified its revenue streams over the last six years.
-              Comparing 2022 to 2017, TKP has increased the percentage of
-              revenue from earned income, events and in-kind donations. This
-              meant the organization decreased its reliance on foundation
-              grants, individual donors and corporate gifts.
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  In 2022, 84% of the organization's total budget was allocated
+                  to programs, 9% to administration and 5% to fundraising. Most
+                  personnel expenses are allocated to programs, with the
+                  remaining amount allocated to administration and fundraising.
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
             </li>
             <li>
-              Over the last three years, TKP has continued to serve more clients
-              and the organization's budget has increased accordingly. The
-              personnel budget increased in 2021 because the organization had
-              fewer volunteers in the kitchen due to the pandemic.
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  TKP has diversified its revenue streams over the last six
+                  years. Comparing 2022 to 2017, TKP has increased the
+                  percentage of revenue from earned income, events and in-kind
+                  donations. This meant the organization decreased its reliance
+                  on foundation grants, individual donors and corporate gifts.
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
             </li>
             <li>
-              Roughly 14% of TKP's personnel budget supports teen salaries.
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  Over the last three years, TKP has continued to serve more
+                  clients and the organization's budget has increased
+                  accordingly. The personnel budget increased in 2021 because
+                  the organization had fewer volunteers in the kitchen due to
+                  the pandemic.
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
             </li>
             <li>
-              TKP has provided medically tailored meals to vulnerable members of
-              the Santa Cruz County community for 10 years. In the calendar year
-              2022, the agency delivered 80,297 meals to a total of 623
-              unduplicated clients in Santa Cruz County impacted by
-              life-threatening illnesses.
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  Roughly 14% of TKP's personnel budget supports teen salaries.
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
+            </li>
+            <li>
+              {preferredLanguage === PreferredLanguage.ENGLISH ? (
+                <>
+                  TKP has provided medically tailored meals to vulnerable
+                  members of the Santa Cruz County community for 10 years. In
+                  the calendar year 2022, the agency delivered 80,297 meals to a
+                  total of 623 unduplicated clients in Santa Cruz County
+                  impacted by life-threatening illnesses.
+                </>
+              ) : (
+                'Lorem ipsum'
+              )}
             </li>
           </Ul>
         </SectionWithHeadline>
 
-        <SectionWithHeadline headline="Client Demographics">
+        <SectionWithHeadline
+          headline={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Client Demographics'
+              : 'Lorem ipsum'
+          }
+        >
           <p>
-            In 2022, 84% of clients served were low-income (59% on Medi-Cal and
-            25% less than 200% below the poverty level).
+            {preferredLanguage === PreferredLanguage.ENGLISH ? (
+              <>
+                In 2022, 84% of clients served were low-income (59% on Medi-Cal
+                and 25% less than 200% below the poverty level).
+              </>
+            ) : (
+              'Lorem ipsum'
+            )}
           </p>
 
           <div className="flex flex-col">
-            <H3>Clients By Location</H3>
+            <H3>
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Clients By Location'
+                : 'Lorem ipsum'}
+            </H3>
             <Ul>
-              <Li>South County: 30%</Li>
-              <Li>San Lorenzo Valley: 10%</Li>
-              <Li>Mid County: 31%</Li>
-              <Li>Greater Santa Cruz and North County: 29%</Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'South County: 30%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'San Lorenzo Valley: 10%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Mid County: 31%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Greater Santa Cruz and North County: 29%'
+                  : 'Lorem ipsum'}
+              </Li>
             </Ul>
           </div>
 
           <div className="flex flex-col">
-            <H3>Clients By Primary Diagnosis</H3>
+            <H3>
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Clients By Primary Diagnosis'
+                : 'Lorem ipsum'}
+            </H3>
             <Ul>
-              <Li>Cancer: 19%</Li>
-              <Li>Diabetes: 26%</Li>
-              <Li>Congestive Heart Failure: 8%</Li>
-              <Li>Severe Neurological Disease: 13%</Li>
-              <Li>Recent Major Surgery: 12%</Li>
-              <Li>Other Eligible Diagnosis: 22%</Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Cancer: 19%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Diabetes: 26%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Congestive Heart Failure: 8%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Severe Neurological Disease: 13%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Recent Major Surgery: 12%'
+                  : 'Lorem ipsum'}
+              </Li>
+              <Li>
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Other Eligible Diagnosis: 22%'
+                  : 'Lorem ipsum'}
+              </Li>
             </Ul>
           </div>
         </SectionWithHeadline>

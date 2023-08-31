@@ -2,9 +2,13 @@ import { FC, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const Navbar: FC = () => {
   const authContext = useContext(AuthContext);
+  const { preferredLanguage, setPreferredLanguage } =
+    useContext(LanguageContext);
 
   const invisible = 'hidden';
   const visible = '';
@@ -27,7 +31,11 @@ const Navbar: FC = () => {
       >
         <img
           src={logo}
-          alt="Teen Kitchen Project logo"
+          alt={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Teen Kitchen Project logo'
+              : 'Lorem ipsum'
+          }
           className="h-12 w-12 mr-1 pr-0"
         />
         <h1 className="text-[2.66rem] acumin">TKC</h1>
@@ -57,69 +65,142 @@ const Navbar: FC = () => {
       >
         <div className="pl-5 lg:flex lg:grow">
           {/* <NavLinkItem to="/" text="How it Works" onClick={toggleIsVisible} /> */}
-          <NavLinkItem to="/menus" text="Our Menu" onClick={toggleIsVisible} />
+          <NavLinkItem
+            to="/menus"
+            text={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Our Menu'
+                : 'Lorem ipsum'
+            }
+            onClick={toggleIsVisible}
+          />
           <NavLinkItem
             to="/volunteer"
-            text="Volunteer"
+            text={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Volunteer'
+                : 'Lorem ipsum'
+            }
             onClick={toggleIsVisible}
           />
-          <NavLinkItem to="/stories" text="Stories" onClick={toggleIsVisible} />
+          <NavLinkItem
+            to="/stories"
+            text={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Stories'
+                : 'Lorem ipsum'
+            }
+            onClick={toggleIsVisible}
+          />
           <NavLinkItem
             to="/contact"
-            text="Contact Us"
+            text={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Contact Us'
+                : 'Lorem ipsum'
+            }
             onClick={toggleIsVisible}
           />
-          <NavLinkItem to="/about" text="About" onClick={toggleIsVisible} />
+          <NavLinkItem
+            to="/about"
+            text={
+              preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'About'
+                : 'Lorem ipsum'
+            }
+            onClick={toggleIsVisible}
+          />
           {authContext.isAdmin && (
             <NavLinkItem
               to="/edit-menus"
-              text="Edit Menus"
+              text={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Edit Menus'
+                  : 'Lorem ipsum'
+              }
               onClick={toggleIsVisible}
             />
           )}
           {authContext.isAdmin && (
             <NavLinkItem
               to="/add-admin"
-              text="Add an Admin"
+              text={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Add an Admin'
+                  : 'Lorem ipsum'
+              }
               onClick={toggleIsVisible}
             />
           )}
           {authContext.isSignedIn() && (
             <NavLinkItem
               to="/user-info"
-              text="User"
+              text={
+                preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'User'
+                  : 'Lorem ipsum'
+              }
               onClick={toggleIsVisible}
             />
           )}
         </div>
 
-        <div className="flex pl-3 py-2 pt-3 lg:px-5 text-xl">
+        <div className="flex items-center gap-2 pl-3 py-2 pt-3 lg:px-5 text-xl">
+          <fieldset className="flex gap-1">
+            <label htmlFor="isEnglish">
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'English'
+                : 'Español'}
+            </label>
+            <input
+              type="checkbox"
+              name="isEnglish"
+              id="isEnglish"
+              checked={preferredLanguage === PreferredLanguage.ENGLISH}
+              onChange={(e) => {
+                const isEnglish: boolean = e.target.checked;
+                if (isEnglish) {
+                  setPreferredLanguage(PreferredLanguage.ENGLISH);
+                  // window.alert(`Set to ${PreferredLanguage.ENGLISH}`);
+                } else {
+                  setPreferredLanguage(PreferredLanguage.SPANISH);
+                  // window.alert(`Set to ${PreferredLanguage.SPANISH}`);
+                }
+              }}
+            />
+          </fieldset>
           {!authContext.isSignedIn() && (
             <Link to="/sign-in">
               <button
-                className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
+                className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
               >
-                Sign In
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Sign In'
+                  : 'Lorem ipsum'}
               </button>
             </Link>
           )}
           {!authContext.isSignedIn() && (
             <Link to="/sign-up">
               <button
-                className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1"
+                className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
               >
-                Sign Up
+                {preferredLanguage === PreferredLanguage.ENGLISH
+                  ? 'Sign Up'
+                  : 'Lorem ipsum'}
               </button>
             </Link>
           )}
           {authContext.isSignedIn() && (
             <button
-              className="border-gray-400 hover:bg-slate-200 text-brand-teal bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md mx-1 "
+              className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
               onClick={() => authContext.signOut()}
             >
-              Log Out
+              {preferredLanguage === PreferredLanguage.ENGLISH
+                ? 'Log Out'
+                : 'Lorem ipsum'}
             </button>
           )}
           {/* {authContext.isSignedIn() && (

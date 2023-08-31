@@ -1,6 +1,8 @@
-import React from 'react';
+import { useContext } from 'react';
 import tkpLogo from 'src/assets/img/tkp-logo-horiz.png';
 import bannerImg from 'src/assets/img/banner-multi-person.png';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const TkpBanner = ({
   children,
@@ -11,6 +13,8 @@ const TkpBanner = ({
   hideLogo?: boolean;
   normalWeight?: boolean;
 }): JSX.Element => {
+  const { preferredLanguage } = useContext(LanguageContext);
+
   return (
     <div className="relative min-h-[256px] py-10 flex flex-col gap-4 justify-evenly items-center mb-12">
       <img
@@ -21,7 +25,11 @@ const TkpBanner = ({
         <img
           className="w-full h-auto"
           src={tkpLogo}
-          alt="Teen Kitchen Project logo"
+          alt={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Teen Kitchen Project logo'
+              : 'Lorem ipsum'
+          }
         />
       </div>
       <h1

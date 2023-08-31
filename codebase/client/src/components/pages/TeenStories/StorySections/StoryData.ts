@@ -1,8 +1,14 @@
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
+
+type LanguageDependentText = {
+  [PreferredLanguage.ENGLISH]: string;
+  [PreferredLanguage.SPANISH]: string;
+};
 interface StoryData {
-  header: string;
+  header: LanguageDependentText;
   img: string;
-  alt: string;
-  content: string;
+  alt: LanguageDependentText;
+  content: LanguageDependentText;
 }
 
 export default StoryData;

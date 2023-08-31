@@ -1,27 +1,57 @@
-import React from 'react';
+import { useContext } from 'react';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const Section1: React.FC = () => {
+  const { preferredLanguage } = useContext(LanguageContext);
+
   return (
     <div className="w-screen flex flex-col justify-center items-center my-5">
       <h1 className="text-4xl font-heading font-bold my-5 text-center">
-        Food right to your doorstep!
+        {preferredLanguage === PreferredLanguage.ENGLISH
+          ? 'Food right to your doorstep!'
+          : 'Lorem ipsum'}
       </h1>
 
       {/* Items */}
       <div className="flex flex-col justify-around px-4 font-body lg:flex-row">
         <SectionItem
-          heading="Healthy meals designed by a licensed dietitian"
-          details="Meals are formulated to be heart-healthy and diabetes-friendly."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Healthy meals designed by a licensed dietitian'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Meals are formulated to be heart-healthy and diabetes-friendly.'
+              : 'Lorem ipsum'
+          }
           icon="bg-laptop-icon"
         />
         <SectionItem
-          heading="We cook &#38; deliver your food"
-          details="With our team of chefs and volunteer teens, we cook your food to perfection."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'We cook & deliver your food'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'With our team of chefs and volunteer teens, we cook your food to perfection.'
+              : 'Lorem ipsum'
+          }
           icon="bg-cooking-icon"
         />
         <SectionItem
-          heading="Heat it up and enjoy!"
-          details="Healthy, effortless meals that are ready to be eaten."
+          heading={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Heat it up and enjoy!'
+              : 'Lorem ipsum'
+          }
+          details={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Healthy, effortless meals that are ready to be eaten.'
+              : 'Lorem ipsum'
+          }
           icon="bg-heat-food-icon"
         />
       </div>

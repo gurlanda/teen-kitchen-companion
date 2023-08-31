@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
 import Email from 'src/model/Email/Email';
 import { sendEmailWithCallable } from 'src/model/Email/sendEmail';
+import LanguageContext from 'src/context/Language/LanguageContext';
+import PreferredLanguage from 'src/model/User/PreferredLanguage';
 
 const EmailForm = ({
   className,
@@ -15,6 +17,7 @@ const EmailForm = ({
   paddingClassName?: string;
   headingSizeClassName?: string;
 }): JSX.Element => {
+  const { preferredLanguage } = useContext(LanguageContext);
   const [subject, setSubject] = useState<string>('');
   const [senderEmail, setSenderEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
@@ -49,7 +52,7 @@ const EmailForm = ({
             headingSizeClassName ?? 'text-4xl'
           } font-heading font-bold`}
         >
-          {header ?? 'Send an email'}
+          {header}
         </h1>
 
         {content && <p>{content}</p>}
@@ -58,7 +61,11 @@ const EmailForm = ({
         <Input
           type="text"
           value={subject}
-          placeholder="Subject line"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Subject line'
+              : 'Lorem ipsum'
+          }
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSubject(e.target.value)
           }
@@ -66,13 +73,21 @@ const EmailForm = ({
         <Input
           type="email"
           value={senderEmail}
-          placeholder="Your email"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Your email'
+              : 'Lorem ipsum'
+          }
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSenderEmail(e.target.value)
           }
         />
         <textarea
-          placeholder="Message"
+          placeholder={
+            preferredLanguage === PreferredLanguage.ENGLISH
+              ? 'Message'
+              : 'Lorem ipsum'
+          }
           value={message}
           className={`${inputClasses}`}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
