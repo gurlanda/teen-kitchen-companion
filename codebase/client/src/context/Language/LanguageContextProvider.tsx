@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import LanguageContext from './LanguageContext';
 import AuthContext from '../Auth/AuthContext';
 
@@ -9,7 +9,7 @@ const LanguageContextProvider = ({
   children?: React.ReactNode;
 }): JSX.Element => {
   const [preferredLanguage, setPreferredLanguageState] =
-    useState<PreferredLanguage.Type>(PreferredLanguage.SPANISH);
+    useState<SupportedLanguage.Type>(SupportedLanguage.ENGLISH);
   const authContext = useContext(AuthContext);
 
   // useEffect(() => {
@@ -20,7 +20,7 @@ const LanguageContextProvider = ({
   //   setPreferredLanguage(authContext.user.preferredLanguage);
   // }, [authContext.user]);
 
-  function setPreferredLanguage(input: PreferredLanguage.Type) {
+  function setPreferredLanguage(input: SupportedLanguage.Type) {
     setPreferredLanguageState(input);
   }
 

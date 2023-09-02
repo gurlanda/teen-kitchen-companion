@@ -1,6 +1,6 @@
 import { ReactNode, useContext } from 'react';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import TkpBanner from 'src/components/layout/TkpBanner';
 
 const Volunteer: React.FC = () => {
@@ -9,43 +9,60 @@ const Volunteer: React.FC = () => {
   return (
     <div className="text-lg">
       <TkpBanner>
-        {preferredLanguage === PreferredLanguage.ENGLISH
-          ? 'Would you like to volunteer?'
-          : 'Lorem ipsum'}
+        {
+          {
+            [SupportedLanguage.ENGLISH]: 'Would you like to volunteer?',
+            [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+          }[preferredLanguage]
+        }
       </TkpBanner>
 
       {/* Content */}
       <div className="flex flex-col gap-10 max-w-[min(90vw,60ch)] mx-auto font-body text-center">
         <div className="flex flex-col gap-3">
           <h1 className="font-heading font-bold text-4xl ">
-            {preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Volunteering at the Teen Kitchen Project'
-              : 'Lorem ipsum'}
+            {
+              {
+                [SupportedLanguage.ENGLISH]:
+                  'Volunteering at the Teen Kitchen Project',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </h1>
           <p>
-            {preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Volunteers are the heart of our organization.'
-              : 'Lorem ipsum'}
+            {
+              {
+                [SupportedLanguage.ENGLISH]:
+                  'Volunteers are the heart of our organization.',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </p>
           <p>
-            {preferredLanguage === PreferredLanguage.ENGLISH ? (
-              <>
-                We continue to be grateful for the myriad of volunteers who
-                support our teens and clients.
-              </>
-            ) : (
-              'Lorem ipsum'
-            )}
+            {
+              {
+                [SupportedLanguage.ENGLISH]: (
+                  <>
+                    We continue to be grateful for the myriad of volunteers who
+                    support our teens and clients.
+                  </>
+                ),
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </p>
           <p className="font-bold">
-            {preferredLanguage === PreferredLanguage.ENGLISH ? (
-              <>
-                All volunteers are required to provide proof of COVID 19 Vaccine
-                before they may participate in our program.
-              </>
-            ) : (
-              'Lorem ipsum'
-            )}
+            {
+              {
+                [SupportedLanguage.ENGLISH]: (
+                  <>
+                    All volunteers are required to provide proof of COVID 19
+                    Vaccine before they may participate in our program.
+                  </>
+                ),
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </p>
         </div>
 
@@ -53,26 +70,38 @@ const Volunteer: React.FC = () => {
         <div className="flex flex-col gap-5 items-center sm:flex-row sm:justify-center">
           <div className="space-y-2">
             <h3 className="text-xl font-bold">
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Teens'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Teens',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </h3>
             <LinkButton to="https://teenkitchenproject.org/join-our-team/become-a-teen-volunteer/">
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Click Here to Learn More!'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Click Here to Learn More!',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </LinkButton>
           </div>
           <div className="space-y-2">
             <h3 className="text-xl font-bold">
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Adults'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Adults',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </h3>
             <LinkButton to="https://teenkitchenproject.org/join-our-team/become-an-adult-volunteer/">
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Click Here to Learn More!'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Click Here to Learn More!',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </LinkButton>
           </div>
         </div>

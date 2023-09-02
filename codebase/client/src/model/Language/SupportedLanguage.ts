@@ -1,4 +1,4 @@
-namespace PreferredLanguage {
+namespace SupportedLanguage {
   export const ENGLISH = 'ENGLISH';
   export const SPANISH = 'SPANISH';
   export const asArray = [ENGLISH, SPANISH];
@@ -17,4 +17,4 @@ namespace PreferredLanguage {
   }
 }
 
-export default PreferredLanguage;
+export default SupportedLanguage;

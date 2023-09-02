@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import PdfViewer from 'src/components/layout/PdfViewer';
 import EmailForm from 'src/components/layout/EmailForm';
 import getMenusAvailableToClients from 'src/firebase/Menu/getMenusAvailableToClients';
@@ -61,9 +61,12 @@ const Menu: React.FC = () => {
     <div className="h-full font-body">
       <div className="flex flex-col h-full pb-20 mx-auto max-w-[min(90vw,100ch)]">
         <h1 className="font-heading text-5xl font-bold text-center">
-          {preferredLanguage === PreferredLanguage.ENGLISH
-            ? 'Weekly Menus'
-            : 'Lorem ipsum'}
+          {
+            {
+              [SupportedLanguage.ENGLISH]: 'Weekly Menus',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
+          }
         </h1>
 
         {/* Menu select */}
@@ -78,27 +81,30 @@ const Menu: React.FC = () => {
 
         <div className="min-h-full flex flex-col gap-4">
           <PdfViewer file={currentMenu?.file.url ?? null} className="grow-[2]">
-            {preferredLanguage === PreferredLanguage.ENGLISH ? (
-              <>
-                Unfortunately, no menu has been uploaded for this week. Please
-                choose a different week's menu to view.
-              </>
-            ) : (
-              'Lorem ipsum'
-            )}
+            {
+              {
+                [SupportedLanguage.ENGLISH]: (
+                  <>
+                    Unfortunately, no menu has been uploaded for this week.
+                    Please choose a different week's menu to view.
+                  </>
+                ),
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </PdfViewer>
           <EmailForm
             className="grow-[1]"
-            header={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Send a message to our registered dietician'
-                : 'Lorem ipsum'
-            }
-            content={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'You can contact our registered dietition for a free consultation. Fill out this form to make an appointment or chat with them about your meals!'
-                : 'Lorem ipsum'
-            }
+            header={{
+              [SupportedLanguage.ENGLISH]:
+                'Send a message to our registered dietician',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }}
+            content={{
+              [SupportedLanguage.ENGLISH]:
+                'You can contact our registered dietition for a free consultation. Fill out this form to make an appointment or chat with them about your meals!',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }}
           />
         </div>
       </div>

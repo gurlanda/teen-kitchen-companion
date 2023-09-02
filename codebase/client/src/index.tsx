@@ -25,6 +25,7 @@ import { action as menuEditAction } from 'src/components/pages/admin/MenuEdit/Me
 import AddAdmin, {
   action as addAdminAction,
 } from './components/pages/admin/AddAdmin';
+import Surveys from './components/pages/Surveys';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
       <Route path="/add-admin" element={<AddAdmin />} action={addAdminAction} />
       <Route path="/user-info" element={<UserInfo />} />
+      <Route path="/surveys" element={<Surveys />} />
       <Route errorElement={<NotFound />}></Route>
     </Route>
   )

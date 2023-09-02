@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import getFirebaseServices from 'src/firebase/getFirebaseServices';
 
 const AddAdmin = ({}: {}): JSX.Element => {
@@ -22,28 +22,38 @@ const AddAdmin = ({}: {}): JSX.Element => {
     <div>
       <Form method="post" className="w-fluid mx-auto flex flex-col gap-3">
         <h2 className="text-5xl font-heading font-bold">
-          {preferredLanguage === PreferredLanguage.ENGLISH
-            ? 'Give admin privilages to existing user'
-            : 'Lorem ipsum'}
+          {
+            {
+              [SupportedLanguage.ENGLISH]:
+                'Give admin privilages to existing user',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
+          }
         </h2>
         <p className="font-body">
-          {preferredLanguage === PreferredLanguage.ENGLISH ? (
-            <>
-              Use this form to give admin privilages to an{' '}
-              <strong className="font-bold">existing</strong> user. If the
-              person you want to assign an admin role to does not have an
-              account, please instruct them to do so. This form only adds
-              privilages to existing accounts.
-            </>
-          ) : (
-            'Lorem ipsum'
-          )}
+          {
+            {
+              [SupportedLanguage.ENGLISH]: (
+                <>
+                  Use this form to give admin privilages to an{' '}
+                  <strong className="font-bold">existing</strong> user. If the
+                  person you want to assign an admin role to does not have an
+                  account, please instruct them to do so. This form only adds
+                  privilages to existing accounts.
+                </>
+              ),
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
+          }
         </p>
         <fieldset className="font-body flex flex-col gap-3">
           <label htmlFor="targetEmail">
-            {preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Email of account to promote'
-              : 'Lorem ipsum'}
+            {
+              {
+                [SupportedLanguage.ENGLISH]: 'Email of account to promote',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </label>
           <input
             type="email"
@@ -51,9 +61,10 @@ const AddAdmin = ({}: {}): JSX.Element => {
             id="targetEmail"
             className="px-4 py-2 border border-gray-400 rounded-md"
             placeholder={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Email'
-                : 'Lorem'
+              {
+                [SupportedLanguage.ENGLISH]: 'Email',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -72,9 +83,12 @@ const AddAdmin = ({}: {}): JSX.Element => {
               }
             }}
           >
-            {preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Promote User'
-              : 'Lorem ipsum'}
+            {
+              {
+                [SupportedLanguage.ENGLISH]: 'Promote User',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </button>
         </fieldset>
       </Form>

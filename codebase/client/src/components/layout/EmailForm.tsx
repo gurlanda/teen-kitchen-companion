@@ -2,7 +2,8 @@ import { useContext, useState } from 'react';
 import Email from 'src/model/Email/Email';
 import { sendEmailWithCallable } from 'src/model/Email/sendEmail';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
+import LanguageContent from 'src/model/Language/LanguageContent';
 
 const EmailForm = ({
   className,
@@ -12,8 +13,8 @@ const EmailForm = ({
   paddingClassName,
 }: {
   className?: string;
-  header: string;
-  content?: string;
+  header: LanguageContent;
+  content?: LanguageContent;
   paddingClassName?: string;
   headingSizeClassName?: string;
 }): JSX.Element => {
@@ -52,19 +53,20 @@ const EmailForm = ({
             headingSizeClassName ?? 'text-4xl'
           } font-heading font-bold`}
         >
-          {header}
+          {header[preferredLanguage]}
         </h1>
 
-        {content && <p>{content}</p>}
+        {content && <p>{content[preferredLanguage]}</p>}
       </div>
       <div className="flex flex-col gap-2">
         <Input
           type="text"
           value={subject}
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Subject line'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Subject line',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSubject(e.target.value)
@@ -74,9 +76,10 @@ const EmailForm = ({
           type="email"
           value={senderEmail}
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Your email'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Your email',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSenderEmail(e.target.value)
@@ -84,9 +87,10 @@ const EmailForm = ({
         />
         <textarea
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Message'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Message',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           value={message}
           className={`${inputClasses}`}

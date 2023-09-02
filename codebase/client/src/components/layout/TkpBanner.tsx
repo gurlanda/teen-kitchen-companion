@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import tkpLogo from 'src/assets/img/tkp-logo-horiz.png';
 import bannerImg from 'src/assets/img/banner-multi-person.png';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const TkpBanner = ({
   children,
@@ -26,9 +26,10 @@ const TkpBanner = ({
           className="w-full h-auto"
           src={tkpLogo}
           alt={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Teen Kitchen Project logo'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Teen Kitchen Project logo',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
         />
       </div>

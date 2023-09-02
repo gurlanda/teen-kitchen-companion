@@ -5,7 +5,7 @@ import createId from '../../../utils/createId';
 import TkpBanner from 'src/components/layout/TkpBanner';
 import EmailForm from 'src/components/layout/EmailForm';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const TeenStories: React.FC = () => {
   const { preferredLanguage } = useContext(LanguageContext);
@@ -13,9 +13,13 @@ const TeenStories: React.FC = () => {
   return (
     <div className="text-xl">
       <TkpBanner>
-        {preferredLanguage === PreferredLanguage.ENGLISH
-          ? 'Read some of the stories from our team!'
-          : 'Lorem ipsum'}
+        {
+          {
+            [SupportedLanguage.ENGLISH]:
+              'Read some of the stories from our team!',
+            [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+          }[preferredLanguage]
+        }
       </TkpBanner>
       {/* Stories */}
       <div className="flex flex-col gap-10 md:gap-16 max-w-[min(90ch,90vw)] mx-auto">
@@ -23,16 +27,15 @@ const TeenStories: React.FC = () => {
           <Story data={story} key={createId()} />
         ))}
         <EmailForm
-          header={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Send a message to our volunteers'
-              : 'Lorem ipsum'
-          }
-          content={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Fill out this form to send a message to our teen cooks and other volunteers!'
-              : 'Lorem ipsum'
-          }
+          header={{
+            [SupportedLanguage.ENGLISH]: 'Send a message to our volunteers',
+            [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+          }}
+          content={{
+            [SupportedLanguage.ENGLISH]:
+              'Fill out this form to send a message to our teen cooks and other volunteers!',
+            [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+          }}
         />
       </div>
     </div>

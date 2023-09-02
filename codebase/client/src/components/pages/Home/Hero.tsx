@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/img/logo.png';
 import hero from 'src/assets/img/hero.png';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const Hero: React.FC = () => {
   const { preferredLanguage } = useContext(LanguageContext);
@@ -18,9 +18,10 @@ const Hero: React.FC = () => {
             <img
               src={logo}
               alt={
-                preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'Teen Kitchen Project logo'
-                  : 'Lorem ipsum'
+                {
+                  [SupportedLanguage.ENGLISH]: 'Teen Kitchen Project logo',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
               }
               className="h-[5.1rem] w-[5.1rem] "
             />
@@ -31,28 +32,40 @@ const Hero: React.FC = () => {
         </div>
 
         <h4 className="text-4xl font-heading my-2 mx-6 text-center lg:text-gray-700">
-          {preferredLanguage === PreferredLanguage.ENGLISH ? (
-            <>
-              Building healthier
-              <br className="hidden xs:inline" />
-              communities through food
-            </>
-          ) : (
-            'Lorem ipsum'
-          )}
+          {
+            {
+              [SupportedLanguage.ENGLISH]: (
+                <>
+                  Building healthier
+                  <br className="hidden xs:inline" />
+                  communities through food
+                </>
+              ),
+              [SupportedLanguage.SPANISH]: (
+                <>
+                  Construyendo comunidades más{' '}
+                  <br className="hidden xs:inline" />
+                  saludables a través de los alimentos
+                </>
+              ),
+            }[preferredLanguage]
+          }
         </h4>
         <div className="mx-auto my-5">
           <Link to="/about">
             <button className="border-gray-200 hover:bg-slate-100 bg-white text-brand-teal font-body font-medium border rounded-lg shadow-md text-lg px-6 py-4">
-              {preferredLanguage === PreferredLanguage.ENGLISH ? (
-                <>
-                  Learn more about the
-                  <br />
-                  Teen Kitchen Project
-                </>
-              ) : (
-                'Lorem ipsum'
-              )}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: (
+                    <>
+                      Learn more about the
+                      <br />
+                      Teen Kitchen Project
+                    </>
+                  ),
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </button>
           </Link>
         </div>
@@ -62,9 +75,10 @@ const Hero: React.FC = () => {
       <img
         src={hero}
         alt={
-          preferredLanguage === PreferredLanguage.ENGLISH
-            ? 'Prepared food'
-            : 'Lorem ipsum'
+          {
+            [SupportedLanguage.ENGLISH]: 'Prepared food',
+            [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+          }[preferredLanguage]
         }
         className="absolute lg:static w-full h-full lg:block basis-0 grow min-w-0 object-cover brightness-[45%] lg:filter-none"
       />

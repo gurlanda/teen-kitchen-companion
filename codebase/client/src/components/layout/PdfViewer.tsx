@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const PdfViewer = ({
   className,
@@ -22,9 +22,13 @@ const PdfViewer = ({
           className="min-h-full w-full"
         >
           <div className="px-4 py-2">
-            {preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'No online PDF viewer installed on this browser. Please consider using Firefox, which will allow this feature to work.'
-              : 'Lorem ipsum'}
+            {
+              {
+                [SupportedLanguage.ENGLISH]:
+                  'No online PDF viewer installed on this browser. Please consider using Firefox, which will allow this feature to work.',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
           </div>
         </object>
       ) : (

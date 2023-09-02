@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import StorableUser from 'src/model/User/StorableUser';
 
 const SignUp = ({}: {}): JSX.Element => {
@@ -35,19 +35,19 @@ const SignUp = ({}: {}): JSX.Element => {
       firstName,
       lastName,
       email,
-      preferredLanguage: PreferredLanguage.isPreferredLanguage(
+      preferredLanguage: SupportedLanguage.isPreferredLanguage(
         preferredLanguage
       )
-        ? (preferredLanguage as PreferredLanguage.Type)
-        : PreferredLanguage.ENGLISH,
+        ? (preferredLanguage as SupportedLanguage.Type)
+        : SupportedLanguage.ENGLISH,
     };
 
     try {
       authContext.signUp(newUserData, password);
-      window.alert('Signed up successfully!');
+      // window.alert('Signed up successfully!');
       navigate('/');
     } catch (error) {
-      window.alert('Error.');
+      // window.alert('Error.');
       console.log(error);
     }
   };
@@ -58,14 +58,22 @@ const SignUp = ({}: {}): JSX.Element => {
         className="flex flex-col gap-4 border rounded-xl shadow shadow-gray-300 px-8 py-5 mt-10 w-[min(90vw,75ch)] mx-auto"
         method="post"
       >
-        <h1 className="font-heading font-bold text-4xl">Sign Up!</h1>
+        <h1 className="font-heading font-bold text-4xl">
+          {
+            {
+              [SupportedLanguage.ENGLISH]: 'Sign Up!',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
+          }
+        </h1>
         <Input
           type="text"
           name="firstName"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'First name'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'First name',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setFirstName(e.target.value)}
@@ -75,25 +83,33 @@ const SignUp = ({}: {}): JSX.Element => {
           type="text"
           name="lastName"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Last name'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Last name',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
         />
         <fieldset className="flex flex-col gap-2">
-          <span>What is your preferred language?</span>
+          <span>
+            {
+              {
+                [SupportedLanguage.ENGLISH]: 'What is your preferred language?',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
+          </span>
           <div className="flex gap-2">
             <label htmlFor="english">
               <input
                 type="radio"
                 name="preferredLanguage"
-                value={PreferredLanguage.ENGLISH}
+                value={SupportedLanguage.ENGLISH}
                 id="english"
                 onChange={(e) => setPreferredLanguage(e.currentTarget.value)}
-                checked={preferredLanguage === PreferredLanguage.ENGLISH}
+                checked={preferredLanguage === SupportedLanguage.ENGLISH}
               />{' '}
               English
             </label>
@@ -101,10 +117,10 @@ const SignUp = ({}: {}): JSX.Element => {
               <input
                 type="radio"
                 name="preferredLanguage"
-                value={PreferredLanguage.SPANISH}
+                value={SupportedLanguage.SPANISH}
                 id="spanish"
                 onChange={(e) => setPreferredLanguage(e.currentTarget.value)}
-                checked={preferredLanguage === PreferredLanguage.SPANISH}
+                checked={preferredLanguage === SupportedLanguage.SPANISH}
               />{' '}
               Español
             </label>
@@ -141,9 +157,10 @@ const SignUp = ({}: {}): JSX.Element => {
           type="text"
           name="email"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Preferred email address'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Preferred email address',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setEmail(e.target.value)}
@@ -153,9 +170,10 @@ const SignUp = ({}: {}): JSX.Element => {
           type="password"
           name="password"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Password'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Password',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setPassword(e.target.value)}
@@ -165,9 +183,10 @@ const SignUp = ({}: {}): JSX.Element => {
           type="password"
           name="confirmedPassword"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Confirm password'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Confirm password',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setConfirmedPassword(e.target.value)}

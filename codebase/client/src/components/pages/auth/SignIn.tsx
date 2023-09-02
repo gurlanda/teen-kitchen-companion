@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,10 +16,10 @@ const SignIn: React.FC = () => {
   const onSubmit = async () => {
     try {
       await authContext.signIn(email, password);
-      window.alert('Signed in successfully!');
+      // window.alert('Signed in successfully!');
       navigate('/');
     } catch (error) {
-      window.alert('Error.');
+      // window.alert('Error.');
       console.log(error);
     }
   };
@@ -31,17 +31,21 @@ const SignIn: React.FC = () => {
         className="flex flex-col px-8 py-5 mt-10 gap-4 w-[min(90vw,75ch)] mx-auto border rounded-xl shadow shadow-gray-300"
       >
         <h1 className="font-heading font-bold text-4xl">
-          {preferredLanguage === PreferredLanguage.ENGLISH
-            ? 'Sign In'
-            : 'Lorem ipsum'}
+          {
+            {
+              [SupportedLanguage.ENGLISH]: 'Sign In',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
+          }
         </h1>
         <Input
           type="text"
           name="email"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Email address'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Email address',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setEmail(e.target.value)}
@@ -51,9 +55,10 @@ const SignIn: React.FC = () => {
           type="password"
           name="password"
           placeholder={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Password'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Password',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           required
           onChange={(e) => setPassword(e.target.value)}

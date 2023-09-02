@@ -1,8 +1,8 @@
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 type LanguageDependentText = {
-  [PreferredLanguage.ENGLISH]: string;
-  [PreferredLanguage.SPANISH]: string;
+  [SupportedLanguage.ENGLISH]: string;
+  [SupportedLanguage.SPANISH]: string;
 };
 interface StoryData {
   header: LanguageDependentText;

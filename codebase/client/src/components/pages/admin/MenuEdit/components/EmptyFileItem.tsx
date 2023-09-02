@@ -3,7 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import MenuContext from '../context/MenuContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import ColumnItem from './utilities/ColumnItem';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const EmptyFileItem = ({
   draggableId,
@@ -70,9 +70,13 @@ const EmptyFileItem = ({
               // If propagation isn't stopped, then the MouseEvent will bubble up to the ColumnItem and trigger its click listener
             >
               <i className=" absolute translate-x-[-125%] translate-y-[-15%] fa-solid fa-file-circle-plus text-2xl" />{' '}
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Click here to add a menu for this week.'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]:
+                    'Click here to add a menu for this week.',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </label>
           </div>
         </ColumnItem>

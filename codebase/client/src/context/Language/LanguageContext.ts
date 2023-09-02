@@ -1,13 +1,13 @@
 import { createContext } from 'react';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 interface LanguageContext {
-  preferredLanguage: PreferredLanguage.Type;
-  setPreferredLanguage: (preferredLanguage: PreferredLanguage.Type) => void;
+  preferredLanguage: SupportedLanguage.Type;
+  setPreferredLanguage: (preferredLanguage: SupportedLanguage.Type) => void;
 }
 
 const defaultLanguageContext: LanguageContext = {
-  preferredLanguage: PreferredLanguage.ENGLISH,
+  preferredLanguage: SupportedLanguage.ENGLISH,
   setPreferredLanguage: () => {},
 };
 

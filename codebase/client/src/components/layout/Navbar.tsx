@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const Navbar: FC = () => {
   const authContext = useContext(AuthContext);
@@ -32,9 +32,10 @@ const Navbar: FC = () => {
         <img
           src={logo}
           alt={
-            preferredLanguage === PreferredLanguage.ENGLISH
-              ? 'Teen Kitchen Project logo'
-              : 'Lorem ipsum'
+            {
+              [SupportedLanguage.ENGLISH]: 'Teen Kitchen Project logo',
+              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+            }[preferredLanguage]
           }
           className="h-12 w-12 mr-1 pr-0"
         />
@@ -68,45 +69,60 @@ const Navbar: FC = () => {
           <NavLinkItem
             to="/menus"
             text={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Our Menu'
-                : 'Lorem ipsum'
+              {
+                [SupportedLanguage.ENGLISH]: 'Our Menu',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             onClick={toggleIsVisible}
           />
           <NavLinkItem
             to="/volunteer"
             text={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Volunteer'
-                : 'Lorem ipsum'
+              {
+                [SupportedLanguage.ENGLISH]: 'Volunteer',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             onClick={toggleIsVisible}
           />
           <NavLinkItem
             to="/stories"
             text={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Stories'
-                : 'Lorem ipsum'
+              {
+                [SupportedLanguage.ENGLISH]: 'Stories',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             onClick={toggleIsVisible}
           />
           <NavLinkItem
             to="/contact"
             text={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Contact Us'
-                : 'Lorem ipsum'
+              {
+                [SupportedLanguage.ENGLISH]: 'Contact Us',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             onClick={toggleIsVisible}
           />
           <NavLinkItem
             to="/about"
             text={
-              preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'About'
-                : 'Lorem ipsum'
+              {
+                [SupportedLanguage.ENGLISH]: 'About',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
+            onClick={toggleIsVisible}
+          />
+          <NavLinkItem
+            to="/surveys"
+            text={
+              {
+                [SupportedLanguage.ENGLISH]: 'Surveys',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
             }
             onClick={toggleIsVisible}
           />
@@ -114,9 +130,10 @@ const Navbar: FC = () => {
             <NavLinkItem
               to="/edit-menus"
               text={
-                preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'Edit Menus'
-                  : 'Lorem ipsum'
+                {
+                  [SupportedLanguage.ENGLISH]: 'Edit Menus',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
               }
               onClick={toggleIsVisible}
             />
@@ -125,14 +142,15 @@ const Navbar: FC = () => {
             <NavLinkItem
               to="/add-admin"
               text={
-                preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'Add an Admin'
-                  : 'Lorem ipsum'
+                {
+                  [SupportedLanguage.ENGLISH]: 'Add an Admin',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
               }
               onClick={toggleIsVisible}
             />
           )}
-          {authContext.isSignedIn() && (
+          {/* {authContext.isSignedIn() && (
             <NavLinkItem
               to="/user-info"
               text={
@@ -142,42 +160,23 @@ const Navbar: FC = () => {
               }
               onClick={toggleIsVisible}
             />
-          )}
+          )} */}
         </div>
 
-        <div className="flex items-center gap-2 pl-3 py-2 pt-3 lg:px-5 text-xl">
-          <fieldset className="flex gap-1">
-            <label htmlFor="isEnglish">
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'English'
-                : 'Español'}
-            </label>
-            <input
-              type="checkbox"
-              name="isEnglish"
-              id="isEnglish"
-              checked={preferredLanguage === PreferredLanguage.ENGLISH}
-              onChange={(e) => {
-                const isEnglish: boolean = e.target.checked;
-                if (isEnglish) {
-                  setPreferredLanguage(PreferredLanguage.ENGLISH);
-                  // window.alert(`Set to ${PreferredLanguage.ENGLISH}`);
-                } else {
-                  setPreferredLanguage(PreferredLanguage.SPANISH);
-                  // window.alert(`Set to ${PreferredLanguage.SPANISH}`);
-                }
-              }}
-            />
-          </fieldset>
+        <div className="flex items-center gap-3 pl-3 py-2 pt-3 lg:px-5 text-xl ">
+          {/* Auth buttons */}
           {!authContext.isSignedIn() && (
             <Link to="/sign-in">
               <button
                 className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
               >
-                {preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'Sign In'
-                  : 'Lorem ipsum'}
+                {
+                  {
+                    [SupportedLanguage.ENGLISH]: 'Sign In',
+                    [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                  }[preferredLanguage]
+                }
               </button>
             </Link>
           )}
@@ -187,9 +186,12 @@ const Navbar: FC = () => {
                 className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
               >
-                {preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'Sign Up'
-                  : 'Lorem ipsum'}
+                {
+                  {
+                    [SupportedLanguage.ENGLISH]: 'Sign Up',
+                    [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                  }[preferredLanguage]
+                }
               </button>
             </Link>
           )}
@@ -198,16 +200,60 @@ const Navbar: FC = () => {
               className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
               onClick={() => authContext.signOut()}
             >
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Log Out'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Log Out',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </button>
           )}
-          {/* {authContext.isSignedIn() && (
-            <div className="py-2 lg:px-2">
-              <h1 className="text-2xl">User ID: {userContext?.user?.id}</h1>
+
+          {/* Language toggle */}
+          <fieldset className="flex overflow-hidden border border-gray-400 rounded-md">
+            <div
+              className={`
+               px-4 py-2 flex gap-2  border-r border-gray-400
+              ${
+                preferredLanguage === SupportedLanguage.ENGLISH
+                  ? 'bg-gray-100'
+                  : ''
+              }
+              `}
+            >
+              <input
+                type="radio"
+                name="language"
+                id="english"
+                value={SupportedLanguage.ENGLISH}
+                checked={preferredLanguage === SupportedLanguage.ENGLISH}
+                onChange={(e) => {
+                  setPreferredLanguage(SupportedLanguage.ENGLISH);
+                }}
+              />
+              <label htmlFor="english">English</label>
             </div>
-          )} */}
+
+            <div
+              className={`px-4 py-2 flex gap-2 ${
+                preferredLanguage === SupportedLanguage.SPANISH
+                  ? 'bg-gray-100 '
+                  : ''
+              }`}
+            >
+              <input
+                type="radio"
+                name="language"
+                id="spanish"
+                value={SupportedLanguage.SPANISH}
+                checked={preferredLanguage === SupportedLanguage.SPANISH}
+                onChange={(e) => {
+                  setPreferredLanguage(SupportedLanguage.SPANISH);
+                }}
+              />
+              <label htmlFor="spanish">Español</label>
+            </div>
+          </fieldset>
         </div>
       </div>
     </nav>

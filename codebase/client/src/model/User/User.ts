@@ -1,6 +1,6 @@
 import Clonable from '../Interfaces/Clonable';
 import Identifiable from '../Interfaces/Identifiable';
-import PreferredLanguage from './PreferredLanguage';
+import SupportedLanguage from '../Language/SupportedLanguage';
 import StorableUser from './StorableUser';
 
 export default class User implements Clonable<User>, Identifiable {
@@ -8,13 +8,13 @@ export default class User implements Clonable<User>, Identifiable {
   lastName: string;
   email: string;
   id: string;
-  preferredLanguage: PreferredLanguage.Type;
+  preferredLanguage: SupportedLanguage.Type;
 
   constructor(
     firstName: string,
     lastName: string,
     email: string,
-    preferredLanguage: PreferredLanguage.Type,
+    preferredLanguage: SupportedLanguage.Type,
     id: string
   ) {
     this.email = email;

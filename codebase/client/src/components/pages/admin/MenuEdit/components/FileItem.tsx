@@ -8,7 +8,7 @@ import EllipsisMenu, {
   EllipsisMenuItem,
 } from './utilities/EllipsisMenu';
 import LanguageContext from 'src/context/Language/LanguageContext';
-import PreferredLanguage from 'src/model/User/PreferredLanguage';
+import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const FileItem = ({
   file,
@@ -79,9 +79,10 @@ const FileItem = ({
             <span className="basis-0 grow break-all">
               {file.url
                 ? shorten(file.url)
-                : preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'No URL for this file.'
-                : 'Lorem ipsum'}
+                : {
+                    [SupportedLanguage.ENGLISH]: 'No URL for this file.',
+                    [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                  }[preferredLanguage]}
             </span>
           </ColumnItem>
 
@@ -105,14 +106,20 @@ const FileItem = ({
             id={'ellipsis-menu-' + file.id}
           >
             <EllipsisMenuItem onClick={onClickReplace}>
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Replace file'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Replace file',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </EllipsisMenuItem>
             <EllipsisMenuItem onClick={onClickDelete}>
-              {preferredLanguage === PreferredLanguage.ENGLISH
-                ? 'Delete file'
-                : 'Lorem ipsum'}
+              {
+                {
+                  [SupportedLanguage.ENGLISH]: 'Delete file',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
             </EllipsisMenuItem>
           </EllipsisMenu>
         </div>
