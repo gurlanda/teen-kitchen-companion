@@ -13,7 +13,11 @@ const MenuEdit = ({}: {}): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authContext.isSignedIn() || !authContext.isAdmin) {
+    if (!authContext.isSignedIn()) {
+      navigate('/sign-in');
+    }
+
+    if (!authContext.isAdmin) {
       navigate('/');
     }
 
