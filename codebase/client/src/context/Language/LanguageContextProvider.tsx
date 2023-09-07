@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import LanguageContext from './LanguageContext';
 import AuthContext from '../Auth/AuthContext';
+import updateCurrentUserPreferredLanguage from 'src/firebase/User/updateCurrentUserPreferredLanguage';
 
 const LanguageContextProvider = ({
   children,
@@ -10,18 +11,25 @@ const LanguageContextProvider = ({
 }): JSX.Element => {
   const [preferredLanguage, setPreferredLanguageState] =
     useState<SupportedLanguage.Type>(SupportedLanguage.ENGLISH);
-  const authContext = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   if (authContext.user === undefined) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (user === undefined) {
+      return;
+    }
 
-  //   setPreferredLanguage(authContext.user.preferredLanguage);
-  // }, [authContext.user]);
+    setPreferredLanguageState(user.preferredLanguage);
+  }, [user]);
 
-  function setPreferredLanguage(input: SupportedLanguage.Type) {
-    setPreferredLanguageState(input);
+  async function setPreferredLanguage(
+    newPreferredLanguage: SupportedLanguage.Type
+  ) {
+    setPreferredLanguageState(newPreferredLanguage);
+    if (user === undefined) {
+      return;
+    }
+
+    await updateCurrentUserPreferredLanguage(newPreferredLanguage);
   }
 
   return (

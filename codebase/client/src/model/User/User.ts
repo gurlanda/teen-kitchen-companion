@@ -34,6 +34,16 @@ export default class User implements Clonable<User>, Identifiable {
     );
   }
 
+  toChangePreferredLanguage(preferredLanguage: SupportedLanguage.Type): User {
+    return new User(
+      this.firstName,
+      this.lastName,
+      this.email,
+      preferredLanguage,
+      this.id
+    );
+  }
+
   toStorable(): StorableUser {
     return {
       firstName: this.firstName,
