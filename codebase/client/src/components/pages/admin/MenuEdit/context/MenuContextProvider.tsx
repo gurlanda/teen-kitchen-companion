@@ -71,10 +71,10 @@ const MenuContextProvider = ({
       }
     });
 
-    console.dir({
-      localMenus: menuItemConverter.combine(dates, newFiles),
-      serverMenus: menus,
-    });
+    // console.dir({
+    //   localMenus: menuItemConverter.combine(dates, newFiles),
+    //   serverMenus: menus,
+    // });
 
     setFiles(newFiles);
   }
@@ -147,14 +147,18 @@ const MenuContextProvider = ({
 
       // TODO: Remove or replace on deployment
       if (menus === null || menus.length < 1) {
-        window.alert('An error occured');
+        window.alert('No menus to upload');
         return;
       }
 
+      const originalMenusMap = new Map<string, Menu>(
+        originalMenus.map((menu) => [menu.id, menu])
+      );
+
       for (let i = 0; i < menus.length; i++) {
         const currentMenu = menus[i];
-        const originalMenu = originalMenus[i];
-        if (currentMenu.equals(originalMenu)) {
+        const originalMenu = originalMenusMap.get(currentMenu.id);
+        if (originalMenu && currentMenu.equals(originalMenu)) {
           continue;
         }
 
@@ -162,7 +166,6 @@ const MenuContextProvider = ({
       }
 
       setOriginalMenus(menus);
-      window.alert('Uploaded!');
     } catch (error) {
       console.log(error);
     }
