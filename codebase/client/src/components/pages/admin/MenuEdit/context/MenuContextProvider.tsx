@@ -57,9 +57,11 @@ const MenuContextProvider = ({
       }
     }
 
-    // console.dir({
-    //   areChangesPresent,
-    // });
+    console.dir({
+      areChangesPresent,
+      currentMenus,
+      originalMenus,
+    });
 
     return areChangesPresent;
   }
@@ -68,6 +70,10 @@ const MenuContextProvider = ({
     targetIndex: number,
     fileUrl: string | null = null
   ): void {
+    if (!isValidIndex(targetIndex, files)) {
+      return;
+    }
+
     const newFiles = files.map((file, index) => {
       if (index === targetIndex) {
         return new MenuFile(fileUrl, file.id);
@@ -85,6 +91,20 @@ const MenuContextProvider = ({
   }
 
   function deleteFile(targetIndex: number) {
+    if (!isValidIndex(targetIndex, files)) {
+      return;
+    }
+
+    // If the deleted file was the currently-previewed file, then change the currently-previewed file to the next file in index order
+    const deletionTargetUrl = files[targetIndex].url;
+    if (previewedFile === deletionTargetUrl) {
+      const nextFileIndex =
+        targetIndex + 1 === files.length ? 0 : targetIndex + 1;
+
+      setPreviewedFile(files[nextFileIndex].url);
+    }
+
+    // Delete the file
     changeFile(targetIndex);
   }
 
@@ -179,6 +199,10 @@ const MenuContextProvider = ({
         }
       }
 
+      const { files: newFiles, dates: newDates } =
+        menuItemConverter.separate(menus);
+      setFiles(newFiles);
+      setDates(newDates);
       setOriginalMenus(menus);
     } catch (error) {
       console.log(error);
