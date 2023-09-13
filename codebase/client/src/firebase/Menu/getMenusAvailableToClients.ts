@@ -1,7 +1,7 @@
 import { Timestamp, limit, orderBy, query, startAt } from 'firebase/firestore';
 import Menu from 'src/model/Menu/Menu';
-import menusCollectionRef from './menusCollectionRef';
-import getMenus from './getMenus';
+import menusCollectionRef from './References/menusCollectionRef';
+import getMenus from './core/getMenus';
 import numMenusAvailableToClients from './numMenusAvailableToClients';
 
 async function getMenusAvailableToClients(): Promise<Menu[]> {

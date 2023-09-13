@@ -11,7 +11,6 @@ import firebaseConfig from './firebaseConfig';
 
 function initializeFirebase() {
   const app = initializeApp(firebaseConfig);
-
   return app;
 }
 
@@ -43,9 +42,10 @@ function initializeCloudStorageServices(app: FirebaseApp) {
 }
 
 function initializeFirestoreServices(app: FirebaseApp) {
-  const firestoreRef = initializeFirestore(app, {
-    localCache: persistentLocalCache(),
-  });
+  // const firestoreRef = initializeFirestore(app, {
+  //   localCache: persistentLocalCache(),
+  // });
+  const firestoreRef = getFirestore(app);
   return {
     firestoreRef,
   };
@@ -54,10 +54,10 @@ function initializeFirestoreServices(app: FirebaseApp) {
 export type FirebaseServices = ReturnType<typeof getFirebaseServices>;
 function getFirebaseServices() {
   const app = initializeFirebase();
-  const cloudFunctions = initializeCloudFunctions();
-  const authServices = initializeAuthServices();
   const firestoreServices = initializeFirestoreServices(app);
   const cloudStorageServices = initializeCloudStorageServices(app);
+  const cloudFunctions = initializeCloudFunctions();
+  const authServices = initializeAuthServices();
 
   return {
     ...cloudFunctions,

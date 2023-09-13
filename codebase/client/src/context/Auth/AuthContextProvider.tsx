@@ -24,23 +24,24 @@ const AuthContextProvider = ({
   const { authRef } = getFirebaseServices();
   const [user, setUser] = useState<User | undefined>(undefined);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  onAuthStateChanged(authRef, async (user) => {
-    if (user) {
-      try {
-        await setUpCurrentUser();
-      } catch (error) {
-        console.log(error);
-        removeUserInfo();
-      }
-    } else {
-      removeUserInfo();
-    }
-  });
 
   useEffect(() => {
-    (async () => {
-      await setUpCurrentUser();
-    })();
+    onAuthStateChanged(authRef, async (user) => {
+      if (user) {
+        try {
+          await setUpCurrentUser();
+        } catch (error) {
+          console.log(error);
+          removeUserInfo();
+        }
+      } else {
+        removeUserInfo();
+      }
+    });
+
+    // (async () => {
+    //   await setUpCurrentUser();
+    // })();
   }, []);
 
   function isSignedIn(): boolean {
@@ -104,6 +105,7 @@ const AuthContextProvider = ({
 
     setUser(userData);
     setIsAdmin(currentUserIsAdmin);
+    // console.dir({ userData, currentUserIsAdmin });
   }
 
   function removeUserInfo() {

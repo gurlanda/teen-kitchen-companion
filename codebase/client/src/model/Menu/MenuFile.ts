@@ -1,4 +1,9 @@
 import createId from 'src/utils/createId';
+export type StorableMenuFile = {
+  id: string;
+  url: string | null;
+};
+
 class MenuFile {
   private _id: string;
   private _url: string | null;
@@ -18,6 +23,17 @@ class MenuFile {
 
   set url(newUrl: string | null) {
     this._url = newUrl;
+  }
+
+  toStorable(): StorableMenuFile {
+    return {
+      id: this.id,
+      url: this.url,
+    };
+  }
+
+  static fromStorable(storable: StorableMenuFile): MenuFile {
+    return new MenuFile(storable.url ?? null, storable.id);
   }
 
   clone(): MenuFile {

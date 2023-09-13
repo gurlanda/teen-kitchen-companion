@@ -7,7 +7,14 @@ import MenuDate from './MenuDate';
 import MenuFile from './MenuFile';
 
 const menuItemConverter = {
-  separate(menus: Menu[]): { dates: MenuDate[]; files: MenuFile[] } {
+  separate(menus: Menu[] | undefined): {
+    dates: MenuDate[];
+    files: MenuFile[];
+  } {
+    if (menus === undefined) {
+      return { dates: [], files: [] };
+    }
+
     const dates: MenuDate[] = [];
     const files: MenuFile[] = [];
 

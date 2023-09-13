@@ -1,7 +1,7 @@
 import { orderBy, query } from 'firebase/firestore';
 import Menu from 'src/model/Menu/Menu';
-import getMenus from './getMenus';
-import menusCollectionRef from './menusCollectionRef';
+import getMenus from './core/getMenus';
+import menusCollectionRef from './References/menusCollectionRef';
 
 async function getAllMenus(): Promise<Menu[]> {
   try {

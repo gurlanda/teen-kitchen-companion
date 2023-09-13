@@ -9,10 +9,9 @@ import {
 import MenuContext from './MenuContext';
 import MenuFile from 'src/model/Menu/MenuFile';
 import menuItemConverter from 'src/model/Menu/menuItemConverter';
-import uploadNewMenu from '../../../../../firebase/Menu/uploadNewMenu';
 import MenuDate from 'src/model/Menu/MenuDate';
 import Menu from 'src/model/Menu/Menu';
-import setMenu from 'src/firebase/Menu/setMenu';
+import setMenu from 'src/firebase/Menu/core/setMenu';
 
 const MenuContextProvider = ({
   menus,
@@ -24,7 +23,13 @@ const MenuContextProvider = ({
   const { files: receivedFiles, dates: receivedDates } =
     menuItemConverter.separate(menus);
   const [previewedFile, setPreviewedFile] = useState<string | null>(
-    receivedFiles[0].url
+    (() => {
+      if (receivedFiles === undefined || receivedFiles.length === 0) {
+        return null;
+      }
+
+      return receivedFiles[0].url;
+    })()
   );
   const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
   const [dates, setDates] = useState<MenuDate[]>(receivedDates);
@@ -52,9 +57,9 @@ const MenuContextProvider = ({
       }
     }
 
-    console.dir({
-      areChangesPresent,
-    });
+    // console.dir({
+    //   areChangesPresent,
+    // });
 
     return areChangesPresent;
   }
@@ -158,11 +163,20 @@ const MenuContextProvider = ({
       for (let i = 0; i < menus.length; i++) {
         const currentMenu = menus[i];
         const originalMenu = originalMenusMap.get(currentMenu.id);
-        if (originalMenu && currentMenu.equals(originalMenu)) {
-          continue;
-        }
 
-        await setMenu(currentMenu);
+        const menuDidChange: boolean =
+          originalMenu === undefined || !currentMenu.equals(originalMenu);
+        if (menuDidChange) {
+          const uploadedMenu = await setMenu(currentMenu);
+          if (uploadedMenu === null) {
+            throw {
+              menu: menus[i],
+              message: 'An error occured while uploading the menu',
+            };
+          }
+
+          menus[i] = uploadedMenu;
+        }
       }
 
       setOriginalMenus(menus);

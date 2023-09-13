@@ -1,11 +1,11 @@
 import createId from 'src/utils/createId';
-import MenuFile from './MenuFile';
+import MenuFile, { StorableMenuFile } from './MenuFile';
 import { Timestamp } from 'firebase/firestore';
 import { isSameDay } from 'date-fns';
 
 export type StorableMenu = {
   startDate: Timestamp;
-  fileId: string | null;
+  file: StorableMenuFile | null;
 };
 
 class Menu {
@@ -31,6 +31,10 @@ class Menu {
     return this._id;
   }
 
+  set file(newFile: MenuFile) {
+    this._file = newFile.clone();
+  }
+
   clone(): Menu {
     return new Menu(this._startDate, this._file, this._id);
   }
@@ -44,24 +48,27 @@ class Menu {
   }
 
   toStorable(): StorableMenu {
-    let menuFileId: string | null;
+    let menuFile: StorableMenuFile | null;
     if (this._file.url === null) {
-      menuFileId = null;
+      menuFile = null;
     } else {
-      menuFileId = this._file.id;
+      menuFile = this._file.toStorable();
     }
 
     return {
       startDate: Timestamp.fromDate(this._startDate),
-      fileId: menuFileId,
+      file: menuFile,
     };
   }
 
-  static fromStorable(
-    storableMenu: StorableMenu,
-    menuFile: MenuFile,
-    id: string
-  ): Menu {
+  static fromStorable(storableMenu: StorableMenu, id: string): Menu {
+    let menuFile: MenuFile;
+    if (storableMenu.file === null) {
+      menuFile = new MenuFile();
+    } else {
+      menuFile = MenuFile.fromStorable(storableMenu.file);
+    }
+
     return new Menu(storableMenu.startDate.toDate(), menuFile, id);
   }
 }

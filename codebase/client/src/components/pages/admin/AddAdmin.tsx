@@ -16,7 +16,6 @@ const AddAdmin = ({}: {}): JSX.Element => {
     if (!authContext.isSignedIn()) {
       navigate('/sign-in');
     }
-
     if (!authContext.isAdmin) {
       navigate('/');
     }
