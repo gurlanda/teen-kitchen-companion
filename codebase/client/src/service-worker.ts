@@ -12,7 +12,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -57,7 +57,8 @@ registerRoute(
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith('.png'),
   // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new StaleWhileRevalidate({
     cacheName: 'images',
@@ -68,6 +69,85 @@ registerRoute(
     ],
   })
 );
+
+// Handle menu file requests
+{
+  const maxNumMenusCached = 10;
+  const maxAgeOfMenusSeconds = 60 * 60 * 24 * 35; // 5 weeks
+  registerRoute(
+    ({ url }) => {
+      const keyInfo = extractKeyInfoFromUrl();
+      if (keyInfo === null) {
+        return false;
+      }
+
+      const { hostname, fileExtension, storageCollection } = keyInfo;
+      const cloudStorageHostname = 'firebasestorage.googleapis.com';
+      const menusStorageCollectionName = 'menus';
+
+      const doesUrlMatch: boolean =
+        hostname === cloudStorageHostname &&
+        fileExtension === 'pdf' &&
+        storageCollection === menusStorageCollectionName;
+      return doesUrlMatch;
+
+      function extractKeyInfoFromUrl(): StorageRequestInfo | null {
+        // const exampleMatchedPath =
+        // 'https://firebasestorage.googleapis.com/v0/b/pwa-sandbox-7ecde.appspot.com/o/menus%2FRXiePc.pdf?alt=media&token=bc7f382d-bfb9-4f67-b283-e1bc9f6aad95';
+
+        const pathSegments: string[] = url.pathname.split('/');
+
+        {
+          const expectedNumberOfParts = 5;
+          if (pathSegments.length < expectedNumberOfParts) {
+            return null;
+          }
+        }
+
+        const hostname = url.hostname;
+
+        const appIdSegment = pathSegments[3];
+        const appId = appIdSegment.split('.')[0]; // No need to check if the string at this index exists; this array always contains at least one string
+
+        const storageRefSegment = pathSegments[5];
+        const storageRefSegmentParts = storageRefSegment.split('.');
+
+        {
+          const expectedNumberOfParts = 2;
+          if (storageRefSegmentParts.length < expectedNumberOfParts) {
+            return null;
+          }
+        }
+        const fileExtension = storageRefSegmentParts[1];
+        const filePath = storageRefSegmentParts[0];
+        const forwardSlashUrlEnc = '%2F';
+        const storageCollection = filePath.split(forwardSlashUrlEnc)[0];
+
+        return {
+          hostname,
+          appId,
+          fileExtension,
+          storageCollection,
+        };
+      }
+      type StorageRequestInfo = {
+        hostname: string;
+        appId: string;
+        fileExtension: string;
+        storageCollection: string;
+      };
+    },
+    new NetworkFirst({
+      cacheName: 'menus',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: maxNumMenusCached,
+          maxAgeSeconds: maxAgeOfMenusSeconds,
+        }),
+      ],
+    })
+  );
+}
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
