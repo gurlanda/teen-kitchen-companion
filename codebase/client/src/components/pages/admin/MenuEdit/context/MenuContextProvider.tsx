@@ -132,14 +132,14 @@ const MenuContextProvider = ({
     } else {
       const today = startOfToday();
 
-      let closestSunday: Date;
+      let lastSunday: Date;
       if (isSunday(today)) {
-        closestSunday = today;
+        lastSunday = today;
       } else {
-        closestSunday = previousSunday(today);
+        lastSunday = previousSunday(today);
       }
 
-      newDate = closestSunday;
+      newDate = lastSunday;
     }
 
     const newDates: MenuDate[] = [
