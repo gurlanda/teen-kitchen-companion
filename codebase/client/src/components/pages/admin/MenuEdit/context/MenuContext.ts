@@ -3,11 +3,11 @@ import MenuFile from 'src/model/Menu/MenuFile';
 import MenuDate from 'src/model/Menu/MenuDate';
 
 interface MenuContext {
-  previewedFile: string | null;
+  previewedFileIndex: number | null;
   files: MenuFile[];
   dates: MenuDate[];
 
-  setPreviewedFile(file: string): void;
+  setPreviewedFileIndex(newFileIndex: number): void;
   changeFile(index: number, fileUrl: string): void;
   moveFile(fromIndex: number, toIndex: number): void;
   deleteFile(index: number): void;
@@ -20,11 +20,11 @@ interface MenuContext {
 }
 
 const initialMenuContext: MenuContext = {
-  previewedFile: '',
+  previewedFileIndex: null,
   files: [],
   dates: [],
 
-  setPreviewedFile(file: string) {},
+  setPreviewedFileIndex(newFileIndex: number) {},
   changeFile(index: number, fileUrl: string) {},
   moveFile(fromIndex: number, toIndex: number) {},
   deleteFile(targetIndex: number) {},

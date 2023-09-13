@@ -16,7 +16,7 @@ const EmptyFileItem = ({
   className?: string;
   isVisibleByClient?: boolean;
 }): JSX.Element => {
-  const { changeFile, setPreviewedFile } = useContext(MenuContext);
+  const { changeFile, setPreviewedFileIndex } = useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const { preferredLanguage } = useContext(LanguageContext);
 
@@ -59,7 +59,7 @@ const EmptyFileItem = ({
                 const fileUrl = URL.createObjectURL(chosenFile);
 
                 changeFile(index, fileUrl);
-                setPreviewedFile(fileUrl);
+                setPreviewedFileIndex(index);
               }}
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />

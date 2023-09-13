@@ -22,13 +22,13 @@ const MenuContextProvider = ({
 }): JSX.Element => {
   const { files: receivedFiles, dates: receivedDates } =
     menuItemConverter.separate(menus);
-  const [previewedFile, setPreviewedFile] = useState<string | null>(
+  const [previewedFileIndex, setPreviewedFileIndex] = useState<number | null>(
     (() => {
       if (receivedFiles === undefined || receivedFiles.length === 0) {
         return null;
       }
 
-      return receivedFiles[0].url;
+      return 0;
     })()
   );
   const [files, setFiles] = useState<MenuFile[]>(receivedFiles);
@@ -96,12 +96,11 @@ const MenuContextProvider = ({
     }
 
     // If the deleted file was the currently-previewed file, then change the currently-previewed file to the next file in index order
-    const deletionTargetUrl = files[targetIndex].url;
-    if (previewedFile === deletionTargetUrl) {
+    if (previewedFileIndex === targetIndex) {
       const nextFileIndex =
-        targetIndex + 1 === files.length ? 0 : targetIndex + 1;
+        targetIndex + 1 >= files.length ? 0 : targetIndex + 1;
 
-      setPreviewedFile(files[nextFileIndex].url);
+      setPreviewedFileIndex(nextFileIndex);
     }
 
     // Delete the file
@@ -210,10 +209,10 @@ const MenuContextProvider = ({
   }
 
   const providedValues = {
-    previewedFile,
+    previewedFileIndex,
     files,
     dates,
-    setPreviewedFile,
+    setPreviewedFileIndex,
     changeFile,
     moveFile,
     deleteFile,

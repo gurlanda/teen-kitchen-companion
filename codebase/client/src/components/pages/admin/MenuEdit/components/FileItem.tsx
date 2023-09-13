@@ -21,14 +21,14 @@ const FileItem = ({
   className?: string;
   isVisibleByClient?: boolean;
 }): JSX.Element => {
-  const { previewedFile, setPreviewedFile, deleteFile, changeFile } =
+  const { previewedFileIndex, setPreviewedFileIndex, deleteFile, changeFile } =
     useContext(MenuContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEllipsisMenuVisible, setIsEllipsisMenuVisible] =
     useState<boolean>(false);
   const { preferredLanguage } = useContext(LanguageContext);
 
-  const isSelected = previewedFile === file.url;
+  const isSelected = previewedFileIndex === index;
 
   const isVisibleByClientStyles = `${
     isSelected ? 'bg-sky-100' : 'bg-sky-300'
@@ -56,7 +56,7 @@ const FileItem = ({
             }
             
             select-none ${className}`}
-            onClick={() => (file.url ? setPreviewedFile(file.url) : null)}
+            onClick={() => (file.url ? setPreviewedFileIndex(index) : null)}
           >
             <input
               type="file"
@@ -72,7 +72,7 @@ const FileItem = ({
                 const fileUrl = URL.createObjectURL(chosenFile);
 
                 changeFile(index, fileUrl);
-                setPreviewedFile(fileUrl);
+                setPreviewedFileIndex(index);
               }}
               className="h=[0.1px] w-[0.1] opacity-0 absolute -z-50"
             />
