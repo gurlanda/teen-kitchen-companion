@@ -126,6 +126,16 @@ const Navbar: FC = () => {
             }
             onClick={toggleIsVisible}
           />
+          <NavLinkItem
+            to="/account"
+            text={
+              {
+                [SupportedLanguage.ENGLISH]: 'Account',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
+            onClick={toggleIsVisible}
+          />
           {authContext.isAdmin && (
             <NavLinkItem
               to="/edit-menus"
