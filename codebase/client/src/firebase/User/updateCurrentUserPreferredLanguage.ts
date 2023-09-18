@@ -13,7 +13,9 @@ async function updateCurrentUserPreferredLanguage(
 
   const currentUserDoc = getUserDocRefWithConverter(currentUser.id);
   const updatedUser = currentUser.toChangePreferredLanguage(preferredLanguage);
-  await updateDoc(currentUserDoc, updatedUser.toStorable());
+  updateDoc(currentUserDoc, updatedUser.toStorable()).then(() => {
+    console.log(updatedUser);
+  });
 }
 
 export default updateCurrentUserPreferredLanguage;

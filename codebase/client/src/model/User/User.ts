@@ -24,9 +24,19 @@ export default class User implements Clonable<User>, Identifiable {
     this.preferredLanguage = preferredLanguage;
   }
 
-  clone(): User {
+  toChangePreferredLanguage(preferredLanguage: SupportedLanguage.Type): User {
     return new User(
       this.firstName,
+      this.lastName,
+      this.email,
+      preferredLanguage,
+      this.id
+    );
+  }
+
+  toChangeFirstName(firstName: string): User {
+    return new User(
+      firstName,
       this.lastName,
       this.email,
       this.preferredLanguage,
@@ -34,12 +44,22 @@ export default class User implements Clonable<User>, Identifiable {
     );
   }
 
-  toChangePreferredLanguage(preferredLanguage: SupportedLanguage.Type): User {
+  toChangeLastName(lastName: string): User {
+    return new User(
+      this.firstName,
+      lastName,
+      this.email,
+      this.preferredLanguage,
+      this.id
+    );
+  }
+
+  clone(): User {
     return new User(
       this.firstName,
       this.lastName,
       this.email,
-      preferredLanguage,
+      this.preferredLanguage,
       this.id
     );
   }
