@@ -28,7 +28,7 @@ import AddAdmin, {
 import Surveys from './components/pages/Surveys';
 import Account from './components/pages/Account';
 import VerifyEmailPrompt from './components/pages/auth/VerifyEmailPrompt';
-import VerifyEmail from './components/pages/auth/VerifyEmail';
+import VerifyEmail from './components/pages/auth/VerifyEmail/VerifyEmail';
 import EmailAction from './components/pages/auth/EmailAction';
 
 const root = ReactDOM.createRoot(

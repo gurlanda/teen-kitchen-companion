@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import VerifyEmail from './VerifyEmail';
+import VerifyEmail from './VerifyEmail/VerifyEmail';
 
 const EmailAction = (): JSX.Element => {
   // Example params: ?mode=verifyEmail&oobCode=ABC123&apiKey=AIzaSy&continueUrl=alakjsdfl&lang=fr
