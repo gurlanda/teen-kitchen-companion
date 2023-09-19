@@ -7,9 +7,9 @@ const UserInfo: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authContext.isSignedIn()) {
-      navigate('/');
-    }
+    // if (!authContext.isSignedIn()) {
+    //   navigate('/');
+    // }
   }, [authContext]);
 
   return (
@@ -18,13 +18,16 @@ const UserInfo: React.FC = () => {
         <h1 className="text-lg font-bold">User Info</h1>
         <span>
           Name:{' '}
-          {`${authContext?.user?.firstName || 'undefined'} ${
-            authContext?.user?.lastName || 'undefined'
+          {`${authContext.user?.firstName || 'undefined'} ${
+            authContext.user?.lastName || 'undefined'
           }`}
         </span>
-        <span>Email: {authContext?.user?.email}</span>
-        <span>User ID: {authContext?.user?.id}</span>
-        <span>User type: {authContext?.isAdmin ? 'Admin' : 'User'}</span>
+        <span>Email: {authContext.user?.email}</span>
+        <span>User ID: {authContext.user?.id}</span>
+        <span>User type: {authContext.isAdmin ? 'Admin' : 'User'}</span>
+        <span>
+          Email verified: {authContext.isEmailVerified ? 'True' : 'False'}
+        </span>
         <span>Preferred language: {authContext?.user?.preferredLanguage}</span>
       </div>
     </div>

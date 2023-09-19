@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { FirebaseError } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -15,6 +14,7 @@ import StorableUser from 'src/model/User/StorableUser';
 import initializeUser from 'src/firebase/User/initializeUser';
 import isCurrentUserAdmin from 'src/firebase/User/isCurrentUserAdmin';
 import getCurrentUser from 'src/firebase/User/getCurrentUser';
+import sendVerificationEmail from 'src/firebase/User/sendVerificationEmail';
 
 const AuthContextProvider = ({
   children,
@@ -24,6 +24,7 @@ const AuthContextProvider = ({
   const { authRef } = getFirebaseServices();
   const [user, setUser] = useState<User | undefined>(undefined);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isEmailVerified, setIsEmailVerified] = useState<boolean>(false);
 
   useEffect(() => {
     onAuthStateChanged(authRef, async (user) => {
@@ -73,6 +74,8 @@ const AuthContextProvider = ({
       };
       const user = User.fromStorable(storableUser, userId);
 
+      await sendVerificationEmail();
+
       // Update the database
       await initializeUser(user);
     } catch (error) {
@@ -97,20 +100,32 @@ const AuthContextProvider = ({
     await firebaseSignOut(authRef);
   }
 
-  const providedValues = { user, isAdmin, signUp, signIn, signOut, isSignedIn };
+  const providedValues = {
+    user,
+    isAdmin,
+    isEmailVerified,
+    signUp,
+    signIn,
+    signOut,
+    isSignedIn,
+  };
 
   async function setUpCurrentUser() {
     const userData = await getCurrentUser();
     const currentUserIsAdmin = await isCurrentUserAdmin();
+    const isEmailVerified: boolean =
+      getFirebaseServices().authRef.currentUser?.emailVerified ?? false;
 
     setUser(userData);
     setIsAdmin(currentUserIsAdmin);
+    setIsEmailVerified(isEmailVerified);
     // console.dir({ userData, currentUserIsAdmin });
   }
 
   function removeUserInfo() {
     setUser(undefined);
     setIsAdmin(false);
+    setIsEmailVerified(false);
   }
 
   return (

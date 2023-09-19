@@ -27,6 +27,9 @@ import AddAdmin, {
 } from './components/pages/admin/AddAdmin';
 import Surveys from './components/pages/Surveys';
 import Account from './components/pages/Account';
+import VerifyEmailPrompt from './components/pages/auth/VerifyEmailPrompt';
+import VerifyEmail from './components/pages/auth/VerifyEmail';
+import EmailAction from './components/pages/auth/EmailAction';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -46,13 +49,16 @@ const router = createBrowserRouter(
       <Route path="/volunteer" element={<Volunteer />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/stories" element={<TeenStories />} />
-      <Route path="/sign-in" element={<SignIn />} action={signInAction} />
-      <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
       <Route path="/add-admin" element={<AddAdmin />} action={addAdminAction} />
       <Route path="/user-info" element={<UserInfo />} />
       <Route path="/account" element={<Account />} />
       <Route path="/surveys" element={<Surveys />} />
       <Route errorElement={<NotFound />}></Route>
+
+      <Route path="/sign-in" element={<SignIn />} action={signInAction} />
+      <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
+      <Route path="/sign-up/finished" element={<VerifyEmailPrompt />} />
+      <Route path="/email-action" element={<EmailAction />} />
     </Route>
   )
 );

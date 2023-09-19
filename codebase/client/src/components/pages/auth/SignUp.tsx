@@ -45,7 +45,7 @@ const SignUp = ({}: {}): JSX.Element => {
     try {
       authContext.signUp(newUserData, password);
       // window.alert('Signed up successfully!');
-      navigate('/');
+      navigate('/sign-up/finished');
     } catch (error) {
       // window.alert('Error.');
       console.log(error);

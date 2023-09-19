@@ -5,6 +5,7 @@ import User from 'src/model/User/User';
 interface AuthContext {
   user: User | undefined;
   isAdmin: boolean;
+  isEmailVerified: boolean;
   signUp(newUser: StorableUser, password: string): Promise<void>;
   signIn(email: string, password: string): Promise<void>;
   signOut(): Promise<void>;
@@ -14,6 +15,7 @@ interface AuthContext {
 const defaultAuthContext: AuthContext = {
   user: undefined,
   isAdmin: false,
+  isEmailVerified: false,
   signUp: async () => {},
   signIn: async () => {},
   signOut: async () => {},
