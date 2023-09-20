@@ -20,8 +20,8 @@ import Volunteer from './components/pages/Volunteer';
 import NotFound from './components/pages/NotFound';
 import SignUp, { action as signUpAction } from './components/pages/auth/SignUp';
 import UserInfo from './components/pages/UserInfo';
-import MenuEdit from './components/pages/admin/MenuEdit';
-import { action as menuEditAction } from 'src/components/pages/admin/MenuEdit/MenuEditForm';
+import EditMenus from './components/pages/admin/EditMenus';
+import { action as menuEditAction } from 'src/components/pages/admin/EditMenus/MenuEditForm';
 import AddAdmin, {
   action as addAdminAction,
 } from './components/pages/admin/AddAdmin';
@@ -72,7 +72,7 @@ const router = createBrowserRouter(
       <Route path={paths.menus} element={<Menu />} />
       <Route
         path={paths.admin.editMenus}
-        element={<MenuEdit />}
+        element={<EditMenus />}
         action={menuEditAction}
       />
       <Route path={paths.volunteer} element={<Volunteer />} />

@@ -8,7 +8,7 @@ import Loading from 'src/components/layout/Loading';
 import { useNavigate } from 'react-router-dom';
 import { paths } from 'src';
 
-const MenuEdit = ({}: {}): JSX.Element => {
+const EditMenus = ({}: {}): JSX.Element => {
   const [menus, setMenus] = useState<Menu[] | null>(null);
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
@@ -41,4 +41,4 @@ const MenuEdit = ({}: {}): JSX.Element => {
   }
 };
 
-export default MenuEdit;
+export default EditMenus;
