@@ -11,10 +11,14 @@ const Account = (): JSX.Element => {
   const authContext = useContext(AuthContext);
   const { preferredLanguage } = useContext(LanguageContext);
   const userContext = useContext(UserContext);
+
   const [firstName, setFirstName] = useState<string>(
     userContext.firstName ?? ''
   );
   const [lastName, setLastName] = useState<string>(userContext.lastName ?? '');
+
+  const [isNameChangeFormVisible, setIsNameChangeFormVisible] =
+    useState<boolean>(false);
   const [verificationEmailSent, setVerificationEmailSent] =
     useState<boolean>(false);
   const [passwordResetLinkSent, setPasswordResetLinkSent] =
@@ -39,57 +43,87 @@ const Account = (): JSX.Element => {
           <h2 className="font-bold font-heading text-3xl">
             Change account name
           </h2>
-          <span>Current account name: {getName()}</span>
-          <label htmlFor="first-name">Preferred First Name</label>
-          <input
-            type="text"
-            id="first-name"
-            className="border border-gray-400 px-4 py-2 rounded-md"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
 
-          <label htmlFor="last-name">Last Name</label>
-          <input
-            type="text"
-            id="last-name"
-            className="border border-gray-400 px-4 py-2 rounded-md"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+          <div className="flex">
+            <span>
+              <strong className="font-bold">Current account name:</strong>{' '}
+              {getName()}
+            </span>
+            <button
+              className={`${buttonClassNames} ml-auto ${
+                isNameChangeFormVisible && 'hidden'
+              }`}
+              onClick={() => setIsNameChangeFormVisible(true)}
+            >
+              Change name
+            </button>
+          </div>
 
-          <button
-            className={buttonClassNames}
-            onClick={() => {
-              userContext.setName(firstName, lastName);
-            }}
-          >
-            Change name
-          </button>
+          {isNameChangeFormVisible && (
+            <fieldset className="flex flex-col gap-2">
+              <label htmlFor="first-name">Preferred First Name</label>
+              <input
+                type="text"
+                id="first-name"
+                className="border border-gray-400 px-4 py-2 rounded-md"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+
+              <label htmlFor="last-name">Last Name</label>
+              <input
+                type="text"
+                id="last-name"
+                className="border border-gray-400 px-4 py-2 rounded-md"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+
+              <div className="self-end flex gap-2">
+                <button
+                  className={buttonClassNames}
+                  onClick={() => {
+                    userContext.setName(firstName, lastName);
+                    setIsNameChangeFormVisible(false);
+                  }}
+                >
+                  Submit name change
+                </button>
+                <button
+                  className={buttonClassNames}
+                  onClick={() => setIsNameChangeFormVisible(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </fieldset>
+          )}
         </div>
 
         {/* Reset password */}
         <div className="flex flex-col gap-[inherit]">
           <h2 className="font-bold font-heading text-3xl">Reset password</h2>
-          <p>Email a link where you can reset your password.</p>
-          <button
-            className={buttonClassNames}
-            disabled={passwordResetLinkSent}
-            onClick={() => {
-              const userEmail = authContext.user?.email;
-              if (userEmail === undefined) {
-                console.log('User is undefined.');
-                return;
-              }
+          <div className="flex">
+            <p>Email a link where you can reset your password.</p>
+            <button
+              className={`${buttonClassNames} ml-auto`}
+              disabled={passwordResetLinkSent}
+              onClick={() => {
+                const userEmail = authContext.user?.email;
+                if (userEmail === undefined) {
+                  console.log('User is undefined.');
+                  return;
+                }
 
-              sendPasswordResetRequestEmail(userEmail);
-              setPasswordResetLinkSent(true);
-            }}
-          >
-            {passwordResetLinkSent
-              ? 'Password reset link sent'
-              : 'Send password reset email'}
-          </button>
+                sendPasswordResetRequestEmail(userEmail);
+                setPasswordResetLinkSent(true);
+              }}
+            >
+              {passwordResetLinkSent
+                ? 'Password reset link sent'
+                : 'Send password reset email'}
+            </button>
+          </div>
         </div>
 
         {/* Send verification email */}
