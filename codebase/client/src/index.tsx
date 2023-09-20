@@ -27,7 +27,7 @@ import AddAdmin, {
 } from './components/pages/admin/AddAdmin';
 import Surveys from './components/pages/Surveys';
 import Account from './components/pages/Account';
-import VerifyEmailPrompt from './components/pages/auth/VerifyEmailPrompt';
+import PromptToVerifyEmail from './components/pages/auth/PromptToVerifyEmail';
 import EmailAction from './components/pages/auth/EmailAction';
 
 const root = ReactDOM.createRoot(
@@ -95,7 +95,7 @@ const router = createBrowserRouter(
         element={<SignUp />}
         action={signUpAction}
       />
-      <Route path={paths.auth.afterSignUp} element={<VerifyEmailPrompt />} />
+      <Route path={paths.auth.afterSignUp} element={<PromptToVerifyEmail />} />
 
       <Route errorElement={<NotFound />}></Route>
     </Route>

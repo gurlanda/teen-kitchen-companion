@@ -1,4 +1,4 @@
-const VerifyEmailPrompt = ({}: {}): JSX.Element => {
+const PromptToVerifyEmail = ({}: {}): JSX.Element => {
   return (
     <div className="h-full">
       <div className="w-fluid mx-auto flex flex-col gap-2 font-body text-lg">
@@ -12,4 +12,4 @@ const VerifyEmailPrompt = ({}: {}): JSX.Element => {
   );
 };
 
-export default VerifyEmailPrompt;
+export default PromptToVerifyEmail;
