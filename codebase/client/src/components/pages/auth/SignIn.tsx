@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, useNavigate } from 'react-router-dom';
 import { paths } from 'src';
 import AuthContext from 'src/context/Auth/AuthContext';
@@ -39,33 +40,52 @@ const SignIn: React.FC = () => {
             }[preferredLanguage]
           }
         </h1>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email">Email address</label>
+          <Input
+            id="email"
+            type="text"
+            name="email"
+            placeholder={
+              {
+                [SupportedLanguage.ENGLISH]: 'Email address',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password">Password</label>
+          <Input
+            id="password"
+            type="password"
+            name="password"
+            placeholder={
+              {
+                [SupportedLanguage.ENGLISH]: 'Password',
+                [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+              }[preferredLanguage]
+            }
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+        </div>
+
+        <div className="self-end">
+          Are you new?{' '}
+          <Link to={paths.auth.signUp} className=" text-blue-500">
+            Create an account.
+          </Link>
+        </div>
+
         <Input
-          type="text"
-          name="email"
-          placeholder={
-            {
-              [SupportedLanguage.ENGLISH]: 'Email address',
-              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
-            }[preferredLanguage]
-          }
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder={
-            {
-              [SupportedLanguage.ENGLISH]: 'Password',
-              [SupportedLanguage.SPANISH]: 'Lorem ipsum',
-            }[preferredLanguage]
-          }
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <Input
+          id="submit"
           type="submit"
           name="submit"
           onClick={onSubmit}
@@ -86,6 +106,7 @@ const Input = ({
   onClick,
   className,
   children,
+  id,
 }: {
   type: React.HTMLInputTypeAttribute;
   name: React.InputHTMLAttributes<HTMLInputElement>['name'];
@@ -96,9 +117,11 @@ const Input = ({
   onClick?: React.MouseEventHandler<HTMLInputElement>;
   className?: string;
   children?: React.ReactNode;
+  id: string;
 }): JSX.Element => {
   return (
     <input
+      id={id}
       type={type}
       name={name}
       value={value}
