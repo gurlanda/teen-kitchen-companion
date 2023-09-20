@@ -4,6 +4,7 @@ import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import getFirebaseServices from 'src/firebase/getFirebaseServices';
+import { paths } from 'src';
 
 const AddAdmin = ({}: {}): JSX.Element => {
   const [email, setEmail] = useState<string>('');
@@ -14,10 +15,10 @@ const AddAdmin = ({}: {}): JSX.Element => {
 
   useEffect(() => {
     if (!authContext.isSignedIn()) {
-      navigate('/sign-in');
+      navigate(paths.auth.signIn);
     }
     if (!authContext.isAdmin) {
-      navigate('/');
+      navigate(paths.home);
     }
   }, []);
 

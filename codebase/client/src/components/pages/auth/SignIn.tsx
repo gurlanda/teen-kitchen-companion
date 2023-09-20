@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
+import { paths } from 'src';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
@@ -17,7 +18,7 @@ const SignIn: React.FC = () => {
     try {
       await authContext.signIn(email, password);
       // window.alert('Signed in successfully!');
-      navigate('/');
+      navigate(paths.home);
     } catch (error) {
       // window.alert('Error.');
       console.log(error);

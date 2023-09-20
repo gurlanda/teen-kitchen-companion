@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
+import { paths } from 'src';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
@@ -45,7 +46,7 @@ const SignUp = ({}: {}): JSX.Element => {
     try {
       authContext.signUp(newUserData, password);
       // window.alert('Signed up successfully!');
-      navigate('/sign-up/finished');
+      navigate(paths.auth.afterSignUp);
     } catch (error) {
       // window.alert('Error.');
       console.log(error);

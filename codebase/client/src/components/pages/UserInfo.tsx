@@ -8,7 +8,7 @@ const UserInfo: React.FC = () => {
 
   useEffect(() => {
     // if (!authContext.isSignedIn()) {
-    //   navigate('/');
+    //   navigate(paths.home);
     // }
   }, [authContext]);
 

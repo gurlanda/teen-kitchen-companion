@@ -6,6 +6,7 @@ import Menu from '../../../../model/Menu/Menu';
 import getAllMenus from 'src/firebase/Menu/getAllMenus';
 import Loading from 'src/components/layout/Loading';
 import { useNavigate } from 'react-router-dom';
+import { paths } from 'src';
 
 const MenuEdit = ({}: {}): JSX.Element => {
   const [menus, setMenus] = useState<Menu[] | null>(null);
@@ -14,11 +15,11 @@ const MenuEdit = ({}: {}): JSX.Element => {
 
   useEffect(() => {
     if (!authContext.isSignedIn()) {
-      navigate('/sign-in');
+      navigate(paths.auth.signIn);
     }
 
     if (!authContext.isAdmin) {
-      navigate('/');
+      navigate(paths.home);
     }
 
     async function retrieveMenus() {

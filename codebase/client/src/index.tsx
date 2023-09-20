@@ -28,37 +28,76 @@ import AddAdmin, {
 import Surveys from './components/pages/Surveys';
 import Account from './components/pages/Account';
 import VerifyEmailPrompt from './components/pages/auth/VerifyEmailPrompt';
-import VerifyEmail from './components/pages/auth/VerifyEmail/VerifyEmail';
 import EmailAction from './components/pages/auth/EmailAction';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+export const paths = {
+  home: '/',
+  about: '/about',
+  menus: '/menus',
+  volunteer: '/volunteer',
+  contact: '/contact',
+  stories: '/stories',
+  surveys: '/surveys',
+
+  admin: {
+    editMenus: '/edit-menus',
+    addAdmin: '/admin/add-admin',
+  },
+
+  userInfo: '/user-info',
+  account: '/account',
+
+  auth: {
+    signIn: '/auth/sign-in',
+    signUp: '/auth/sign-up',
+    afterSignUp: '/auth/sign-up/finished',
+    emailActions: '/auth/action',
+  },
+};
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/menus" element={<Menu />} />
+      <Route path={paths.about} element={<About />} />
+      <Route path={paths.menus} element={<Menu />} />
       <Route
-        path="/edit-menus"
+        path={paths.admin.editMenus}
         element={<MenuEdit />}
         action={menuEditAction}
       />
-      <Route path="/volunteer" element={<Volunteer />} />
-      <Route path="/contact" element={<ContactUs />} />
-      <Route path="/stories" element={<TeenStories />} />
-      <Route path="/add-admin" element={<AddAdmin />} action={addAdminAction} />
-      <Route path="/user-info" element={<UserInfo />} />
-      <Route path="/account" element={<Account />} />
-      <Route path="/surveys" element={<Surveys />} />
-      <Route errorElement={<NotFound />}></Route>
+      <Route path={paths.volunteer} element={<Volunteer />} />
+      <Route path={paths.contact} element={<ContactUs />} />
+      <Route path={paths.stories} element={<TeenStories />} />
+      <Route path={paths.surveys} element={<Surveys />} />
 
-      <Route path="/sign-in" element={<SignIn />} action={signInAction} />
-      <Route path="/sign-up" element={<SignUp />} action={signUpAction} />
-      <Route path="/sign-up/finished" element={<VerifyEmailPrompt />} />
-      <Route path="/email-action" element={<EmailAction />} />
+      <Route
+        path={paths.admin.addAdmin}
+        element={<AddAdmin />}
+        action={addAdminAction}
+      />
+
+      <Route path={paths.userInfo} element={<UserInfo />} />
+      <Route path={paths.account} element={<Account />} />
+
+      <Route path={paths.auth.emailActions} element={<EmailAction />} />
+      <Route
+        path={paths.auth.signIn}
+        element={<SignIn />}
+        action={signInAction}
+      />
+      <Route
+        path={paths.auth.signUp}
+        element={<SignUp />}
+        action={signUpAction}
+      />
+      <Route path={paths.auth.afterSignUp} element={<VerifyEmailPrompt />} />
+
+      <Route errorElement={<NotFound />}></Route>
     </Route>
   )
 );

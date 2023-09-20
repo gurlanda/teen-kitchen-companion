@@ -4,6 +4,7 @@ import logo from '../../assets/img/tkp-pot.svg';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
+import { paths } from 'src';
 
 const Navbar: FC = () => {
   const authContext = useContext(AuthContext);
@@ -25,7 +26,7 @@ const Navbar: FC = () => {
   return (
     <nav className="flex items-center justify-between h-fit bg-white">
       <Link
-        to="/"
+        to={paths.home}
         className="flex items-center ml-3.5 lg:mr-2"
         onClick={setInvisible}
       >
@@ -67,7 +68,7 @@ const Navbar: FC = () => {
         <div className="pl-5 lg:flex lg:grow">
           {/* <NavLinkItem to="/" text="How it Works" onClick={toggleIsVisible} /> */}
           <NavLinkItem
-            to="/menus"
+            to={paths.menus}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Our Menu',
@@ -77,7 +78,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/volunteer"
+            to={paths.volunteer}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Volunteer',
@@ -87,7 +88,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/stories"
+            to={paths.stories}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Stories',
@@ -97,7 +98,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/contact"
+            to={paths.contact}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Contact Us',
@@ -107,7 +108,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/about"
+            to={paths.about}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'About',
@@ -117,7 +118,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/surveys"
+            to={paths.surveys}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Surveys',
@@ -127,7 +128,7 @@ const Navbar: FC = () => {
             onClick={toggleIsVisible}
           />
           <NavLinkItem
-            to="/account"
+            to={paths.account}
             text={
               {
                 [SupportedLanguage.ENGLISH]: 'Account',
@@ -138,7 +139,7 @@ const Navbar: FC = () => {
           />
           {authContext.isAdmin && (
             <NavLinkItem
-              to="/edit-menus"
+              to={paths.admin.editMenus}
               text={
                 {
                   [SupportedLanguage.ENGLISH]: 'Edit Menus',
@@ -150,7 +151,7 @@ const Navbar: FC = () => {
           )}
           {authContext.isAdmin && (
             <NavLinkItem
-              to="/add-admin"
+              to={paths.admin.addAdmin}
               text={
                 {
                   [SupportedLanguage.ENGLISH]: 'Add an Admin',
@@ -162,7 +163,7 @@ const Navbar: FC = () => {
           )}
           {/* {authContext.isSignedIn() && (
             <NavLinkItem
-              to="/user-info"
+              to={paths.userInfo}
               text={
                 preferredLanguage === PreferredLanguage.ENGLISH
                   ? 'User'
@@ -176,7 +177,7 @@ const Navbar: FC = () => {
         <div className="flex items-center gap-3 pl-3 py-2 pt-3 lg:px-5 text-xl ">
           {/* Auth buttons */}
           {!authContext.isSignedIn() && (
-            <Link to="/sign-in">
+            <Link to={paths.auth.signIn}>
               <button
                 className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
@@ -191,7 +192,7 @@ const Navbar: FC = () => {
             </Link>
           )}
           {!authContext.isSignedIn() && (
-            <Link to="/sign-up">
+            <Link to={paths.auth.signUp}>
               <button
                 className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md"
                 onClick={toggleIsVisible}
