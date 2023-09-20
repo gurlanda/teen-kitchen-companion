@@ -1,15 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { reauthenticateWithCredential } from 'firebase/auth';
+import { useContext, useState } from 'react';
+import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import UserContext from 'src/context/User/UserContext';
+import sendVerificationEmail from 'src/firebase/User/sendVerificationEmail';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 
 const Account = (): JSX.Element => {
+  const authContext = useContext(AuthContext);
   const { preferredLanguage } = useContext(LanguageContext);
   const userContext = useContext(UserContext);
   const [firstName, setFirstName] = useState<string>(
     userContext.firstName ?? ''
   );
   const [lastName, setLastName] = useState<string>(userContext.lastName ?? '');
+  const [isVerificationEmailSent, setIsVerificationEmailSent] =
+    useState<boolean>(false);
 
   return (
     <div className="h-full">
@@ -23,8 +29,10 @@ const Account = (): JSX.Element => {
           }
         </h1>
 
-        <div className="flex flex-col gap-2">Name: {getName()}</div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-[inherit]">Name: {getName()}</div>
+
+        {/* Change name */}
+        <div className="flex flex-col gap-[inherit]">
           <label htmlFor="first-name">Preferred First Name</label>
           <input
             type="text"
@@ -52,6 +60,26 @@ const Account = (): JSX.Element => {
             Change name
           </button>
         </div>
+
+        {/* Send verification email */}
+        {!authContext.isEmailVerified && (
+          <div className="flex flex-col gap-[inherit]">
+            <p>
+              Your account email isn't verified, but email verification is
+              needed for certain actions. Please verify your email.
+            </p>
+            <button
+              className="border self-end enabled:hover:bg-slate-200 enabled:active:bg-slate-300 border-gray-400 px-4 py-2 rounded-md disabled:text-gray-500 disabled:bg-gray-100"
+              disabled={isVerificationEmailSent}
+              onClick={() => {
+                sendVerificationEmail();
+                setIsVerificationEmailSent(true);
+              }}
+            >
+              {isVerificationEmailSent ? 'Sent' : 'Send verification email'}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
