@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import VerifyEmail from './VerifyEmail/VerifyEmail';
+import ResetPasswordEmailAction from './ResetPassword/ResetPasswordEmailAction';
 
 const EmailAction = (): JSX.Element => {
   // Example params: ?mode=verifyEmail&oobCode=ABC123&apiKey=AIzaSy&continueUrl=alakjsdfl&lang=fr
@@ -19,8 +20,6 @@ const EmailAction = (): JSX.Element => {
     setParams(urlParams);
     console.log(urlParams);
 
-    const { continueUrl, oobCode } = urlParams;
-
     switch (urlParams.mode) {
       case 'resetPassword': {
         setPageMode('resetPassword');
@@ -33,11 +32,6 @@ const EmailAction = (): JSX.Element => {
       }
 
       case 'verifyEmail': {
-        if (!isValidUrl(continueUrl) || oobCode === undefined) {
-          setPageMode('invalid');
-          break;
-        }
-
         setPageMode('verifyEmail');
         break;
       }
@@ -58,15 +52,48 @@ const EmailAction = (): JSX.Element => {
         <span>continueUrl: {params.continueUrl}</span>
         <span>lang: {params.lang}</span>
 
-        {pageMode === 'verifyEmail' && (
-          <VerifyEmail
-            continueUrl={new URL(params.continueUrl!)} // Verification should have happened in the useEffect callback
-            actionCode={params.oobCode!} // Verification should have happened in the useEffect callback
-          />
-        )}
+        {(function pageModeComponent() {
+          switch (pageMode) {
+            case 'resetPassword':
+              if (params.oobCode === undefined) {
+                return <Invalid />;
+              }
+
+              return <ResetPasswordEmailAction actionCode={params.oobCode} />;
+            case 'recoverEmail':
+              return <></>;
+            case 'verifyEmail':
+              if (
+                params.oobCode === undefined ||
+                params.continueUrl === undefined ||
+                !isValidUrl(params.continueUrl)
+              ) {
+                return <Invalid />;
+              }
+
+              return (
+                <VerifyEmail
+                  continueUrl={new URL(params.continueUrl)}
+                  actionCode={params.oobCode}
+                />
+              );
+            case 'loading':
+              return <Loading />;
+            case 'invalid':
+              return <Invalid />;
+          }
+        })()}
       </div>
     </div>
   );
+};
+
+const Loading = (): JSX.Element => {
+  return <>Loading...</>;
+};
+
+const Invalid = (): JSX.Element => {
+  return <>Invalid</>;
 };
 
 type UrlParams = {

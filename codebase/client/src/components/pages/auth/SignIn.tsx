@@ -77,10 +77,18 @@ const SignIn: React.FC = () => {
           />
         </div>
 
+        {/* Create account */}
         <div className="self-end">
-          Are you new?{' '}
+          Are you a new user?{' '}
           <Link to={paths.auth.signUp} className=" text-blue-500">
             Create an account.
+          </Link>
+        </div>
+
+        {/* Password reset */}
+        <div className="self-end">
+          <Link to={paths.auth.resetPassword} className=" text-blue-500">
+            Forgot your password?
           </Link>
         </div>
 

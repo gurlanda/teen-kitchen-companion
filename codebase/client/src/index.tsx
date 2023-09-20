@@ -29,6 +29,7 @@ import Surveys from './components/pages/Surveys';
 import Account from './components/pages/Account';
 import PromptToVerifyEmail from './components/pages/auth/PromptToVerifyEmail';
 import EmailAction from './components/pages/auth/EmailAction';
+import SendPasswordResetLink from './components/pages/auth/ResetPassword/SendPasswordResetLink';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -55,7 +56,11 @@ export const paths = {
     signIn: '/auth/sign-in',
     signUp: '/auth/sign-up',
     afterSignUp: '/auth/sign-up/finished',
+
+    // If you change any of these paths, be sure to change the corresponding links in the email templates.
+    // This can be done by going to the Firebase console then navigating to Authentication > Templates
     emailActions: '/auth/action',
+    resetPassword: '/auth/reset-password',
   },
 };
 
@@ -96,6 +101,10 @@ const router = createBrowserRouter(
         action={signUpAction}
       />
       <Route path={paths.auth.afterSignUp} element={<PromptToVerifyEmail />} />
+      <Route
+        path={paths.auth.resetPassword}
+        element={<SendPasswordResetLink />}
+      />
 
       <Route errorElement={<NotFound />}></Route>
     </Route>
