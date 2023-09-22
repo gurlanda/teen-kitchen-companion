@@ -30,6 +30,7 @@ import Account from './components/pages/Account';
 import PromptToVerifyEmail from './components/pages/auth/PromptToVerifyEmail';
 import EmailAction from './components/pages/auth/EmailAction';
 import SendPasswordResetLink from './components/pages/auth/ResetPassword/SendPasswordResetLink';
+import AdminDashboard from './components/pages/admin/AdminDashboard';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -45,7 +46,9 @@ export const paths = {
   surveys: '/surveys',
 
   admin: {
-    editMenus: '/edit-menus',
+    index: '/admin',
+    default: '/admin/edit-menus',
+    editMenus: '/admin/edit-menus',
     addAdmin: '/admin/add-admin',
   },
 
@@ -70,22 +73,27 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path={paths.about} element={<About />} />
       <Route path={paths.menus} element={<Menu />} />
-      <Route
-        path={paths.admin.editMenus}
-        element={<EditMenus />}
-        action={menuEditAction}
-      />
       <Route path={paths.volunteer} element={<Volunteer />} />
       <Route path={paths.contact} element={<ContactUs />} />
       <Route path={paths.stories} element={<TeenStories />} />
       <Route path={paths.surveys} element={<Surveys />} />
 
-      <Route
-        path={paths.admin.addAdmin}
-        element={<AddAdmin />}
-        action={addAdminAction}
-      />
+      {/* Admin routes */}
+      <Route path={paths.admin.index} element={<AdminDashboard />}>
+        <Route
+          path={paths.admin.editMenus}
+          element={<EditMenus />}
+          action={menuEditAction}
+        />
+        <Route
+          path={paths.admin.addAdmin}
+          element={<AddAdmin />}
+          action={addAdminAction}
+        />
+      </Route>
+      {/* <Route path={paths.admin.main} element={<Admin />} /> */}
 
+      {/* Auth routes */}
       <Route path={paths.userInfo} element={<UserInfo />} />
       <Route path={paths.account} element={<Account />} />
 

@@ -127,6 +127,8 @@ const Navbar: FC = () => {
             }
             onClick={toggleIsVisible}
           />
+
+          {/* User settings */}
           <NavLinkItem
             to={paths.account}
             text={
@@ -137,7 +139,21 @@ const Navbar: FC = () => {
             }
             onClick={toggleIsVisible}
           />
+
+          {/* Admin links */}
           {authContext.isAdmin && (
+            <NavLinkItem
+              to={paths.admin.index}
+              text={
+                {
+                  [SupportedLanguage.ENGLISH]: 'Admin Dashboard',
+                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
+                }[preferredLanguage]
+              }
+              onClick={toggleIsVisible}
+            />
+          )}
+          {/* {authContext.isAdmin && (
             <NavLinkItem
               to={paths.admin.editMenus}
               text={
@@ -160,7 +176,7 @@ const Navbar: FC = () => {
               }
               onClick={toggleIsVisible}
             />
-          )}
+          )} */}
           {/* {authContext.isSignedIn() && (
             <NavLinkItem
               to={paths.userInfo}
@@ -174,6 +190,7 @@ const Navbar: FC = () => {
           )} */}
         </div>
 
+        {/* Auth links */}
         <div className="flex items-center gap-3 pl-3 py-2 pt-3 lg:px-5 text-xl ">
           {/* Auth buttons */}
           {!authContext.isSignedIn() && (
