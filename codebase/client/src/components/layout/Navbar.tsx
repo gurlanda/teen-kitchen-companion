@@ -5,6 +5,7 @@ import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import { paths } from 'src';
+import Button from './Button';
 
 const Navbar: FC = () => {
   const authContext = useContext(AuthContext);
@@ -153,41 +154,6 @@ const Navbar: FC = () => {
               onClick={toggleIsVisible}
             />
           )}
-          {/* {authContext.isAdmin && (
-            <NavLinkItem
-              to={paths.admin.editMenus}
-              text={
-                {
-                  [SupportedLanguage.ENGLISH]: 'Edit Menus',
-                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
-                }[preferredLanguage]
-              }
-              onClick={toggleIsVisible}
-            />
-          )}
-          {authContext.isAdmin && (
-            <NavLinkItem
-              to={paths.admin.addAdmin}
-              text={
-                {
-                  [SupportedLanguage.ENGLISH]: 'Add an Admin',
-                  [SupportedLanguage.SPANISH]: 'Lorem ipsum',
-                }[preferredLanguage]
-              }
-              onClick={toggleIsVisible}
-            />
-          )} */}
-          {/* {authContext.isSignedIn() && (
-            <NavLinkItem
-              to={paths.userInfo}
-              text={
-                preferredLanguage === PreferredLanguage.ENGLISH
-                  ? 'User'
-                  : 'Lorem ipsum'
-              }
-              onClick={toggleIsVisible}
-            />
-          )} */}
         </div>
 
         {/* Auth links */}
@@ -195,46 +161,37 @@ const Navbar: FC = () => {
           {/* Auth buttons */}
           {!authContext.isSignedIn() && (
             <Link to={paths.auth.signIn}>
-              <button
-                className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
-                onClick={toggleIsVisible}
-              >
+              <Button onClick={toggleIsVisible} textColor="brand-teal">
                 {
                   {
                     [SupportedLanguage.ENGLISH]: 'Sign In',
                     [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                   }[preferredLanguage]
                 }
-              </button>
+              </Button>
             </Link>
           )}
           {!authContext.isSignedIn() && (
             <Link to={paths.auth.signUp}>
-              <button
-                className="border-brand-teal text-white bg-brand-teal hover:bg-cyan-700 border rounded-lg px-6 py-1 pb-1.5 shadow-md"
-                onClick={toggleIsVisible}
-              >
+              <Button onClick={toggleIsVisible} primary>
                 {
                   {
                     [SupportedLanguage.ENGLISH]: 'Sign Up',
                     [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                   }[preferredLanguage]
                 }
-              </button>
+              </Button>
             </Link>
           )}
           {authContext.isSignedIn() && (
-            <button
-              className="border-gray-400 hover:bg-slate-200 text-cyan-600 bg-white border rounded-lg px-6 py-1 pb-1.5 shadow-md"
-              onClick={() => authContext.signOut()}
-            >
+            <Button onClick={() => authContext.signOut()}>
               {
                 {
                   [SupportedLanguage.ENGLISH]: 'Log Out',
                   [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                 }[preferredLanguage]
               }
-            </button>
+            </Button>
           )}
 
           {/* Language toggle */}

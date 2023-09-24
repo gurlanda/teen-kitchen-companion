@@ -5,6 +5,7 @@ import hero from 'src/assets/img/hero.png';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import { paths } from 'src';
+import Button from 'src/components/layout/Button';
 
 const Hero: React.FC = () => {
   const { preferredLanguage } = useContext(LanguageContext);
@@ -54,7 +55,11 @@ const Hero: React.FC = () => {
         </h4>
         <div className="mx-auto my-5">
           <Link to={paths.about}>
-            <button className="border-gray-200 hover:bg-slate-100 bg-white text-brand-teal font-body font-medium border rounded-lg shadow-md text-lg px-6 py-4">
+            <Button
+              className="font-body font-medium"
+              large
+              textColor="brand-teal"
+            >
               {
                 {
                   [SupportedLanguage.ENGLISH]: (
@@ -67,7 +72,7 @@ const Hero: React.FC = () => {
                   [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                 }[preferredLanguage]
               }
-            </button>
+            </Button>
           </Link>
         </div>
       </div>

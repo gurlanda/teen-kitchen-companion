@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import { paths } from 'src';
+import Submit from 'src/components/layout/Submit';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
@@ -193,12 +194,7 @@ const SignUp = ({}: {}): JSX.Element => {
           onChange={(e) => setConfirmedPassword(e.target.value)}
           value={confirmedPassword}
         />
-        <Input
-          type="submit"
-          name="submit"
-          onClick={onSubmit}
-          className="self-end"
-        />
+        <Submit onClick={onSubmit} className="self-end" />
       </Form>
     </div>
   );

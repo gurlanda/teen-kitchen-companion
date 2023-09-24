@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, useNavigate } from 'react-router-dom';
 import { paths } from 'src';
+import Submit from 'src/components/layout/Submit';
 import AuthContext from 'src/context/Auth/AuthContext';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
@@ -92,13 +93,7 @@ const SignIn: React.FC = () => {
           </Link>
         </div>
 
-        <Input
-          id="submit"
-          type="submit"
-          name="submit"
-          onClick={onSubmit}
-          className="self-end"
-        />
+        <Submit onClick={onSubmit} className="self-end" />
       </Form>
     </div>
   );

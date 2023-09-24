@@ -8,6 +8,7 @@ import MenuType from 'src/model/Menu/Menu';
 import Loading from 'src/components/layout/Loading';
 import format from 'date-fns/format';
 import add from 'date-fns/add';
+import Button from '../layout/Button';
 
 const Menu: React.FC = () => {
   const { preferredLanguage } = useContext(LanguageContext);
@@ -46,10 +47,7 @@ const Menu: React.FC = () => {
     const isChosen = menu.id === currentMenu?.id;
 
     return (
-      <Button
-        onClick={onClick}
-        className={`font-medium ${isChosen && 'bg-brand-teal text-white'}`}
-      >
+      <Button onClick={onClick} primary={isChosen}>
         {weekRangeText()}
       </Button>
     );
@@ -109,25 +107,6 @@ const Menu: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-const Button = ({
-  className,
-  onClick,
-  children,
-}: {
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <button
-      className={`border rounded-lg px-4 py-2 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
   );
 };
 

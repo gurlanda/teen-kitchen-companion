@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from 'src';
+import Button from 'src/components/layout/Button';
 import sendPasswordResetRequestEmail from 'src/firebase/User/sendPasswordResetRequestEmail';
 
-const buttonClassNames =
-  'border self-end enabled:hover:bg-slate-200 enabled:active:bg-slate-300 border-gray-400 px-4 py-2 rounded-md disabled:text-gray-500 disabled:bg-gray-100';
 const SendPasswordResetLink = (): JSX.Element => {
   const [pageState, setPageState] = useState<
     'showResetForm' | 'emailSubmitted'
@@ -71,9 +70,9 @@ const PasswordResetForm = ({
         />
       </div>
 
-      <button className={buttonClassNames} onClick={() => onSubmitEmail()}>
+      <Button className="self-end" onClick={() => onSubmitEmail()}>
         Send password reset link
-      </button>
+      </Button>
     </>
   );
 };
@@ -88,9 +87,9 @@ const EmailSubmitted = ({}: {}): JSX.Element => {
         received an email, try re-entering your email address or trying a
         different email.
       </p>
-      <button onClick={() => navigate(paths.home)} className={buttonClassNames}>
+      <Button className="self-end" onClick={() => navigate(paths.home)}>
         Go to home page
-      </button>
+      </Button>
     </>
   );
 };

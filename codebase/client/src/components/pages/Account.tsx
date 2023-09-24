@@ -6,6 +6,7 @@ import UserContext from 'src/context/User/UserContext';
 import sendPasswordResetRequestEmail from 'src/firebase/User/sendPasswordResetRequestEmail';
 import sendVerificationEmail from 'src/firebase/User/sendVerificationEmail';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
+import Button from '../layout/Button';
 
 const Account = (): JSX.Element => {
   const authContext = useContext(AuthContext);
@@ -49,14 +50,12 @@ const Account = (): JSX.Element => {
               <strong className="font-bold">Current account name:</strong>{' '}
               {getName()}
             </span>
-            <button
-              className={`${buttonClassNames} ml-auto ${
-                isNameChangeFormVisible && 'hidden'
-              }`}
+            <Button
+              className={`ml-auto ${isNameChangeFormVisible && 'hidden'}`}
               onClick={() => setIsNameChangeFormVisible(true)}
             >
               Change name
-            </button>
+            </Button>
           </div>
 
           {isNameChangeFormVisible && (
@@ -80,21 +79,17 @@ const Account = (): JSX.Element => {
               />
 
               <div className="self-end flex gap-2">
-                <button
-                  className={buttonClassNames}
+                <Button
                   onClick={() => {
                     userContext.setName(firstName, lastName);
                     setIsNameChangeFormVisible(false);
                   }}
                 >
                   Submit name change
-                </button>
-                <button
-                  className={buttonClassNames}
-                  onClick={() => setIsNameChangeFormVisible(false)}
-                >
+                </Button>
+                <Button onClick={() => setIsNameChangeFormVisible(false)}>
                   Cancel
-                </button>
+                </Button>
               </div>
             </fieldset>
           )}
@@ -105,8 +100,8 @@ const Account = (): JSX.Element => {
           <h2 className="font-bold font-heading text-3xl">Reset password</h2>
           <div className="flex">
             <p>Email a link where you can reset your password.</p>
-            <button
-              className={`${buttonClassNames} ml-auto`}
+            <Button
+              className="ml-auto"
               disabled={passwordResetLinkSent}
               onClick={() => {
                 const userEmail = authContext.user?.email;
@@ -122,7 +117,7 @@ const Account = (): JSX.Element => {
               {passwordResetLinkSent
                 ? 'Password reset link sent'
                 : 'Send password reset email'}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -136,8 +131,8 @@ const Account = (): JSX.Element => {
               Your account email isn't verified, but email verification is
               needed for certain actions. Please verify your email.
             </p>
-            <button
-              className={buttonClassNames}
+            <Button
+              className="self-end"
               disabled={verificationEmailSent}
               onClick={() => {
                 sendVerificationEmail();
@@ -145,7 +140,7 @@ const Account = (): JSX.Element => {
               }}
             >
               {verificationEmailSent ? 'Sent' : 'Send verification email'}
-            </button>
+            </Button>
           </div>
         )}
       </div>

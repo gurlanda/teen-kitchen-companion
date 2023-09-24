@@ -4,6 +4,7 @@ import { sendEmailWithCallable } from 'src/model/Email/sendEmail';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import LanguageContent from 'src/model/Language/LanguageContent';
+import Submit from './Submit';
 
 const EmailForm = ({
   className,
@@ -102,11 +103,7 @@ const EmailForm = ({
       {/* <Label className="flex flex-col gap-2">
         Message:{' '}
       </Label> */}
-      <Input
-        type="submit"
-        className="self-end cursor-pointer text-brand-teal"
-        onClick={onSubmit}
-      />
+      <Submit onClick={onSubmit} className="self-end" />
     </form>
   );
 };

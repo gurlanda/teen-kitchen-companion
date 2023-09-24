@@ -2,6 +2,7 @@ import { ReactNode, useContext } from 'react';
 import LanguageContext from 'src/context/Language/LanguageContext';
 import SupportedLanguage from 'src/model/Language/SupportedLanguage';
 import TkpBanner from 'src/components/layout/TkpBanner';
+import ExternalLinkButton from '../layout/ExternalLinkButton';
 
 const Volunteer: React.FC = () => {
   const { preferredLanguage } = useContext(LanguageContext);
@@ -77,14 +78,17 @@ const Volunteer: React.FC = () => {
                 }[preferredLanguage]
               }
             </h3>
-            <LinkButton to="https://teenkitchenproject.org/join-our-team/become-a-teen-volunteer/">
+            <ExternalLinkButton
+              to="https://teenkitchenproject.org/join-our-team/become-a-teen-volunteer/"
+              large
+            >
               {
                 {
                   [SupportedLanguage.ENGLISH]: 'Click Here to Learn More!',
                   [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                 }[preferredLanguage]
               }
-            </LinkButton>
+            </ExternalLinkButton>
           </div>
           <div className="space-y-2">
             <h3 className="text-xl font-bold">
@@ -95,33 +99,21 @@ const Volunteer: React.FC = () => {
                 }[preferredLanguage]
               }
             </h3>
-            <LinkButton to="https://teenkitchenproject.org/join-our-team/become-an-adult-volunteer/">
+            <ExternalLinkButton
+              to="https://teenkitchenproject.org/join-our-team/become-an-adult-volunteer/"
+              large
+            >
               {
                 {
                   [SupportedLanguage.ENGLISH]: 'Click Here to Learn More!',
                   [SupportedLanguage.SPANISH]: 'Lorem ipsum',
                 }[preferredLanguage]
               }
-            </LinkButton>
+            </ExternalLinkButton>
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-const LinkButton: React.FC<{
-  to: string;
-  children: ReactNode;
-}> = ({ to, children }) => {
-  return (
-    <a
-      className={`block px-4 py-4 bg-white border rounded-lg border-gray-400 text-center hover:bg-slate-200 text-brand-teal`}
-      href={to}
-      target="_blank"
-    >
-      {children}
-    </a>
   );
 };
 
